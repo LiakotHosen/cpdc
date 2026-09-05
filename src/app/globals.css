@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
+@theme {
+  --color-navy-primary: #1B2A6D;
+  --color-navy-dark: #0F1A48;
+  --color-navy-light: #2A3F99;
+  --color-navy-tint: #EEF2FF;
+  --color-ash-grey: #A7A9AC;
+  --color-ash-dark: #6C727F;
+  --color-ash-light: #E5E7EB;
+  --color-ash-soft: #F8FAFC;
+  --color-medical-teal: #0284C7;
+  --color-medical-mint: #10B981;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0F172A;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F8FAFC;
+  color: #0F172A;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility */
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.glass-card-navy {
+  background: linear-gradient(135deg, rgba(27, 42, 109, 0.96) 0%, rgba(15, 26, 72, 0.98) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(27, 42, 109, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(2, 132, 199, 0.4);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 5s ease-in-out infinite;
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Dental Tech Pattern Utility */
+.bg-dental-pattern {
+  background-image: radial-gradient(rgba(27, 42, 109, 0.08) 1px, transparent 1px), radial-gradient(rgba(2, 132, 199, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: 0 0, 14px 14px;
+}
+
+.glow-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px -10px rgba(27, 42, 109, 0.15), 0 0 1px 1px rgba(27, 42, 109, 0.05);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
 }
