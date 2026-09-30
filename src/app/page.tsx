@@ -15,6 +15,7 @@ import { DoctorSpotlight } from '@/components/home/DoctorSpotlight';
 import { VideoReelsSection } from '@/components/home/VideoReelsSection';
 import { ReviewsSection } from '@/components/home/ReviewsSection';
 import { EmergencyBanner } from '@/components/home/EmergencyBanner';
+import { LocationWayfindingSection } from '@/components/common/LocationWayfindingSection';
 
 export const revalidate = 60;
 
@@ -40,6 +41,13 @@ export default async function HomePage() {
       <section className="py-16 lg:py-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <CostCalculatorWidget services={services} categories={categories} fullPageMode={false} />
+        </div>
+      </section>
+
+      {/* Location & Wayfinding Chamber Section */}
+      <section className="py-16 lg:py-24 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <LocationWayfindingSection settings={settings} doctor={doctor} showTitle={true} />
         </div>
       </section>
 

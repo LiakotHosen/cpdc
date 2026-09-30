@@ -26,7 +26,7 @@ export const INITIAL_SITE_SETTINGS: SiteSettings = {
   hours_en: 'Daily: 4:00 PM – 9:00 PM (Call 30 mins prior for morning appointments)',
   hours_bn: 'প্রতিদিন: বিকাল ৪:০০ টা – রাত ৯:০০ টা (সকালের সিরিয়ালের জন্য ৩০ মিনিট আগে যোগাযোগ করুন)',
   google_maps_url: 'https://maps.app.goo.gl/tTvNAHkod8TfRVPz9?g_st=ac',
-  google_maps_embed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3647.781844237597!2d90.278912!3d23.900456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDU0JzAxLjYiTiA5MMKwMTYnNDQuMSJF!5e0!3m2!1sen!2sbd!4v1700000000000!5m2!1sen!2sbd',
+  google_maps_embed: 'https://maps.google.com/maps?q=CarePoint+Dental+Clinic,+Mofizuddin+Tower,+Pollibidyut,+Ashulia,+Savar&t=&z=16&ie=UTF8&iwloc=&output=embed',
   facebook_url: 'https://www.facebook.com/carepointdentalclinic',
   hero_badge_en: 'Ashulia & Savar’s Trusted Dental Care',
   hero_badge_bn: 'আশুলিয়া ও সাভারবাসীর নির্ভরযোগ্য আধুনিক ডেন্টাল কেয়ার',

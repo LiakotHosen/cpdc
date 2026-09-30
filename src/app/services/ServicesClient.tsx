@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useAppointmentModal } from '@/lib/context/AppointmentModalContext';
 import { ServiceCategory, Service } from '@/lib/types';
@@ -76,41 +77,57 @@ export function ServicesClient({ categories, services }: ServicesClientProps) {
 
   return (
     <div className="bg-slate-50 min-h-screen">
-      {/* Header Banner - Focused on Clinical Guidance & Doctor Care */}
-      <section className="bg-gradient-to-br from-navy-dark via-navy-primary to-navy-dark text-white py-14 lg:py-18 relative overflow-hidden border-b border-navy-light/20">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-10 left-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Header Banner - Full-Bleed Dental Services Cover */}
+      <section className="relative text-white py-16 lg:py-22 overflow-hidden border-b border-navy-light/20 bg-navy-dark">
+        {/* Full-Bleed Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/services-hero-bg.jpg"
+            alt="Care Point Dental Clinic Modern Operatory & Treatments"
+            fill
+            priority
+            className="object-cover object-center scale-105 transition-transform duration-1000"
+            sizes="100vw"
+          />
+          {/* Multi-Layer Cinematic Brand Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#070E26]/95 via-[#0D1A45]/85 to-[#070E26]/75" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#070E26] via-transparent to-transparent opacity-90" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Ambient Subtle Glows */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none z-1" />
+        <div className="absolute -bottom-10 left-1/4 w-80 h-80 bg-blue-500/15 rounded-full blur-3xl pointer-events-none z-1" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-ash-light border border-white/15 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 text-ash-light border border-white/20 text-xs font-semibold uppercase tracking-wider backdrop-blur-md shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
               <span>{t('Specialized Clinical Guidance', 'বিশেষায়িত চিকিৎসা ও ক্লিনিক্যাল গাইড')}</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white drop-shadow-sm">
               {t('Dental Treatments & Clinical Care Guide', 'সকল ডেন্টাল চিকিৎসা ও পরামর্শ নির্দেশিকা')}
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal drop-shadow-xs">
               {t(
                 'Explore each specialized dental procedure in clinical detail: understand the root cause of the condition, Dr. Aktar Zahan Ony’s precise sterile procedure, warning symptoms, and book your appointment directly.',
                 'কেয়ার পয়েন্ট ডেন্টাল ক্লিনিকের প্রতিটি চিকিৎসার বৈজ্ঞানিক কারণ, রোগ কেন ও কীভাবে হয়, ডা. আক্তার জাহান অনির আধুনিক ব্যথামুক্ত চিকিৎসা পদ্ধতি এবং জরুরি পরামর্শ জেনে সরাসরি সিরিয়াল নিশ্চিত করুন।'
               )}
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-slate-300">
-              <span className="inline-flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">
+            <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-white">
+              <span className="inline-flex items-center gap-1.5 bg-black/45 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-xs">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                {t('100% Autoclave Sterile Arena', '১০০% অটোক্লেভ জীবাণুমুক্ত পরিবেশ')}
+                <span>{t('100% Autoclave Sterile Arena', '১০০% অটোক্লেভ জীবাণুমুক্ত পরিবেশ')}</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">
+              <span className="inline-flex items-center gap-1.5 bg-black/45 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-xs">
                 <UserCheck className="w-4 h-4 text-sky-400" />
-                {t('BMDC Reg. Surgeon Led Care', 'বিএমডিসি নিবন্ধিত ডেন্টাল সার্জন')}
+                <span>{t('BMDC Reg. Surgeon Led Care', 'বিএমডিসি নিবন্ধিত ডেন্টাল সার্জন')}</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">
+              <span className="inline-flex items-center gap-1.5 bg-black/45 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-xs">
                 <HeartPulse className="w-4 h-4 text-rose-400" />
-                {t('Gentle & Pain-Free Technique', 'সম্পূর্ণ ব্যথামুক্ত ও মমতাময়ী সেবা')}
+                <span>{t('Gentle & Pain-Free Technique', 'সম্পূর্ণ ব্যথামুক্ত ও মমতাময়ী সেবা')}</span>
               </span>
             </div>
           </div>
