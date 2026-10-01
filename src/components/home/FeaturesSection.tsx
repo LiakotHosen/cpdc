@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { Feature } from '@/lib/types';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import {
   ShieldCheck,
   Cpu,
@@ -237,53 +238,57 @@ export function FeaturesSection({ features }: FeaturesSectionProps) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Top Header & Context */}
-        <div className="text-center max-w-3xl mx-auto mb-8 space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-teal-300 text-xs font-bold uppercase tracking-wider shadow-lg">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>{t('Our Clinical Commitments', 'আপনার সুরক্ষায় ১৭টি বিশেষ অঙ্গীকার')}</span>
+        <ScrollReveal animation="fade-up" duration={600}>
+          <div className="text-center max-w-3xl mx-auto mb-8 space-y-3">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-teal-300 text-xs font-bold uppercase tracking-wider shadow-lg">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <span>{t('Our Clinical Commitments', 'আপনার সুরক্ষায় ১৭টি বিশেষ অঙ্গীকার')}</span>
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white drop-shadow-md">
+              {t(
+                'Why Patients Trust Care Point Dental Clinic',
+                'কেন আশুলিয়া ও সাভারের মানুষ আমাদের ওপর আস্থা রাখেন?'
+              )}
+            </h2>
+
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal">
+              {t(
+                'Modern dental care is not just about aesthetics—it is about absolute biological safety. We ensure zero cross-contamination through multi-stage autoclave sterilization, instant RVG digital imaging, and gentle surgeon-led treatment.',
+                'উন্নত ডেন্টাল চিকিৎসা শুধু সুন্দর হাসির জন্যই নয়, আপনার সুস্বাস্থ্যের পরম নিরাপত্তা। আমরা প্রতিটি রোগীর জন্য আলাদা জীবাণুমুক্ত সিল করা সরঞ্জাম, কম রেডিয়েশনের ডিজিটাল এক্স-রে ও দক্ষ ডেন্টাল সার্জনের নিখুঁত তত্ত্বাবধান নিশ্চিত করি।'
+              )}
+            </p>
           </div>
-
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white drop-shadow-md">
-            {t(
-              'Why Patients Trust Care Point Dental Clinic',
-              'কেন আশুলিয়া ও সাভারের মানুষ আমাদের ওপর আস্থা রাখেন?'
-            )}
-          </h2>
-
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal">
-            {t(
-              'Modern dental care is not just about aesthetics—it is about absolute biological safety. We ensure zero cross-contamination through multi-stage autoclave sterilization, instant RVG digital imaging, and gentle surgeon-led treatment.',
-              'উন্নত ডেন্টাল চিকিৎসা শুধু সুন্দর হাসির জন্যই নয়, আপনার সুস্বাস্থ্যের পরম নিরাপত্তা। আমরা প্রতিটি রোগীর জন্য আলাদা জীবাণুমুক্ত সিল করা সরঞ্জাম, কম রেডিয়েশনের ডিজিটাল এক্স-রে ও দক্ষ ডেন্টাল সার্জনের নিখুঁত তত্ত্বাবধান নিশ্চিত করি।'
-            )}
-          </p>
-        </div>
+        </ScrollReveal>
 
         {/* Stage Selector Tabs with Progress Indicators */}
-        <div className="flex items-center justify-center gap-2 mb-10 overflow-x-auto pb-2 scrollbar-none">
-          {stages.map((stg, idx) => {
-            const isActive = idx === activeStageIndex;
-            return (
-              <button
-                key={stg.id}
-                onClick={() => handleStageChange(idx)}
-                className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer shrink-0 border ${
-                  isActive
-                    ? 'bg-gradient-to-r from-teal-500 to-blue-600 text-white border-teal-300/40 shadow-lg shadow-teal-500/25 scale-102'
-                    : 'bg-white/5 hover:bg-white/10 text-slate-300 border-white/10 hover:border-white/20'
-                }`}
-              >
-                <span
-                  className={`w-5 h-5 rounded-full text-[10px] font-black flex items-center justify-center ${
-                    isActive ? 'bg-white text-navy-dark' : 'bg-white/15 text-white'
+        <ScrollReveal animation="fade-up" delay={150}>
+          <div className="flex items-center justify-center gap-2 mb-10 overflow-x-auto pb-2 scrollbar-none">
+            {stages.map((stg, idx) => {
+              const isActive = idx === activeStageIndex;
+              return (
+                <button
+                  key={stg.id}
+                  onClick={() => handleStageChange(idx)}
+                  className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer shrink-0 border ${
+                    isActive
+                      ? 'bg-gradient-to-r from-teal-500 to-blue-600 text-white border-teal-300/40 shadow-lg shadow-teal-500/25 scale-102'
+                      : 'bg-white/5 hover:bg-white/10 text-slate-300 border-white/10 hover:border-white/20'
                   }`}
                 >
-                  {stg.stageNumber}
-                </span>
-                <span>{t(stg.tag_en, stg.tag_bn)}</span>
-              </button>
-            );
-          })}
-        </div>
+                  <span
+                    className={`w-5 h-5 rounded-full text-[10px] font-black flex items-center justify-center ${
+                      isActive ? 'bg-white text-navy-dark' : 'bg-white/15 text-white'
+                    }`}
+                  >
+                    {stg.stageNumber}
+                  </span>
+                  <span>{t(stg.tag_en, stg.tag_bn)}</span>
+                </button>
+              );
+            })}
+          </div>
+        </ScrollReveal>
 
         {/* 2. Interactive Showcase: Center Hub with 4 Points Entering from Four Sides */}
         <div className="relative min-h-[460px] sm:min-h-[520px] flex flex-col justify-center">

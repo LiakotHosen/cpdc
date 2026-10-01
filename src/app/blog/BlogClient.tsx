@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/lib/context/LanguageContext';
@@ -15,23 +15,34 @@ import {
   HelpCircle,
 } from 'lucide-react';
 
+import { getBlogPosts } from '@/lib/data/api';
+
 interface BlogClientProps {
   posts: BlogPost[];
 }
 
-export function BlogClient({ posts }: BlogClientProps) {
+export function BlogClient({ posts: initialPosts }: BlogClientProps) {
   const { lang, t } = useLanguage();
+  const [posts, setPosts] = useState<BlogPost[]>(initialPosts);
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  useEffect(() => {
+    getBlogPosts().then((data) => {
+      if (data && data.length > 0) {
+        setPosts(data.filter((p) => p.is_published));
+      }
+    });
+  }, []);
 
   const filteredPosts = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
     if (!q) return posts;
     return posts.filter(
       (p) =>
-        p.title_en.toLowerCase().includes(q) ||
-        p.title_bn.toLowerCase().includes(q) ||
-        p.excerpt_en.toLowerCase().includes(q) ||
-        p.excerpt_bn.toLowerCase().includes(q) ||
+        p.title_en?.toLowerCase().includes(q) ||
+        p.title_bn?.toLowerCase().includes(q) ||
+        p.excerpt_en?.toLowerCase().includes(q) ||
+        p.excerpt_bn?.toLowerCase().includes(q) ||
         p.target_keywords_en?.toLowerCase().includes(q) ||
         p.target_keywords_bn?.toLowerCase().includes(q)
     );

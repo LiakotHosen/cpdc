@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { GalleryItem } from '@/lib/types';
 import { saveGalleryItem, deleteGalleryItem } from '@/lib/data/api';
+import { ImageSelector } from '@/components/admin/ImageSelector';
 import {
   Image as ImageIcon,
   Plus,
@@ -142,18 +143,13 @@ export function GalleryAdminClient({ initialItems }: GalleryAdminClientProps) {
 
             <form onSubmit={handleSave} className="space-y-4 text-xs">
               <div>
-                <label className="block font-bold text-slate-700 mb-1">
-                  Image URL or Path *
-                </label>
-                <input
-                  type="text"
+                <ImageSelector
+                  label="Gallery Image"
                   required
                   value={newItem.image_url || ''}
-                  onChange={(e) =>
-                    setNewItem({ ...newItem, image_url: e.target.value })
-                  }
-                  placeholder="/images/logo.jpeg or https://..."
-                  className="w-full px-3 py-2 border border-slate-300 rounded-xl"
+                  onChange={(url) => setNewItem({ ...newItem, image_url: url })}
+                  placeholder="/images/... or https://..."
+                  helperText="Upload a photo from your computer/device or choose from clinic media"
                 />
               </div>
 

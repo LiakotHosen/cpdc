@@ -30,12 +30,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const posts = await getBlogPosts();
   const post = posts.find((p) => p.slug === slug);
-
-  if (!post) {
-    notFound();
-  }
-
   const relatedPosts = posts.filter((p) => p.slug !== slug).slice(0, 3);
 
-  return <BlogPostClient post={post} relatedPosts={relatedPosts} />;
+  return <BlogPostClient initialPost={post || null} slug={slug} initialRelatedPosts={relatedPosts} />;
 }

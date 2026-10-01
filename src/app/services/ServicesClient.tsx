@@ -24,6 +24,7 @@ import {
   HeartPulse,
   UserCheck,
 } from 'lucide-react';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 interface ServicesClientProps {
   categories: ServiceCategory[];
@@ -99,38 +100,40 @@ export function ServicesClient({ categories, services }: ServicesClientProps) {
         <div className="absolute -bottom-10 left-1/4 w-80 h-80 bg-blue-500/15 rounded-full blur-3xl pointer-events-none z-1" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 text-ash-light border border-white/20 text-xs font-semibold uppercase tracking-wider backdrop-blur-md shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-              <span>{t('Specialized Clinical Guidance', 'বিশেষায়িত চিকিৎসা ও ক্লিনিক্যাল গাইড')}</span>
+          <ScrollReveal animation="fade-up" duration={600}>
+            <div className="max-w-3xl space-y-4">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 text-ash-light border border-white/20 text-xs font-semibold uppercase tracking-wider backdrop-blur-md shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                <span>{t('Specialized Clinical Guidance', 'বিশেষায়িত চিকিৎসা ও ক্লিনিক্যাল গাইড')}</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white drop-shadow-sm">
+                {t('Dental Treatments & Clinical Care Guide', 'সকল ডেন্টাল চিকিৎসা ও পরামর্শ নির্দেশিকা')}
+              </h1>
+
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal drop-shadow-xs">
+                {t(
+                  'Explore each specialized dental procedure in clinical detail: understand the root cause of the condition, Dr. Aktar Zahan Ony’s precise sterile procedure, warning symptoms, and book your appointment directly.',
+                  'কেয়ার পয়েন্ট ডেন্টাল ক্লিনিকের প্রতিটি চিকিৎসার বৈজ্ঞানিক কারণ, রোগ কেন ও কীভাবে হয়, ডা. আক্তার জাহান অনির আধুনিক ব্যথামুক্ত চিকিৎসা পদ্ধতি এবং জরুরি পরামর্শ জেনে সরাসরি সিরিয়াল নিশ্চিত করুন।'
+                )}
+              </p>
+
+              <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-white">
+                <span className="inline-flex items-center gap-1.5 bg-black/45 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-xs">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <span>{t('100% Autoclave Sterile Arena', '১০০% অটোক্লেভ জীবাণুমুক্ত পরিবেশ')}</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 bg-black/45 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-xs">
+                  <UserCheck className="w-4 h-4 text-sky-400" />
+                  <span>{t('BMDC Reg. Surgeon Led Care', 'বিএমডিসি নিবন্ধিত ডেন্টাল সার্জন')}</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 bg-black/45 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-xs">
+                  <HeartPulse className="w-4 h-4 text-rose-400" />
+                  <span>{t('Gentle & Pain-Free Technique', 'সম্পূর্ণ ব্যথামুক্ত ও মমতাময়ী সেবা')}</span>
+                </span>
+              </div>
             </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white drop-shadow-sm">
-              {t('Dental Treatments & Clinical Care Guide', 'সকল ডেন্টাল চিকিৎসা ও পরামর্শ নির্দেশিকা')}
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal drop-shadow-xs">
-              {t(
-                'Explore each specialized dental procedure in clinical detail: understand the root cause of the condition, Dr. Aktar Zahan Ony’s precise sterile procedure, warning symptoms, and book your appointment directly.',
-                'কেয়ার পয়েন্ট ডেন্টাল ক্লিনিকের প্রতিটি চিকিৎসার বৈজ্ঞানিক কারণ, রোগ কেন ও কীভাবে হয়, ডা. আক্তার জাহান অনির আধুনিক ব্যথামুক্ত চিকিৎসা পদ্ধতি এবং জরুরি পরামর্শ জেনে সরাসরি সিরিয়াল নিশ্চিত করুন।'
-              )}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-white">
-              <span className="inline-flex items-center gap-1.5 bg-black/45 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-xs">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>{t('100% Autoclave Sterile Arena', '১০০% অটোক্লেভ জীবাণুমুক্ত পরিবেশ')}</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 bg-black/45 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-xs">
-                <UserCheck className="w-4 h-4 text-sky-400" />
-                <span>{t('BMDC Reg. Surgeon Led Care', 'বিএমডিসি নিবন্ধিত ডেন্টাল সার্জন')}</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 bg-black/45 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 shadow-xs">
-                <HeartPulse className="w-4 h-4 text-rose-400" />
-                <span>{t('Gentle & Pain-Free Technique', 'সম্পূর্ণ ব্যথামুক্ত ও মমতাময়ী সেবা')}</span>
-              </span>
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -252,17 +255,17 @@ export function ServicesClient({ categories, services }: ServicesClientProps) {
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {filteredServices.map((service) => {
+            {filteredServices.map((service, idx) => {
               const parentCat = categories.find((c) => c.id === service.category_id);
               const details = TREATMENT_DETAILS_MAP[service.id];
               const currentTab = activeTabs[service.id] || 'causes';
               const isExpandedAll = !!expandedCards[service.id];
 
               return (
-                <article
-                  key={service.id}
-                  className="bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-lg hover:border-navy-light/40 transition-all flex flex-col justify-between overflow-hidden group"
-                >
+                <ScrollReveal key={service.id} animation="fade-up" delay={(idx % 4) * 80}>
+                  <article
+                    className="bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-navy-light/40 transition-all duration-300 flex flex-col justify-between overflow-hidden group h-full pro-card"
+                  >
                   {/* Card Header & Badges */}
                   <div className="p-6 pb-4 border-b border-slate-100 bg-slate-50/50">
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
@@ -483,8 +486,9 @@ export function ServicesClient({ categories, services }: ServicesClientProps) {
                     </button>
                   </div>
                 </article>
-              );
-            })}
+              </ScrollReveal>
+            );
+          })}
           </div>
         )}
 

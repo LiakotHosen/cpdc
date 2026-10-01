@@ -20,6 +20,8 @@ import {
   Car
 } from 'lucide-react';
 
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
+
 interface LocationWayfindingSectionProps {
   settings: SiteSettings;
   doctor?: Doctor;
@@ -50,31 +52,33 @@ export function LocationWayfindingSection({
   return (
     <section className="w-full">
       {showTitle && (
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-navy-primary text-xs font-bold uppercase tracking-wider border border-blue-200">
-            <Compass className="w-4 h-4 text-navy-primary" />
-            <span>{t('Chamber & Exact Location', 'চেম্বারের সুনির্দিষ্ট অবস্থান ও রুট')}</span>
+        <ScrollReveal animation="fade-up" duration={600}>
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-navy-primary text-xs font-bold uppercase tracking-wider border border-blue-200">
+              <Compass className="w-4 h-4 text-navy-primary" />
+              <span>{t('Chamber & Exact Location', 'চেম্বারের সুনির্দিষ্ট অবস্থান ও রুট')}</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy-primary tracking-tight">
+              {t(
+                'Easy-to-Reach Location in Ashulia, Savar',
+                'সহজে ক্লিনিকে পৌঁছানোর সঠিক লোকেশন ও ঠিকানা'
+              )}
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 font-normal">
+              {t(
+                'Care Point Dental Clinic is conveniently located at Pollibidyut Bus Stand on Nabinagar-Chandra Highway.',
+                'নবীনগর-চন্দ্রা মহাসড়কের পল্লীবিদ্যুৎ বাস স্ট্যান্ড সংলগ্ন মফিজ উদ্দিন টাওয়ারের ২য় তলায় কেয়ার পয়েন্ট ডেন্টাল ক্লিনিক।'
+              )}
+            </p>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy-primary tracking-tight">
-            {t(
-              'Easy-to-Reach Location in Ashulia, Savar',
-              'সহজে ক্লিনিকে পৌঁছানোর সঠিক লোকেশন ও ঠিকানা'
-            )}
-          </h2>
-          <p className="text-sm sm:text-base text-slate-600 font-normal">
-            {t(
-              'Care Point Dental Clinic is conveniently located at Pollibidyut Bus Stand on Nabinagar-Chandra Highway.',
-              'নবীনগর-চন্দ্রা মহাসড়কের পল্লীবিদ্যুৎ বাস স্ট্যান্ড সংলগ্ন মফিজ উদ্দিন টাওয়ারের ২য় তলায় কেয়ার পয়েন্ট ডেন্টাল ক্লিনিক।'
-            )}
-          </p>
-        </div>
+        </ScrollReveal>
       )}
 
       {/* Main Grid: Card Details & Map */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         {/* Left Col: Chamber Location Details (5 cols) */}
-        <div className="lg:col-span-5 flex flex-col justify-between">
-          <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-7 shadow-xs space-y-5 h-full flex flex-col justify-between">
+        <ScrollReveal animation="fade-right" duration={700} className="lg:col-span-5 flex flex-col justify-between">
+          <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-7 shadow-xs space-y-5 h-full flex flex-col justify-between pro-card">
             <div className="space-y-4">
               <div className="flex items-start justify-between gap-3 pb-4 border-b border-slate-100">
                 <div>
@@ -187,11 +191,11 @@ export function LocationWayfindingSection({
               </a>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Right Col: High-Tech Interactive Google Map & Live View (7 cols) */}
-        <div className="lg:col-span-7 flex flex-col space-y-4">
-          <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xs p-5 sm:p-7 flex-1 flex flex-col justify-between">
+        <ScrollReveal animation="fade-left" duration={700} className="lg:col-span-7 flex flex-col space-y-4">
+          <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xs p-5 sm:p-7 flex-1 flex flex-col justify-between pro-card">
             {/* Map Header with Realtime Direction Info */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4">
               <div>
@@ -300,7 +304,7 @@ export function LocationWayfindingSection({
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

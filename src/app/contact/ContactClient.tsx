@@ -19,6 +19,7 @@ import {
   Send,
   HelpCircle
 } from 'lucide-react';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 interface ContactClientProps {
   settings: SiteSettings;
@@ -51,17 +52,19 @@ export function ContactClient({ settings, doctor }: ContactClientProps) {
       <section className="bg-navy-primary text-white py-14 lg:py-18 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="max-w-3xl space-y-4">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-              {t('Contact & Chamber Location', 'যোগাযোগ ও চেম্বারের ঠিকানা')}
-            </h1>
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal">
-              {t(
-                'Visit Dr. Aktar Zahan Ony at Care Point Dental Clinic in Ashulia, Savar. Reach us directly via phone, WhatsApp, or book your serial online.',
-                'সাভারের আশুলিয়া পল্লীবিদ্যুৎ চেম্বারে সরাসরি আসুন অথবা যেকোনো তথ্যের জন্য কল ও হোয়াটসঅ্যাপ করুন।'
-              )}
-            </p>
-          </div>
+          <ScrollReveal animation="fade-up" duration={600}>
+            <div className="max-w-3xl space-y-4">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+                {t('Contact & Chamber Location', 'যোগাযোগ ও চেম্বারের ঠিকানা')}
+              </h1>
+              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal">
+                {t(
+                  'Visit Dr. Aktar Zahan Ony at Care Point Dental Clinic in Ashulia, Savar. Reach us directly via phone, WhatsApp, or book your serial online.',
+                  'সাভারের আশুলিয়া পল্লীবিদ্যুৎ চেম্বারে সরাসরি আসুন অথবা যেকোনো তথ্যের জন্য কল ও হোয়াটসঅ্যাপ করুন।'
+                )}
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -71,8 +74,8 @@ export function ContactClient({ settings, doctor }: ContactClientProps) {
         {/* 1. Contact Hotline & Inquiry Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Contact Details Card (5 cols) */}
-          <div className="lg:col-span-5 h-full">
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs h-full flex flex-col justify-between">
+          <ScrollReveal animation="fade-right" duration={700} className="lg:col-span-5 h-full">
+            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs h-full flex flex-col justify-between pro-card">
               <div className="space-y-6">
                 <h2 className="text-xl font-extrabold text-navy-primary">
                   {t('Clinic Direct Hotlines', 'সরাসরি হটলাইন ও হেল্পলাইন')}
@@ -164,11 +167,11 @@ export function ContactClient({ settings, doctor }: ContactClientProps) {
                 </a>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Quick Patient Inquiry Form (7 cols) */}
-          <div className="lg:col-span-7 h-full">
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs h-full flex flex-col justify-between space-y-6">
+          <ScrollReveal animation="fade-left" duration={700} className="lg:col-span-7 h-full">
+            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs h-full flex flex-col justify-between space-y-6 pro-card">
               <div>
                 <h3 className="text-lg font-bold text-navy-primary">
                   {t('Send a Quick Inquiry or Question', 'আপনার মতামত বা জিজ্ঞাসা পাঠান')}
@@ -247,7 +250,7 @@ export function ContactClient({ settings, doctor }: ContactClientProps) {
                 </form>
               )}
             </div>
-          </div>
+          </ScrollReveal>
         </div>
 
         {/* 2. Full-Feature Location & Google Map Section */}

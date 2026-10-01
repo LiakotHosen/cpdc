@@ -38,11 +38,7 @@ export default async function HomePage() {
       <ServicesGrid categories={categories} services={services} />
 
       {/* Cost Calculator Section */}
-      <section className="py-16 lg:py-20 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <CostCalculatorWidget services={services} categories={categories} fullPageMode={false} />
-        </div>
-      </section>
+      <CostCalculatorWidget services={services} categories={categories} fullPageMode={false} />
 
       {/* Location & Wayfinding Chamber Section */}
       <section className="py-16 lg:py-24 bg-slate-50 border-b border-slate-200">

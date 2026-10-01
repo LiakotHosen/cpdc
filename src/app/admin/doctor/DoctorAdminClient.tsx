@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Doctor } from '@/lib/types';
 import { updateDoctor } from '@/lib/data/api';
+import { ImageSelector } from '@/components/admin/ImageSelector';
 import { UserCheck, Save, CheckCircle, Award, Clock } from 'lucide-react';
 
 interface DoctorAdminClientProps {
@@ -56,6 +57,16 @@ export function DoctorAdminClient({ initialDoctor }: DoctorAdminClientProps) {
             <Award className="w-4 h-4 text-navy-primary" />
             <span>Doctor Credentials & Registration</span>
           </h2>
+
+          <div>
+            <ImageSelector
+              label="Doctor Profile Photo"
+              value={doctor.photo_url || '/images/doctor-ony.jpg'}
+              onChange={(url) => setDoctor({ ...doctor, photo_url: url })}
+              placeholder="/images/doctor-ony.jpg or https://..."
+              helperText="Upload Dr. Aktar Zahan Ony's portrait photo from device or select from clinic assets"
+            />
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             <div>

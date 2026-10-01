@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { VideoReel } from '@/lib/types';
 import { Play, ArrowRight, Video, ExternalLink, X, ShieldAlert, Sparkles } from 'lucide-react';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 interface VideoReelsSectionProps {
   reels: VideoReel[];
@@ -50,110 +51,113 @@ export function VideoReelsSection({ reels, fullGalleryMode = false }: VideoReels
     <section className={`w-full ${fullGalleryMode ? 'py-6' : 'py-16 lg:py-24 bg-white border-b border-slate-200'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {!fullGalleryMode && (
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-            <div className="max-w-2xl space-y-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider border border-blue-200 shadow-2xs">
-                <Video className="w-3.5 h-3.5" />
-                <span>{t('Authentic Clinic Video Reels', 'ভিডিও গ্যালারি • সরাসরি আমাদের ক্লিনিক থেকে')}</span>
+          <ScrollReveal animation="fade-up" duration={600}>
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+              <div className="max-w-2xl space-y-2">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider border border-blue-200 shadow-2xs">
+                  <Video className="w-3.5 h-3.5" />
+                  <span>{t('Authentic Clinic Video Reels', 'ভিডিও গ্যালারি • সরাসরি আমাদের ক্লিনিক থেকে')}</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-navy-primary tracking-tight">
+                  {t('Watch Treatments & Clinic Tour Videos', 'চোখে দেখুন আমাদের ক্লিনিক্যাল পরিবেশ ও সফল চিকিৎসার ভিডিও')}
+                </h2>
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                  {t(
+                    'Watch authentic videos of our sterile clinic environment, patient procedures, and doctor advice directly from our official Facebook reels.',
+                    'ক্লিনিকের বাস্তব পরিবেশ, শতভাগ অটোক্লেভ জীবাণুমুক্তকরণ প্রক্রিয়া ও অভিজ্ঞ ডেন্টাল সার্জনের চিকিৎসা পরামর্শ সরাসরি ভিডিওতে দেখে নিশ্চিত হোন।'
+                  )}
+                </p>
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-navy-primary tracking-tight">
-                {t('Watch Treatments & Clinic Tour Videos', 'চোখে দেখুন আমাদের ক্লিনিক্যাল পরিবেশ ও সফল চিকিৎসার ভিডিও')}
-              </h2>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-                {t(
-                  'Watch authentic videos of our sterile clinic environment, patient procedures, and doctor advice directly from our official Facebook reels.',
-                  'ক্লিনিকের বাস্তব পরিবেশ, শতভাগ অটোক্লেভ জীবাণুমুক্তকরণ প্রক্রিয়া ও অভিজ্ঞ ডেন্টাল সার্জনের চিকিৎসা পরামর্শ সরাসরি ভিডিওতে দেখে নিশ্চিত হোন।'
-                )}
-              </p>
-            </div>
 
-            <Link
-              href="/gallery"
-              className="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center gap-2 self-start md:self-auto shadow-2xs hover:shadow-xs"
-            >
-              <span>{t('View All 8 Facebook Reels', 'সকল ৮টি ফেসবুক রিলস দেখুন')}</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+              <Link
+                href="/gallery"
+                className="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center gap-2 self-start md:self-auto shadow-2xs hover:shadow-xs group"
+              >
+                <span>{t('View All 8 Facebook Reels', 'সকল ৮টি ফেসবুক রিলস দেখুন')}</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </ScrollReveal>
         )}
 
         {/* Reels Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {displayedReels.map((reel) => {
+          {displayedReels.map((reel, idx) => {
             const thumbSrc = getThumbnailSrc(reel);
             const directUrl = getCleanFacebookUrl(reel);
 
             return (
-              <div
-                key={reel.id}
-                className="group relative bg-slate-900 rounded-3xl overflow-hidden shadow-lg border border-slate-800 hover:border-navy-light/60 transition-all duration-300 flex flex-col justify-between"
-              >
-                {/* Reel Video Frame Preview Container with HD Poster */}
+              <ScrollReveal key={reel.id} animation="fade-up" delay={idx * 100}>
                 <div
-                  className="relative aspect-[9/16] w-full bg-slate-950 overflow-hidden cursor-pointer flex items-center justify-center group/card"
-                  onClick={() => handleOpenReel(reel)}
+                  className="group relative bg-slate-900 rounded-3xl overflow-hidden shadow-lg border border-slate-800 hover:border-navy-light/60 transition-all duration-300 flex flex-col justify-between h-full pro-card"
                 >
-                  {/* Real Video Poster Image from Facebook Reel */}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={thumbSrc}
-                    alt={t(reel.title_en, reel.title_bn)}
-                    className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
+                  {/* Reel Video Frame Preview Container with HD Poster */}
+                  <div
+                    className="relative aspect-[9/16] w-full bg-slate-950 overflow-hidden cursor-pointer flex items-center justify-center group/card"
+                    onClick={() => handleOpenReel(reel)}
+                  >
+                    {/* Real Video Poster Image from Facebook Reel */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={thumbSrc}
+                      alt={t(reel.title_en, reel.title_bn)}
+                      className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
 
-                  {/* Gradient Overlay for visual polish & text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/50 pointer-events-none" />
+                    {/* Gradient Overlay for visual polish & text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/50 pointer-events-none" />
 
-                  {/* Centered Glowing Play Button Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="w-14 h-14 rounded-full bg-navy-primary/90 backdrop-blur-md border border-white/40 text-white flex items-center justify-center group-hover/card:scale-110 group-hover/card:bg-emerald-600 transition-all shadow-xl shadow-black/50">
-                      <Play className="w-6 h-6 fill-current translate-x-0.5" />
+                    {/* Centered Glowing Play Button Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="w-14 h-14 rounded-full bg-navy-primary/90 backdrop-blur-md border border-white/40 text-white flex items-center justify-center group-hover/card:scale-110 group-hover/card:bg-emerald-600 transition-all shadow-xl shadow-black/50">
+                        <Play className="w-6 h-6 fill-current translate-x-0.5" />
+                      </div>
+                    </div>
+
+                    {/* Duration Badge */}
+                    {reel.duration && (
+                      <span className="absolute top-3 right-3 px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md text-[11px] font-semibold text-white pointer-events-none">
+                        {reel.duration}
+                      </span>
+                    )}
+
+                    {/* Facebook Reel Tag */}
+                    <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-md bg-blue-600/90 backdrop-blur-md text-[11px] font-bold text-white flex items-center gap-1 pointer-events-none shadow-xs">
+                      <Video className="w-3 h-3" />
+                      <span>FB Reel</span>
+                    </span>
+
+                    {/* Bottom Title on Cover */}
+                    <div className="absolute bottom-3 left-3 right-3 text-white space-y-1 pointer-events-none">
+                      <h4 className="text-xs font-bold line-clamp-2 leading-snug drop-shadow-md">
+                        {t(reel.title_en, reel.title_bn)}
+                      </h4>
                     </div>
                   </div>
 
-                  {/* Duration Badge */}
-                  {reel.duration && (
-                    <span className="absolute top-3 right-3 px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md text-[11px] font-semibold text-white pointer-events-none">
-                      {reel.duration}
-                    </span>
-                  )}
+                  {/* Card Footer */}
+                  <div className="p-3 bg-slate-900 border-t border-slate-800 flex items-center justify-between text-xs">
+                    <button
+                      onClick={() => handleOpenReel(reel)}
+                      className="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 cursor-pointer"
+                    >
+                      <span>{t('Watch Video', 'ভিডিওটি দেখুন')}</span>
+                      <Play className="w-3 h-3 fill-current" />
+                    </button>
 
-                  {/* Facebook Reel Tag */}
-                  <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-md bg-blue-600/90 backdrop-blur-md text-[11px] font-bold text-white flex items-center gap-1 pointer-events-none shadow-xs">
-                    <Video className="w-3 h-3" />
-                    <span>FB Reel</span>
-                  </span>
-
-                  {/* Bottom Title on Cover */}
-                  <div className="absolute bottom-3 left-3 right-3 text-white space-y-1 pointer-events-none">
-                    <h4 className="text-xs font-bold line-clamp-2 leading-snug drop-shadow-md">
-                      {t(reel.title_en, reel.title_bn)}
-                    </h4>
+                    <a
+                      href={directUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-400 hover:text-white transition-colors"
+                      title="Open on Facebook"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
                   </div>
                 </div>
-
-                {/* Card Footer */}
-                <div className="p-3 bg-slate-900 border-t border-slate-800 flex items-center justify-between text-xs">
-                  <button
-                    onClick={() => handleOpenReel(reel)}
-                    className="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 cursor-pointer"
-                  >
-                    <span>{t('Watch Video', 'ভিডিওটি দেখুন')}</span>
-                    <Play className="w-3 h-3 fill-current" />
-                  </button>
-
-                  <a
-                    href={directUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-slate-400 hover:text-white transition-colors"
-                    title="Open on Facebook"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>

@@ -422,13 +422,23 @@ export async function saveBlogPost(post: Partial<BlogPost>): Promise<BlogPost> {
     saved = { ...posts.find(p => p.id === post.id), ...post } as BlogPost;
     updatedList = posts.map(p => (p.id === post.id ? saved : p));
   } else {
+    // Generate valid UUID for Supabase UUID primary key compatibility
+    const newId = typeof crypto !== 'undefined' && crypto.randomUUID
+      ? crypto.randomUUID()
+      : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+          const r = (Math.random() * 16) | 0;
+          const v = c === 'x' ? r : (r & 0x3) | 0x8;
+          return v.toString(16);
+        });
+
     saved = {
       ...post,
-      id: 'post-' + Date.now(),
-      is_published: true,
-      published_at: new Date().toISOString(),
-      read_time_en: post.read_time_en || '5 min read',
-      read_time_bn: post.read_time_bn || '৫ মিনিট পড়ার সময়'
+      id: newId,
+      is_published: post.is_published ?? true,
+      published_at: post.published_at || new Date().toISOString(),
+      read_time_en: post.read_time_en || '4 min read',
+      read_time_bn: post.read_time_bn || '৪ মিনিট পড়ার সময়',
+      cover_image: post.cover_image || '/images/logo.jpeg'
     } as BlogPost;
     updatedList = [saved, ...posts];
   }
@@ -436,9 +446,12 @@ export async function saveBlogPost(post: Partial<BlogPost>): Promise<BlogPost> {
   const supabase = createClient();
   if (supabase) {
     try {
-      await supabase.from('blog_posts').upsert(saved);
-    } catch {
-      // fallback
+      const { error } = await supabase.from('blog_posts').upsert(saved);
+      if (error) {
+        console.warn('Supabase upsert blog post warning:', error.message);
+      }
+    } catch (err) {
+      console.warn('Supabase blog post error:', err);
     }
   }
   setLocal(STORAGE_KEYS.BLOGS, updatedList);
@@ -447,6 +460,14 @@ export async function saveBlogPost(post: Partial<BlogPost>): Promise<BlogPost> {
 
 export async function deleteBlogPost(id: string): Promise<void> {
   const posts = await getBlogPosts();
+  const supabase = createClient();
+  if (supabase) {
+    try {
+      await supabase.from('blog_posts').delete().eq('id', id);
+    } catch (err) {
+      console.warn('Supabase delete blog post error:', err);
+    }
+  }
   setLocal(STORAGE_KEYS.BLOGS, posts.filter(p => p.id !== id));
 }
 

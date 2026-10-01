@@ -74,11 +74,11 @@ body {
 }
 
 .animate-float-slow {
-  animation: float 6s ease-in-out infinite;
+  animation: float 7s ease-in-out infinite;
 }
 
 .animate-float-reverse {
-  animation: floatReverse 5s ease-in-out infinite;
+  animation: floatReverse 6s ease-in-out infinite;
 }
 
 @keyframes floatReverse {
@@ -86,7 +86,7 @@ body {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(6px);
+    transform: translateY(8px);
   }
 }
 
@@ -94,9 +94,57 @@ body {
   animation: pulseGlow 3s ease-in-out infinite;
 }
 
+@keyframes radarWave {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.animate-radar {
+  animation: radarWave 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes shimmerSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmerSweep 3s infinite;
+}
+
+/* Pro UI Utilities */
+.pro-card {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pro-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -15px rgba(27, 42, 109, 0.12), 0 0 0 1px rgba(27, 42, 109, 0.08);
+}
+
+.pro-card-emerald:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.18), 0 0 0 1px rgba(16, 185, 129, 0.2);
+}
+
 /* Dental Tech Pattern Utility */
 .bg-dental-pattern {
-  background-image: radial-gradient(rgba(27, 42, 109, 0.08) 1px, transparent 1px), radial-gradient(rgba(2, 132, 199, 0.06) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(27, 42, 109, 0.07) 1px, transparent 1px), radial-gradient(rgba(2, 132, 199, 0.05) 1px, transparent 1px);
   background-size: 28px 28px;
   background-position: 0 0, 14px 14px;
 }
@@ -123,4 +171,139 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
+}
+
+/* Rich Blog & Editor Typography */
+.rich-blog-content h1,
+.rich-editor-content h1 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 800;
+  color: #1B2A6D;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+}
+
+.rich-blog-content h2,
+.rich-editor-content h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: #1B2A6D;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #E2E8F0;
+  letter-spacing: -0.02em;
+}
+
+.rich-blog-content h3,
+.rich-editor-content h3 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  color: #1B2A6D;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.rich-blog-content p,
+.rich-editor-content p {
+  color: #334155;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.rich-blog-content ul,
+.rich-editor-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: #334155;
+  line-height: 1.7;
+}
+
+.rich-blog-content ol,
+.rich-editor-content ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: #334155;
+  line-height: 1.7;
+}
+
+.rich-blog-content li,
+.rich-editor-content li {
+  margin-bottom: 0.375rem;
+}
+
+.rich-blog-content blockquote,
+.rich-editor-content blockquote {
+  border-left: 4px solid #10B981;
+  background-color: rgba(240, 253, 244, 0.7);
+  padding: 0.75rem 1rem;
+  margin: 1.25rem 0;
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-style: italic;
+  color: #1E293B;
+}
+
+.rich-blog-content a,
+.rich-editor-content a {
+  color: #0284C7;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.rich-blog-content a:hover,
+.rich-editor-content a:hover {
+  color: #1B2A6D;
+}
+
+.rich-blog-content strong,
+.rich-editor-content strong,
+.rich-blog-content b,
+.rich-editor-content b {
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.rich-blog-content hr,
+.rich-editor-content hr {
+  border: 0;
+  border-top: 1px solid #E2E8F0;
+  margin: 1.5rem 0;
+}
+
+.rich-blog-content img,
+.rich-editor-content img {
+  border-radius: 1rem;
+  max-width: 100%;
+  height: auto;
+  margin: 1.25rem auto;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.rich-blog-content .callout-box,
+.rich-editor-content .callout-box {
+  background-color: #EFF6FF;
+  border-left: 4px solid #0284C7;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 0 0.75rem 0.75rem 0;
+  color: #1E293B;
+}
+
+.rich-blog-content .warning-box,
+.rich-editor-content .warning-box {
+  background-color: #FFFBEB;
+  border-left: 4px solid #F59E0B;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 0 0.75rem 0.75rem 0;
+  color: #1E293B;
 }

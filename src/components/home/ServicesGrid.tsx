@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Link from 'next/link';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useAppointmentModal } from '@/lib/context/AppointmentModalContext';
 import { ServiceCategory, Service } from '@/lib/types';
@@ -247,38 +248,40 @@ export function ServicesGrid({ categories, services }: ServicesGridProps) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
-          <div className="max-w-2xl space-y-2">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-navy-tint text-navy-primary text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-navy-primary" />
-              <span>{t('Specialized Dental Disciplines', 'হাসিমুখে বাঁচুন • বিশেষায়িত ডেন্টাল চিকিৎসা')}</span>
+        <ScrollReveal animation="fade-up" duration={600}>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
+            <div className="max-w-2xl space-y-2">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-navy-tint text-navy-primary text-xs font-bold uppercase tracking-wider">
+                <Sparkles className="w-3.5 h-3.5 text-navy-primary" />
+                <span>{t('Specialized Dental Disciplines', 'হাসিমুখে বাঁচুন • বিশেষায়িত ডেন্টাল চিকিৎসা')}</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy-primary tracking-tight">
+                {t(
+                  'Advanced Oral Treatments & Specialized Care in Savar',
+                  'সাভারে সর্বাধুনিক ডেন্টাল চিকিৎসা ও বিশেষায়িত সেবা'
+                )}
+              </h2>
+
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                {t(
+                  'Explore our 10 specialized categories and 31+ dental procedures. Direct surgeon-led care with 100% autoclave sterile instrumentation and gentle, pain-free technique.',
+                  '১০টি বিশেষায়িত বিভাগ ও ৩১টিরও বেশি আধুনিক চিকিৎসা। বিএমডিসি নিবন্ধিত অভিজ্ঞ ডেন্টাল সার্জনের দক্ষ পরিচালনায় শতভাগ জীবাণুমুক্ত ও ব্যথামুক্ত চিকিৎসা সেবা।'
+                )}
+              </p>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy-primary tracking-tight">
-              {t(
-                'Advanced Oral Treatments & Specialized Care in Savar',
-                'সাভারে সর্বাধুনিক ডেন্টাল চিকিৎসা ও বিশেষায়িত সেবা'
-              )}
-            </h2>
-
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-              {t(
-                'Explore our 10 specialized categories and 31+ dental procedures. Direct surgeon-led care with 100% autoclave sterile instrumentation and gentle, pain-free technique.',
-                '১০টি বিশেষায়িত বিভাগ ও ৩১টিরও বেশি আধুনিক চিকিৎসা। বিএমডিসি নিবন্ধিত অভিজ্ঞ ডেন্টাল সার্জনের দক্ষ পরিচালনায় শতভাগ জীবাণুমুক্ত ও ব্যথামুক্ত চিকিৎসা সেবা।'
-              )}
-            </p>
+            <div className="flex items-center gap-3 shrink-0">
+              <Link
+                href="/services"
+                className="px-5 py-3 bg-white hover:bg-slate-50 text-navy-primary font-bold text-xs sm:text-sm rounded-xl border border-slate-300 shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2 group"
+              >
+                <span>{t('Explore All 31+ Treatments', 'সকল ৩১+ চিকিৎসা দেখুন')}</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
-
-          <div className="flex items-center gap-3 shrink-0">
-            <Link
-              href="/services"
-              className="px-5 py-3 bg-white hover:bg-slate-50 text-navy-primary font-bold text-xs sm:text-sm rounded-xl border border-slate-300 shadow-xs hover:shadow-md transition-all flex items-center gap-2 group"
-            >
-              <span>{t('Explore All 31+ Treatments', 'সকল ৩১+ চিকিৎসা দেখুন')}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </div>
+        </ScrollReveal>
 
         {/* Category Quick Pills Navigation Bar */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">

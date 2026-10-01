@@ -5,6 +5,7 @@ import { useLanguage } from '@/lib/context/LanguageContext';
 import { useAppointmentModal } from '@/lib/context/AppointmentModalContext';
 import { Service, ServiceCategory } from '@/lib/types';
 import { Calculator, Check, Plus, Trash2, Calendar, HelpCircle, ArrowRight, ShieldAlert } from 'lucide-react';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 interface CostCalculatorWidgetProps {
   services: Service[];
@@ -76,26 +77,28 @@ export function CostCalculatorWidget({ services, categories, fullPageMode = fals
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         {!fullPageMode && (
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold uppercase tracking-wider border border-emerald-200 shadow-2xs">
-              <Calculator className="w-3.5 h-3.5 text-emerald-600" />
-              <span>{t('Transparent Dental Budget Calculator', 'স্বচ্ছ বাজেট • চিকিৎসা খরচের ক্যালকুলেটর')}</span>
+          <ScrollReveal animation="fade-up" duration={600}>
+            <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold uppercase tracking-wider border border-emerald-200 shadow-2xs">
+                <Calculator className="w-3.5 h-3.5 text-emerald-600" />
+                <span>{t('Transparent Dental Budget Calculator', 'স্বচ্ছ বাজেট • চিকিৎসা খরচের ক্যালকুলেটর')}</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-navy-primary tracking-tight">
+                {t('Calculate Your Dental Treatment Cost in BDT (৳)', 'চিকিৎসা শুরুর আগেই সহজে জেনে নিন আপনার সম্ভাব্য খরচ')}
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                {t(
+                  'Select the treatments you need to calculate an instant combined low-to-high price range. Transparent, fixed, and completely free of unexpected surprise fees.',
+                  'কোনো লুকানো চার্জ নেই। আপনার প্রয়োজনীয় চিকিৎসাগুলো বেছে নিয়ে সাথে সাথেই সাশ্রয়ী বাজেট পরিধি দেখে নিন এবং পছন্দের তারিখে সহজেই সিরিয়াল বুক করুন।'
+                )}
+              </p>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-navy-primary tracking-tight">
-              {t('Calculate Your Dental Treatment Cost in BDT (৳)', 'চিকিৎসা শুরুর আগেই সহজে জেনে নিন আপনার সম্ভাব্য খরচ')}
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-              {t(
-                'Select the treatments you need to calculate an instant combined low-to-high price range. Transparent, fixed, and completely free of unexpected surprise fees.',
-                'কোনো লুকানো চার্জ নেই। আপনার প্রয়োজনীয় চিকিৎসাগুলো বেছে নিয়ে সাথে সাথেই সাশ্রয়ী বাজেট পরিধি দেখে নিন এবং পছন্দের তারিখে সহজেই সিরিয়াল বুক করুন।'
-              )}
-            </p>
-          </div>
+          </ScrollReveal>
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left / Main: Service Selection */}
-          <div className="lg:col-span-8 space-y-5">
+          <ScrollReveal animation="fade-right" duration={700} className="lg:col-span-8 space-y-5">
             {/* Category Filter Pills */}
             <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
               <button
@@ -179,10 +182,10 @@ export function CostCalculatorWidget({ services, categories, fullPageMode = fals
                 );
               })}
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right: Real-time Range Tally Card */}
-          <div className="lg:col-span-4 sticky top-24">
+          <ScrollReveal animation="fade-left" duration={700} className="lg:col-span-4 sticky top-24">
             <div className="bg-slate-900 text-white rounded-3xl p-6 shadow-2xl border border-slate-800 space-y-6">
               <div className="flex items-center justify-between pb-4 border-b border-slate-800">
                 <div className="flex items-center gap-2">
@@ -272,13 +275,13 @@ export function CostCalculatorWidget({ services, categories, fullPageMode = fals
                     priceRangeString
                   )
                 }
-                className="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-xl font-bold text-sm shadow-xl shadow-emerald-600/30 flex items-center justify-center gap-2 transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                className="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-xl font-bold text-sm shadow-xl shadow-emerald-600/30 flex items-center justify-center gap-2 transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer hover:scale-102 active:scale-98"
               >
                 <Calendar className="w-4 h-4" />
                 <span>{t('Book Serial with This Estimate', 'এই খরচে সিরিয়াল বুক করুন')}</span>
               </button>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </div>
