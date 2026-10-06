@@ -33,23 +33,22 @@ export function AboutClient({ doctor, settings, features }: AboutClientProps) {
   const { openBooking } = useAppointmentModal();
 
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <div className="bg-[#F8FAFC] min-h-screen">
       {/* Hero Header */}
-      <section className="bg-navy-primary text-white py-16 lg:py-20 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none" />
+      <section className="bg-white text-[#0F1A48] py-16 lg:py-20 relative overflow-hidden border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-ash-light border border-white/10 text-xs font-semibold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEF2FF] text-[#0F1A48] border border-[#0F1A48]/15 text-xs font-semibold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
               <span>{t('About Our Clinic', 'আমাদের ক্লিনিক পরিচিতি')}</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0F1A48]">
               {t(
                 'Care Point Dental Clinic — Dedicated to Your Healthy Smile',
                 'কেয়ার পয়েন্ট ডেন্টাল ক্লিনিক — আপনার সুন্দর ও সুস্থ হাসির বিশ্বস্ত ঠিকানা'
               )}
             </h1>
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-[#0F1A48]/80 leading-relaxed font-normal">
               {t(
                 'Located at Pollibidyut, Ashulia, Savar. We blend modern dental science, state-of-the-art autoclave sterilization, and patient-first compassionate care led by Dr. Aktar Zahan Ony.',
                 'পল্লীবিদ্যুৎ, আশুলিয়া, সাভারে অবস্থিত আধুনিক ও পরিচ্ছন্ন ডেন্টাল ক্লিনিক। ডা. আক্তার জাহান অনির আন্তরিক পরিচালনায় আমরা দিচ্ছি আধুনিক চিকিৎসা ও শতভাগ জীবাণুমুক্ত পরিবেশ।'
@@ -233,18 +232,18 @@ export function AboutClient({ doctor, settings, features }: AboutClientProps) {
       </section>
 
       {/* Clinic Chamber & Emergency Action Banner */}
-      <section className="py-14 bg-gradient-to-br from-navy-primary via-[#16235F] to-navy-dark text-white border-t border-slate-200">
+      <section className="py-14 bg-white text-[#0F1A48] border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 text-teal-300 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#EEF2FF] text-[#0F1A48] text-xs font-bold uppercase tracking-wider border border-[#0F1A48]/15">
+            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
             <span>{t('Instant Chamber Access & Support', 'জরুরি যোগাযোগ ও চেম্বার সেবা')}</span>
           </div>
           
-          <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h3 className="text-2xl sm:text-3xl font-black text-[#0F1A48] tracking-tight">
             {t('Care Point Dental Clinic — Ashulia, Savar', 'কেয়ার পয়েন্ট ডেন্টাল ক্লিনিক — আশুলিয়া, সাভার')}
           </h3>
           
-          <p className="text-sm text-slate-200 max-w-xl mx-auto leading-relaxed">
+          <p className="text-sm text-[#0F1A48]/80 max-w-xl mx-auto leading-relaxed">
             {t(
               '2nd Floor, Mofizuddin Tower, Beside UCB Bank, Pollibidyut Kabarsthan Road Stand, Ashulia, Savar. Consulting daily from 4:00 PM to 9:00 PM.',
               '২য় তলা, মফিজ উদ্দিন টাওয়ার (হাংরি টাউন বিল্ডিং), স\'মিলের সাথে, ইউসিবি ব্যাংকের পাশে, পল্লীবিদ্যুৎ কবরস্থান রোড বাস স্ট্যান্ড, আশুলিয়া, সাভার।'
@@ -254,7 +253,7 @@ export function AboutClient({ doctor, settings, features }: AboutClientProps) {
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <a
               href="tel:+8801324558811"
-              className="px-6 py-3 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold rounded-xl text-xs sm:text-sm shadow-lg flex items-center gap-2 transition-all"
+              className="px-6 py-3 bg-[#0F1A48] hover:bg-[#EEF2FF] text-white hover:text-[#0F1A48] font-bold rounded-xl text-xs sm:text-sm shadow-md border border-[#0F1A48] flex items-center gap-2 transition-all cursor-pointer"
             >
               <Phone className="w-4 h-4" />
               <span>{t('Direct Hotline: +880 1324-558811', 'সরাসরি কল: ০১৩২৪-৫৫৮৮১১')}</span>
@@ -264,7 +263,7 @@ export function AboutClient({ doctor, settings, features }: AboutClientProps) {
               href="https://wa.me/8801324558811?text=Hello%20Care%20Point%20Dental,%20I%20want%20to%20consult%20Dr.%20Aktar%20Zahan%20Ony"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs sm:text-sm shadow-lg flex items-center gap-2 transition-all"
+              className="px-6 py-3 bg-[#EEF2FF] hover:bg-[#0F1A48] text-[#0F1A48] hover:text-white font-bold rounded-xl text-xs sm:text-sm border border-[#0F1A48]/20 flex items-center gap-2 transition-all cursor-pointer"
             >
               <span>WhatsApp: 01324-558811</span>
             </a>
@@ -273,9 +272,9 @@ export function AboutClient({ doctor, settings, features }: AboutClientProps) {
               href={settings.google_maps_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl text-xs sm:text-sm border border-white/20 transition-all flex items-center gap-2"
+              className="px-5 py-3 bg-white hover:bg-[#EEF2FF] text-[#0F1A48] font-bold rounded-xl text-xs sm:text-sm border border-slate-200 transition-all flex items-center gap-2 cursor-pointer"
             >
-              <MapPin className="w-4 h-4 text-teal-300" />
+              <MapPin className="w-4 h-4 text-[#0F1A48]" />
               <span>{t('Google Maps Location', 'গুগল ম্যাপে লোকেশন')}</span>
             </a>
           </div>

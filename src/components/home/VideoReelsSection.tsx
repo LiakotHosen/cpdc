@@ -18,7 +18,7 @@ export function VideoReelsSection({ reels, fullGalleryMode = false }: VideoReels
   const [activeReel, setActiveReel] = useState<VideoReel | null>(null);
   const [forceEmbed, setForceEmbed] = useState(false);
 
-  const displayedReels = fullGalleryMode ? reels : reels.slice(0, 4);
+  const displayedReels = fullGalleryMode ? reels : reels.slice(0, 6);
 
   // Helper to normalize Facebook reel / video URLs
   const getCleanFacebookUrl = (reel: VideoReel): string => {
@@ -48,20 +48,20 @@ export function VideoReelsSection({ reels, fullGalleryMode = false }: VideoReels
   };
 
   return (
-    <section className={`w-full ${fullGalleryMode ? 'py-6' : 'py-16 lg:py-24 bg-white border-b border-slate-200'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className={`w-full ${fullGalleryMode ? 'py-6' : 'py-16 lg:py-24 bg-[#F8FAFC] border-b border-slate-200'}`}>
+      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
         {!fullGalleryMode && (
           <ScrollReveal animation="fade-up" duration={600}>
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
               <div className="max-w-2xl space-y-2">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider border border-blue-200 shadow-2xs">
-                  <Video className="w-3.5 h-3.5" />
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#EEF2FF] text-[#0F1A48] text-xs font-bold uppercase tracking-wider border border-[#0F1A48]/15 shadow-2xs">
+                  <Video className="w-3.5 h-3.5 text-[#0F1A48]" />
                   <span>{t('Authentic Clinic Video Reels', 'ভিডিও গ্যালারি • সরাসরি আমাদের ক্লিনিক থেকে')}</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-navy-primary tracking-tight">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F1A48] tracking-tight">
                   {t('Watch Treatments & Clinic Tour Videos', 'চোখে দেখুন আমাদের ক্লিনিক্যাল পরিবেশ ও সফল চিকিৎসার ভিডিও')}
                 </h2>
-                <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base text-[#0F1A48]/80 leading-relaxed font-normal">
                   {t(
                     'Watch authentic videos of our sterile clinic environment, patient procedures, and doctor advice directly from our official Facebook reels.',
                     'ক্লিনিকের বাস্তব পরিবেশ, শতভাগ অটোক্লেভ জীবাণুমুক্তকরণ প্রক্রিয়া ও অভিজ্ঞ ডেন্টাল সার্জনের চিকিৎসা পরামর্শ সরাসরি ভিডিওতে দেখে নিশ্চিত হোন।'
@@ -71,7 +71,7 @@ export function VideoReelsSection({ reels, fullGalleryMode = false }: VideoReels
 
               <Link
                 href="/gallery"
-                className="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center gap-2 self-start md:self-auto shadow-2xs hover:shadow-xs group"
+                className="px-5 py-3 bg-white hover:bg-[#EEF2FF] text-[#0F1A48] font-bold text-xs sm:text-sm rounded-xl border border-slate-300 transition-all flex items-center gap-2 self-start md:self-auto shadow-2xs hover:shadow-xs group"
               >
                 <span>{t('View All 8 Facebook Reels', 'সকল ৮টি ফেসবুক রিলস দেখুন')}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -81,7 +81,7 @@ export function VideoReelsSection({ reels, fullGalleryMode = false }: VideoReels
         )}
 
         {/* Reels Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-6">
           {displayedReels.map((reel, idx) => {
             const thumbSrc = getThumbnailSrc(reel);
             const directUrl = getCleanFacebookUrl(reel);
@@ -89,7 +89,7 @@ export function VideoReelsSection({ reels, fullGalleryMode = false }: VideoReels
             return (
               <ScrollReveal key={reel.id} animation="fade-up" delay={idx * 100}>
                 <div
-                  className="group relative bg-slate-900 rounded-3xl overflow-hidden shadow-lg border border-slate-800 hover:border-navy-light/60 transition-all duration-300 flex flex-col justify-between h-full pro-card"
+                  className="group relative bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-200 hover:border-[#0F1A48]/30 hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full pro-card"
                 >
                   {/* Reel Video Frame Preview Container with HD Poster */}
                   <div
@@ -105,12 +105,12 @@ export function VideoReelsSection({ reels, fullGalleryMode = false }: VideoReels
                       loading="lazy"
                     />
 
-                    {/* Gradient Overlay for visual polish & text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/50 pointer-events-none" />
+                    {/* Clean Dark Overlay (No Gradient) */}
+                    <div className="absolute inset-0 bg-slate-950/30 pointer-events-none" />
 
-                    {/* Centered Glowing Play Button Overlay */}
+                    {/* Centered Play Button Overlay */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <div className="w-14 h-14 rounded-full bg-navy-primary/90 backdrop-blur-md border border-white/40 text-white flex items-center justify-center group-hover/card:scale-110 group-hover/card:bg-emerald-600 transition-all shadow-xl shadow-black/50">
+                      <div className="w-14 h-14 rounded-full bg-[#0F1A48]/90 text-white flex items-center justify-center group-hover/card:scale-110 group-hover/card:bg-[#EEF2FF] group-hover/card:text-[#0F1A48] transition-all shadow-md">
                         <Play className="w-6 h-6 fill-current translate-x-0.5" />
                       </div>
                     </div>
@@ -183,14 +183,14 @@ export function VideoReelsSection({ reels, fullGalleryMode = false }: VideoReels
               <div className="relative aspect-[9/16] w-full bg-black flex flex-col items-center justify-center overflow-hidden">
                 {isRestrictedReel(activeReel) && !forceEmbed ? (
                   /* Dedicated High-Impact View for Reels with Facebook Audio/Music Restrictions */
-                  <div className="relative w-full h-full flex flex-col justify-between p-6 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900">
+                  <div className="relative w-full h-full flex flex-col justify-between p-6 bg-slate-950">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={getThumbnailSrc(activeReel)}
                       alt={t(activeReel.title_en, activeReel.title_bn)}
                       className="absolute inset-0 w-full h-full object-cover opacity-35 filter blur-xs scale-105 pointer-events-none"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/80 pointer-events-none" />
+                    <div className="absolute inset-0 bg-slate-950/70 pointer-events-none" />
 
                     {/* Header badge */}
                     <div className="relative z-10 flex items-center justify-between">
@@ -228,7 +228,7 @@ export function VideoReelsSection({ reels, fullGalleryMode = false }: VideoReels
                           href={getCleanFacebookUrl(activeReel)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 transition-all text-xs sm:text-sm"
+                          className="w-full py-3.5 px-4 bg-[#0F1A48] hover:bg-[#EEF2FF] hover:text-[#0F1A48] text-white border border-[#0F1A48] font-bold rounded-2xl flex items-center justify-center gap-2 shadow-md transition-all text-xs sm:text-sm group"
                         >
                           <Play className="w-4 h-4 fill-current" />
                           <span>{t('Play Directly on Facebook', 'ফেসবুকে সরাসরি ভিডিওটি চালান')}</span>

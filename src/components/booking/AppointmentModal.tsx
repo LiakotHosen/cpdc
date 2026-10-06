@@ -20,7 +20,7 @@ const TIME_SLOTS = [
   '07:30 PM - 08:00 PM',
   '08:00 PM - 08:30 PM',
   '08:30 PM - 09:00 PM',
-  'Morning Slot (Call 30m prior / সকালের সিরিয়াল)'
+  'Morning Slot (Call 30m prior / সকালের সিরিয়াল)'
 ];
 
 export function AppointmentModal() {
@@ -114,24 +114,24 @@ export function AppointmentModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-dark/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200 max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0F1A48]/70 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200 max-h-[90vh] flex flex-col text-[#0F1A48]">
         {/* Header */}
-        <div className="bg-navy-primary text-white px-6 py-5 flex items-center justify-between">
+        <div className="bg-white text-[#0F1A48] border-b border-slate-200 px-6 py-5 flex items-center justify-between">
           <div>
-            <span className="text-xs uppercase tracking-wider font-semibold text-ash-light bg-white/10 px-2.5 py-0.5 rounded-full inline-block mb-1">
+            <span className="text-xs uppercase tracking-wider font-semibold text-[#0F1A48] bg-[#EEF2FF] px-2.5 py-0.5 rounded-full inline-block mb-1 border border-[#0F1A48]/15">
               {t('Online Serial Booking', 'অনলাইন সিরিয়াল বুকিং')}
             </span>
-            <h3 className="text-xl font-bold">
+            <h3 className="text-xl font-bold text-[#0F1A48]">
               {t('Book Doctor Appointment', 'ডাক্তারের সিরিয়াল নিন')}
             </h3>
-            <p className="text-xs text-slate-200 mt-0.5">
+            <p className="text-xs text-[#0F1A48]/80 mt-0.5">
               {t('Dr. Aktar Zahan Ony (Oral & Dental Surgeon)', 'ডা. আক্তার জাহান অনি (ওরাল এন্ড ডেন্টাল সার্জন)')}
             </p>
           </div>
           <button
             onClick={closeBooking}
-            className="p-2 rounded-full text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-2 rounded-full text-[#0F1A48] hover:bg-[#EEF2FF] transition-colors cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-6 h-6" />
@@ -142,29 +142,29 @@ export function AppointmentModal() {
         <div className="p-6 overflow-y-auto space-y-4">
           {isSuccess ? (
             <div className="text-center py-8 space-y-4">
-              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
+              <div className="w-16 h-16 bg-[#EEF2FF] text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
-              <h4 className="text-2xl font-bold text-navy-primary">
+              <h4 className="text-2xl font-bold text-[#0F1A48]">
                 {t('Appointment Requested Successfully!', 'আপনার সিরিয়াল রিকোয়েস্ট সফল হয়েছে!')}
               </h4>
-              <p className="text-sm text-slate-600 max-w-sm mx-auto">
+              <p className="text-sm text-[#0F1A48]/80 max-w-sm mx-auto">
                 {t(
                   `Thank you, ${patientName}. Our team will contact you at ${phone} via WhatsApp / Phone shortly to confirm your slot.`,
                   `ধন্যবাদ, ${patientName}। আপনার উল্লেখিত নম্বরে (${phone}) আমাদের ক্লিনিক থেকে কল বা হোয়াটসঅ্যাপে দ্রুত কনফার্ম করা হবে।`
                 )}
               </p>
-              <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl text-left text-xs space-y-1.5 text-slate-700">
+              <div className="bg-[#F8FAFC] border border-slate-200 p-4 rounded-xl text-left text-xs space-y-1.5 text-[#0F1A48]">
                 <div className="flex justify-between">
-                  <span className="text-slate-500">{t('Preferred Date:', 'নির্বাচিত তারিখ:')}</span>
-                  <span className="font-semibold">{preferredDate}</span>
+                  <span className="text-[#0F1A48]/70">{t('Preferred Date:', 'নির্বাচিত তারিখ:')}</span>
+                  <span className="font-semibold text-[#0F1A48]">{preferredDate}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">{t('Time Slot:', 'সময়:')}</span>
-                  <span className="font-semibold">{preferredTimeSlot}</span>
+                  <span className="text-[#0F1A48]/70">{t('Time Slot:', 'সময়:')}</span>
+                  <span className="font-semibold text-[#0F1A48]">{preferredTimeSlot}</span>
                 </div>
                 {estimatedPriceRange && (
-                  <div className="flex justify-between text-navy-primary font-bold pt-1 border-t border-slate-200">
+                  <div className="flex justify-between text-[#0F1A48] font-bold pt-1 border-t border-slate-200">
                     <span>{t('Calculator Estimate:', 'ক্যালকুলেটর অনুমান:')}</span>
                     <span>{estimatedPriceRange}</span>
                   </div>
@@ -172,7 +172,7 @@ export function AppointmentModal() {
               </div>
               <button
                 onClick={closeBooking}
-                className="w-full py-3 bg-navy-primary hover:bg-navy-dark text-white rounded-xl font-semibold shadow-md transition-all"
+                className="w-full py-3 bg-[#0F1A48] hover:bg-[#EEF2FF] text-white hover:text-[#0F1A48] border border-[#0F1A48] rounded-xl font-semibold shadow-md transition-all cursor-pointer"
               >
                 {t('Close', 'সম্পন্ন')}
               </button>
@@ -187,11 +187,11 @@ export function AppointmentModal() {
               )}
 
               {estimatedPriceRange && (
-                <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs flex items-center justify-between text-emerald-800">
+                <div className="p-3 bg-[#EEF2FF] border border-[#0F1A48]/20 rounded-xl text-xs flex items-center justify-between text-[#0F1A48]">
                   <span className="font-medium">
                     {t('Pre-selected Treatment Estimate:', 'নির্বাচিত চিকিৎসার আনুমানিক খরচ:')}
                   </span>
-                  <span className="font-bold text-sm bg-emerald-100 px-2 py-0.5 rounded text-emerald-900">
+                  <span className="font-bold text-sm bg-white px-2 py-0.5 rounded text-[#0F1A48] border border-slate-200">
                     {estimatedPriceRange}
                   </span>
                 </div>
@@ -199,7 +199,7 @@ export function AppointmentModal() {
 
               {/* Patient Name */}
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-[#0F1A48] mb-1">
                   {t('Patient Full Name *', 'রোগীর পুরো নাম *')}
                 </label>
                 <div className="relative">
@@ -210,14 +210,14 @@ export function AppointmentModal() {
                     value={patientName}
                     onChange={(e) => setPatientName(e.target.value)}
                     placeholder={t('e.g. Md. Tariqul Islam', 'যেমন: মো. তরিকুল ইসলাম')}
-                    className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-navy-primary/30 focus:border-navy-primary"
+                    className="w-full pl-9 pr-3 py-2.5 bg-[#F8FAFC] border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1A48]/30 focus:border-[#0F1A48] text-[#0F1A48]"
                   />
                 </div>
               </div>
 
               {/* Phone Number */}
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-[#0F1A48] mb-1">
                   {t('Phone Number (11 digits) *', 'মোবাইল নম্বর (১১ ডিজিট) *')}
                 </label>
                 <div className="relative">
@@ -228,7 +228,7 @@ export function AppointmentModal() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="017XXXXXXXX"
-                    className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-navy-primary/30 focus:border-navy-primary"
+                    className="w-full pl-9 pr-3 py-2.5 bg-[#F8FAFC] border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1A48]/30 focus:border-[#0F1A48] text-[#0F1A48]"
                   />
                 </div>
               </div>
@@ -240,16 +240,16 @@ export function AppointmentModal() {
                   id="sameWhatsapp"
                   checked={sameAsPhone}
                   onChange={(e) => setSameAsPhone(e.target.checked)}
-                  className="rounded text-navy-primary focus:ring-navy-primary"
+                  className="rounded text-[#0F1A48] focus:ring-[#0F1A48]"
                 />
-                <label htmlFor="sameWhatsapp" className="text-xs text-slate-600 cursor-pointer">
+                <label htmlFor="sameWhatsapp" className="text-xs text-[#0F1A48]/80 cursor-pointer">
                   {t('WhatsApp number is the same as phone', 'হোয়াটসঅ্যাপ নম্বর এই একই নম্বর')}
                 </label>
               </div>
 
               {!sameAsPhone && (
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-[#0F1A48] mb-1">
                     {t('WhatsApp Number', 'হোয়াটসঅ্যাপ নম্বর')}
                   </label>
                   <input
@@ -257,14 +257,14 @@ export function AppointmentModal() {
                     value={whatsapp}
                     onChange={(e) => setWhatsapp(e.target.value)}
                     placeholder="+8801XXXXXXXXX"
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-navy-primary/30"
+                    className="w-full px-3 py-2 bg-[#F8FAFC] border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1A48]/30 text-[#0F1A48]"
                   />
                 </div>
               )}
 
               {/* Service Selection */}
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-[#0F1A48] mb-1">
                   {t('Treatment Needed', 'চিকিৎসা বা সেবার ধরন')}
                 </label>
                 <div className="relative">
@@ -272,7 +272,7 @@ export function AppointmentModal() {
                   <select
                     value={serviceId}
                     onChange={(e) => setServiceId(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-navy-primary/30 text-slate-800"
+                    className="w-full pl-9 pr-3 py-2.5 bg-[#F8FAFC] border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1A48]/30 text-[#0F1A48]"
                   >
                     <option value="">{t('General Consultation & Checkup', 'সাধারণ পরামর্শ ও চেকআপ')}</option>
                     {services.map((s) => (
@@ -287,7 +287,7 @@ export function AppointmentModal() {
               {/* Preferred Date & Slot */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-[#0F1A48] mb-1">
                     {t('Preferred Date *', 'তারিখ নির্বাচন *')}
                   </label>
                   <div className="relative">
@@ -298,13 +298,13 @@ export function AppointmentModal() {
                       min={new Date().toISOString().split('T')[0]}
                       value={preferredDate}
                       onChange={(e) => setPreferredDate(e.target.value)}
-                      className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-navy-primary/30"
+                      className="w-full pl-9 pr-3 py-2 bg-[#F8FAFC] border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1A48]/30 text-[#0F1A48]"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-[#0F1A48] mb-1">
                     {t('Preferred Time *', 'সময় নির্বাচন *')}
                   </label>
                   <div className="relative">
@@ -312,7 +312,7 @@ export function AppointmentModal() {
                     <select
                       value={preferredTimeSlot}
                       onChange={(e) => setPreferredTimeSlot(e.target.value)}
-                      className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-navy-primary/30 text-slate-800"
+                      className="w-full pl-9 pr-3 py-2 bg-[#F8FAFC] border border-slate-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1A48]/30 text-[#0F1A48]"
                     >
                       {TIME_SLOTS.map((slot) => (
                         <option key={slot} value={slot}>{slot}</option>
@@ -324,7 +324,7 @@ export function AppointmentModal() {
 
               {/* Symptoms / Notes */}
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-[#0F1A48] mb-1">
                   {t('Problem / Symptoms (Optional)', 'সমস্যা বা উপসর্গ (ঐচ্ছিক)')}
                 </label>
                 <textarea
@@ -332,7 +332,7 @@ export function AppointmentModal() {
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder={t('Describe any pain, tooth number, or bleeding...', 'দাঁতে ব্যথা, শিরশিরানি বা মাড়ির কোনো সমস্যা থাকলে লিখুন...')}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-navy-primary/30"
+                  className="w-full px-3 py-2 bg-[#F8FAFC] border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1A48]/30 text-[#0F1A48]"
                 />
               </div>
 
@@ -341,7 +341,7 @@ export function AppointmentModal() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3 bg-navy-primary hover:bg-navy-dark text-white rounded-xl font-bold text-sm shadow-lg shadow-navy-primary/20 flex items-center justify-center gap-2 transition-all disabled:opacity-50 cursor-pointer"
+                  className="w-full py-3 bg-[#0F1A48] hover:bg-[#EEF2FF] text-white hover:text-[#0F1A48] border border-[#0F1A48] rounded-xl font-bold text-sm shadow-md flex items-center justify-center gap-2 transition-all disabled:opacity-50 cursor-pointer"
                 >
                   {isSubmitting ? (
                     <span>{t('Processing...', 'প্রসেসিং হচ্ছে...')}</span>
@@ -352,7 +352,7 @@ export function AppointmentModal() {
                     </>
                   )}
                 </button>
-                <p className="text-[11px] text-center text-slate-500 mt-2">
+                <p className="text-[11px] text-center text-[#0F1A48]/70 mt-2">
                   {t('Consulting hours: 4:00 PM – 9:00 PM daily. Emergency? Call +880 1324-558811', 'প্রতিদিন বিকাল ৪:০০ টা – রাত ৯:০০ টা। জরুরি প্রয়োজনে কল: ০১৩২৪-৫৫৮৮১১')}
                 </p>
               </div>

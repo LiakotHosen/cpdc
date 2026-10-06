@@ -1,44 +1,51 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-primary: #1B2A6D;
+  --color-navy-primary: #0F1A48;
   --color-navy-dark: #0F1A48;
-  --color-navy-light: #2A3F99;
+  --color-navy-light: #1E2D6A;
   --color-navy-tint: #EEF2FF;
-  --color-ash-grey: #A7A9AC;
-  --color-ash-dark: #6C727F;
-  --color-ash-light: #E5E7EB;
+  --color-ash-grey: #64748B;
+  --color-ash-dark: #334155;
+  --color-ash-light: #E2E8F0;
   --color-ash-soft: #F8FAFC;
-  --color-medical-teal: #0284C7;
+  --color-medical-teal: #0F1A48;
   --color-medical-mint: #10B981;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #0F172A;
+  --background: #F8FAFC;
+  --foreground: #0F1A48;
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: #F8FAFC;
+  color: #0F1A48;
 }
 
 body {
   background-color: #F8FAFC;
-  color: #0F172A;
+  color: #0F1A48;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   overflow-x: hidden;
 }
 
+/* Base text color rules - #0F1A48 */
+h1, h2, h3, h4, h5, h6 {
+  color: #0F1A48;
+}
+
 /* Glassmorphism utility */
 .glass-card {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(226, 232, 240, 0.9);
 }
 
 .glass-card-navy {
-  background: linear-gradient(135deg, rgba(27, 42, 109, 0.96) 0%, rgba(15, 26, 72, 0.98) 100%);
+  background: #0F1A48;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -122,9 +129,7 @@ body {
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
-  background-size: 200% 100%;
-  animation: shimmerSweep 3s infinite;
+  background: #EEF2FF;
 }
 
 /* Pro UI Utilities */
@@ -134,19 +139,19 @@ body {
 
 .pro-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px -15px rgba(27, 42, 109, 0.12), 0 0 0 1px rgba(27, 42, 109, 0.08);
+  background-color: #EEF2FF;
+  box-shadow: 0 10px 25px -5px rgba(15, 26, 72, 0.08);
 }
 
 .pro-card-emerald:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.18), 0 0 0 1px rgba(16, 185, 129, 0.2);
+  background-color: #EEF2FF;
+  box-shadow: 0 10px 25px -5px rgba(15, 26, 72, 0.08);
 }
 
-/* Dental Tech Pattern Utility */
+/* Dental Tech Pattern Utility - Clean Solid Base (No Gradient) */
 .bg-dental-pattern {
-  background-image: radial-gradient(rgba(27, 42, 109, 0.07) 1px, transparent 1px), radial-gradient(rgba(2, 132, 199, 0.05) 1px, transparent 1px);
-  background-size: 28px 28px;
-  background-position: 0 0, 14px 14px;
+  background-color: #F8FAFC;
 }
 
 .glow-card {
@@ -155,7 +160,8 @@ body {
 
 .glow-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 35px -10px rgba(27, 42, 109, 0.15), 0 0 1px 1px rgba(27, 42, 109, 0.05);
+  background-color: #EEF2FF;
+  box-shadow: 0 10px 25px -5px rgba(15, 26, 72, 0.08);
 }
 
 /* Custom scrollbar */
@@ -163,7 +169,7 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F5F9;
+  background: #F8FAFC;
 }
 ::-webkit-scrollbar-thumb {
   background: #CBD5E1;
@@ -179,7 +185,7 @@ body {
   font-size: 1.875rem;
   line-height: 2.25rem;
   font-weight: 800;
-  color: #1B2A6D;
+  color: #0F1A48;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
   letter-spacing: -0.025em;
@@ -190,7 +196,7 @@ body {
   font-size: 1.5rem;
   line-height: 2rem;
   font-weight: 700;
-  color: #1B2A6D;
+  color: #0F1A48;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
   padding-bottom: 0.35rem;
@@ -203,14 +209,14 @@ body {
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
-  color: #1B2A6D;
+  color: #0F1A48;
   margin-top: 1.25rem;
   margin-bottom: 0.5rem;
 }
 
 .rich-blog-content p,
 .rich-editor-content p {
-  color: #334155;
+  color: #0F1A48;
   line-height: 1.75;
   margin-bottom: 1rem;
 }
@@ -220,7 +226,7 @@ body {
   list-style-type: disc;
   padding-left: 1.5rem;
   margin-bottom: 1rem;
-  color: #334155;
+  color: #0F1A48;
   line-height: 1.7;
 }
 
@@ -229,7 +235,7 @@ body {
   list-style-type: decimal;
   padding-left: 1.5rem;
   margin-bottom: 1rem;
-  color: #334155;
+  color: #0F1A48;
   line-height: 1.7;
 }
 
@@ -240,18 +246,18 @@ body {
 
 .rich-blog-content blockquote,
 .rich-editor-content blockquote {
-  border-left: 4px solid #10B981;
-  background-color: rgba(240, 253, 244, 0.7);
+  border-left: 4px solid #0F1A48;
+  background-color: #EEF2FF;
   padding: 0.75rem 1rem;
   margin: 1.25rem 0;
   border-radius: 0 0.75rem 0.75rem 0;
   font-style: italic;
-  color: #1E293B;
+  color: #0F1A48;
 }
 
 .rich-blog-content a,
 .rich-editor-content a {
-  color: #0284C7;
+  color: #0F1A48;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -260,7 +266,8 @@ body {
 
 .rich-blog-content a:hover,
 .rich-editor-content a:hover {
-  color: #1B2A6D;
+  color: #1E2D6A;
+  background-color: #EEF2FF;
 }
 
 .rich-blog-content strong,

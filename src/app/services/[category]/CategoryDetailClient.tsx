@@ -50,25 +50,24 @@ export function CategoryDetailClient({
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <div className="bg-[#F8FAFC] min-h-screen">
       {/* Category Hero */}
-      <section className="bg-gradient-to-br from-navy-dark via-navy-primary to-navy-dark text-white py-14 lg:py-18 relative overflow-hidden border-b border-navy-light/20">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+      <section className="bg-white text-[#0F1A48] py-14 lg:py-18 relative overflow-hidden border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="space-y-4 max-w-3xl">
             <Link
               href="/services"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-ash-light hover:text-white transition-colors bg-white/10 px-3 py-1.5 rounded-lg w-fit border border-white/10"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0F1A48] hover:bg-[#EEF2FF] transition-colors bg-[#F8FAFC] px-3 py-1.5 rounded-lg w-fit border border-slate-200"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>{t('Back to All Treatments', 'সকল চিকিৎসার তালিকায় ফিরে যান')}</span>
             </Link>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0F1A48]">
               {t(category.name_en, category.name_bn)}
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-[#0F1A48]/80 leading-relaxed font-normal">
               {t(category.description_en, category.description_bn)}
             </p>
           </div>
@@ -324,15 +323,15 @@ export function CategoryDetailClient({
           {/* Sidebar Navigation (4 cols) */}
           <div className="lg:col-span-4 space-y-6">
             {/* Direct Doctor Booking Card */}
-            <div className="bg-gradient-to-br from-navy-primary to-navy-dark text-white rounded-2xl p-6 shadow-lg space-y-4">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-ash-light border border-white/10 text-xs font-semibold">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+            <div className="bg-white text-[#0F1A48] border border-slate-200 rounded-2xl p-6 shadow-md space-y-4">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EEF2FF] text-[#0F1A48] border border-[#0F1A48]/15 text-xs font-semibold">
+                <Sparkles className="w-3.5 h-3.5 text-amber-500" />
                 <span>{t('Direct Consultation', 'সরাসরি ডাক্তারের পরামর্শ')}</span>
               </div>
-              <h4 className="text-lg font-bold">
+              <h4 className="text-lg font-bold text-[#0F1A48]">
                 {t('Consult Dr. Aktar Zahan Ony', 'ডা. আক্তার জাহান অনির পরামর্শ নিন')}
               </h4>
-              <p className="text-xs text-slate-200 leading-relaxed">
+              <p className="text-xs text-[#0F1A48]/80 leading-relaxed">
                 {t(
                   'Book your appointment online for precision RVG diagnostics, sterilization assurance, and personalized gentle care.',
                   'আধুনিক ডিজিটাল আরভিজি এক্স-রে ডায়াগনোসিস ও শতভাগ জীবাণুমুক্ত পরিবেশে চিকিৎসার জন্য ঘরে বসেই সিরিয়াল নিশ্চিত করুন।'
@@ -340,7 +339,7 @@ export function CategoryDetailClient({
               </p>
               <button
                 onClick={() => openBooking('', t(category.name_en, category.name_bn))}
-                className="block w-full text-center py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
+                className="block w-full text-center py-3 bg-[#0F1A48] hover:bg-[#EEF2FF] text-white hover:text-[#0F1A48] border border-[#0F1A48] rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
               >
                 <Calendar className="w-4 h-4" />
                 <span>{t('Book Appointment Now', 'অনলাইন সিরিয়াল নিশ্চিত করুন')}</span>

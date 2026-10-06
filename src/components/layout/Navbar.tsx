@@ -42,7 +42,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full transition-all duration-300">
       {/* Top Notification & Quick Emergency Bar */}
       <div className="bg-navy-dark text-slate-300 text-[11.5px] py-1.5 px-4 border-b border-white/10 hidden md:block">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 mx-auto flex justify-between items-center">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-1.5 text-slate-300 font-medium">
               <MapPin className="w-3.5 h-3.5 text-teal-400 shrink-0" />
@@ -86,15 +86,15 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Main Modern Glassmorphic Navbar */}
+      {/* Main Modern Clean Navbar */}
       <nav
         className={`w-full transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-md py-2 border-b border-slate-200'
-            : 'bg-white py-3 shadow-xs border-b border-slate-100'
+            ? 'bg-[#F8FAFC]/95 backdrop-blur-md shadow-sm py-2 border-b border-slate-200'
+            : 'bg-[#F8FAFC] py-3 border-b border-slate-200/60'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 mx-auto flex items-center justify-between">
           
           {/* Logo Only (Clean & Perfectly Sized with transparent cropped asset) */}
           <Link
@@ -123,8 +123,8 @@ export function Navbar() {
                   href={link.href}
                   className={`px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
                     isActive
-                      ? 'bg-navy-tint text-navy-primary font-bold shadow-2xs'
-                      : 'text-slate-600 hover:text-navy-primary hover:bg-slate-50'
+                      ? 'bg-[#EEF2FF] text-[#0F1A48] font-bold shadow-2xs'
+                      : 'text-[#0F1A48] hover:text-[#0F1A48] hover:bg-[#EEF2FF]'
                   }`}
                 >
                   {t(link.label_en, link.label_bn)}
@@ -138,12 +138,12 @@ export function Navbar() {
             {/* Language Switcher Button */}
             <button
               onClick={toggleLang}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50/80 hover:bg-slate-100 text-navy-primary text-xs font-bold transition-all shadow-2xs cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 bg-[#F8FAFC] hover:bg-[#EEF2FF] text-[#0F1A48] text-xs font-bold transition-all shadow-2xs cursor-pointer"
               title={lang === 'en' ? 'বাংলা ভাষায় পরিবর্তন করুন' : 'Switch to English'}
               aria-label="Toggle language"
             >
-              <Globe className="w-3.5 h-3.5 text-navy-primary" />
-              <span className={lang === 'bn' ? 'font-extrabold text-navy-primary' : 'text-slate-600'}>
+              <Globe className="w-3.5 h-3.5 text-[#0F1A48]" />
+              <span className={lang === 'bn' ? 'font-extrabold text-[#0F1A48]' : 'text-[#0F1A48]/80'}>
                 {lang === 'bn' ? 'বাংলা' : 'EN'}
               </span>
             </button>
@@ -151,29 +151,29 @@ export function Navbar() {
             {/* Quick Phone Call Pill */}
             <a
               href="tel:+8801324558811"
-              className="hidden sm:flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-navy-primary bg-navy-tint hover:bg-blue-100 transition-colors shadow-2xs"
+              className="hidden sm:flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-[#0F1A48] bg-[#EEF2FF] hover:bg-[#EEF2FF]/80 transition-colors shadow-2xs border border-[#0F1A48]/10"
               title="Call Chamber Hotline"
             >
-              <Phone className="w-3.5 h-3.5 text-navy-primary" />
+              <Phone className="w-3.5 h-3.5 text-[#0F1A48]" />
               <span>01324-558811</span>
             </a>
 
-            {/* Glowing Appointment CTA Button */}
+            {/* Appointment CTA Button */}
             <button
               onClick={() => openBooking()}
-              className="hidden sm:flex items-center gap-2 px-4.5 py-2 bg-gradient-to-r from-navy-primary to-navy-light hover:from-navy-dark hover:to-navy-primary text-white rounded-xl text-xs sm:text-sm font-black shadow-md shadow-navy-primary/25 hover:shadow-lg hover:scale-102 transition-all cursor-pointer"
+              className="hidden sm:flex items-center gap-2 px-4.5 py-2 bg-[#0F1A48] hover:bg-[#EEF2FF] hover:text-[#0F1A48] text-white border border-[#0F1A48] rounded-xl text-xs sm:text-sm font-black shadow-md hover:shadow-lg transition-all cursor-pointer group"
             >
-              <Calendar className="w-4 h-4 text-amber-300" />
+              <Calendar className="w-4 h-4 text-amber-300 group-hover:text-[#0F1A48] transition-colors" />
               <span>{t('Book Serial', 'সিরিয়াল নিন')}</span>
             </button>
 
             {/* Mobile Menu Hamburger Trigger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-2 rounded-xl text-[#0F1A48] hover:bg-[#EEF2FF] transition-colors"
               aria-label="Open navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6 text-navy-primary" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-6 h-6 text-[#0F1A48]" /> : <Menu className="w-6 h-6 text-[#0F1A48]" />}
             </button>
           </div>
 
@@ -181,7 +181,7 @@ export function Navbar() {
 
         {/* Mobile Slide-Down Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-3 shadow-2xl animate-in slide-in-from-top duration-200">
+          <div className="lg:hidden bg-[#F8FAFC] border-b border-slate-200 px-4 pt-3 pb-6 space-y-3 shadow-2xl animate-in slide-in-from-top duration-200">
             <div className="grid grid-cols-1 gap-1">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
@@ -192,42 +192,42 @@ export function Navbar() {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between ${
                       isActive
-                        ? 'bg-navy-tint text-navy-primary font-bold'
-                        : 'text-slate-700 hover:bg-slate-50 hover:text-navy-primary'
+                        ? 'bg-[#EEF2FF] text-[#0F1A48] font-bold'
+                        : 'text-[#0F1A48] hover:bg-[#EEF2FF] hover:text-[#0F1A48]'
                     }`}
                   >
                     <span>{t(link.label_en, link.label_bn)}</span>
-                    <ChevronRight className="w-4 h-4 text-slate-400" />
+                    <ChevronRight className="w-4 h-4 text-[#0F1A48]/50" />
                   </Link>
                 );
               })}
             </div>
 
-            <div className="pt-3 border-t border-slate-100 flex flex-col gap-2.5">
+            <div className="pt-3 border-t border-slate-200 flex flex-col gap-2.5">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   openBooking();
                 }}
-                className="w-full py-3 bg-gradient-to-r from-navy-primary to-navy-light text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-navy-primary/20"
+                className="w-full py-3 bg-[#0F1A48] hover:bg-[#EEF2FF] hover:text-[#0F1A48] text-white border border-[#0F1A48] rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md transition-all group"
               >
-                <Calendar className="w-4 h-4 text-amber-300" />
+                <Calendar className="w-4 h-4 text-amber-300 group-hover:text-[#0F1A48]" />
                 <span>{t('Book Doctor Appointment', 'সিরিয়াল / অ্যাপয়েন্টমেন্ট নিন')}</span>
               </button>
 
               <div className="grid grid-cols-2 gap-2">
                 <a
                   href="tel:+8801324558811"
-                  className="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5"
+                  className="py-2.5 px-3 bg-[#EEF2FF] hover:bg-[#EEF2FF]/80 text-[#0F1A48] rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
                 >
-                  <Phone className="w-3.5 h-3.5 text-navy-primary" />
+                  <Phone className="w-3.5 h-3.5 text-[#0F1A48]" />
                   <span>Call 01324-558811</span>
                 </a>
                 <a
                   href="https://wa.me/8801324558811?text=Hello%20Care%20Point%20Dental"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-2.5 px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5"
+                  className="py-2.5 px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
                   <span>WhatsApp</span>

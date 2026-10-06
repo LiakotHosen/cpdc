@@ -90,14 +90,9 @@ export function ServicesClient({ categories, services }: ServicesClientProps) {
             className="object-cover object-center scale-105 transition-transform duration-1000"
             sizes="100vw"
           />
-          {/* Multi-Layer Cinematic Brand Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#070E26]/95 via-[#0D1A45]/85 to-[#070E26]/75" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#070E26] via-transparent to-transparent opacity-90" />
+          {/* Solid Cinematic Brand Overlay (No Gradient) */}
+          <div className="absolute inset-0 bg-[#0F1A48]/90" />
         </div>
-
-        {/* Ambient Subtle Glows */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none z-1" />
-        <div className="absolute -bottom-10 left-1/4 w-80 h-80 bg-blue-500/15 rounded-full blur-3xl pointer-events-none z-1" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal animation="fade-up" duration={600}>
@@ -493,8 +488,8 @@ export function ServicesClient({ categories, services }: ServicesClientProps) {
         )}
 
         {/* Clinical Assurance Notice (NO PRICING NOTICE) */}
-        <div className="mt-14 bg-gradient-to-r from-blue-50 to-emerald-50 border border-blue-200/80 rounded-2xl p-6 sm:p-8 text-xs sm:text-sm text-slate-700 space-y-3">
-          <div className="flex items-center gap-2 font-bold text-navy-primary text-base">
+        <div className="mt-14 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 text-xs sm:text-sm text-[#0F1A48] space-y-3 shadow-sm">
+          <div className="flex items-center gap-2 font-bold text-[#0F1A48] text-base">
             <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
             <span>{t('Commitment to Biological Safety & Ethical Care', 'ক্লিনিক্যাল সুরক্ষা ও রোগীর প্রতি আমাদের অঙ্গীকার')}</span>
           </div>

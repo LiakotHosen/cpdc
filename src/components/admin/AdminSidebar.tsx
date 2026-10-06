@@ -14,6 +14,7 @@ import {
   Sparkles,
   Video,
   Image as ImageIcon,
+  Star,
   HelpCircle,
   BookOpen,
   LogOut,
@@ -37,6 +38,7 @@ export function AdminSidebar() {
     { href: '/admin/features', label: 'Features (17 Items)', icon: Sparkles },
     { href: '/admin/videos', label: 'Facebook Reels', icon: Video },
     { href: '/admin/gallery', label: 'Photo Gallery', icon: ImageIcon },
+    { href: '/admin/reviews', label: 'Patient Reviews', icon: Star },
     { href: '/admin/faqs', label: 'FAQs', icon: HelpCircle },
     { href: '/admin/blog', label: 'Dental Blog CMS', icon: BookOpen },
   ];

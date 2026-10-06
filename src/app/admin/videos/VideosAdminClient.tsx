@@ -206,7 +206,7 @@ export function VideosAdminClient({ initialReels }: VideosAdminClientProps) {
 
       {/* Step-by-Step Instructions Card */}
       {showGuide && (
-        <div className="p-5 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl shadow-2xs space-y-3 animate-in fade-in duration-200">
+        <div className="p-5 bg-[#EEF2FF] border border-[#0F1A48]/15 rounded-2xl shadow-2xs space-y-3 animate-in fade-in duration-200">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-bold text-navy-primary flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-amber-500" />
@@ -303,7 +303,7 @@ export function VideosAdminClient({ initialReels }: VideosAdminClientProps) {
                     }}
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/40 pointer-events-none" />
+                  <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
                   {/* Badges */}
                   <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
@@ -382,7 +382,7 @@ export function VideosAdminClient({ initialReels }: VideosAdminClientProps) {
       </div>
 
       {/* Prominent "See All Facebook Reels" Banner / Trigger */}
-      <div className="p-6 bg-gradient-to-r from-slate-900 via-navy-primary to-slate-900 text-white rounded-3xl shadow-sm border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-5">
+      <div className="p-6 bg-[#0F1A48] text-white rounded-3xl shadow-sm border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-5">
         <div className="space-y-1.5 text-center sm:text-left">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold border border-blue-400/20">
             <Video className="w-3.5 h-3.5" />
@@ -632,7 +632,7 @@ export function VideosAdminClient({ initialReels }: VideosAdminClientProps) {
                               (e.target as HTMLImageElement).src = '/images/logo.jpeg';
                             }}
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/40 pointer-events-none" />
+                          <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
                           <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-none">
                             <span className="px-2 py-0.5 rounded-md bg-blue-600/90 text-white text-[10px] font-bold">

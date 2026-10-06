@@ -41,8 +41,8 @@ export default async function HomePage() {
       <CostCalculatorWidget services={services} categories={categories} fullPageMode={false} />
 
       {/* Location & Wayfinding Chamber Section */}
-      <section className="py-16 lg:py-24 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 lg:py-24 bg-[#F8FAFC] border-b border-slate-200">
+        <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
           <LocationWayfindingSection settings={settings} doctor={doctor} showTitle={true} />
         </div>
       </section>

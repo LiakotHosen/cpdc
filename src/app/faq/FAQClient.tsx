@@ -9,7 +9,6 @@ import {
   Search,
   ChevronDown,
   MessageSquare,
-  Phone,
   Calendar,
   Sparkles,
 } from 'lucide-react';
@@ -56,20 +55,19 @@ export function FAQClient({ faqs }: FAQClientProps) {
   }, [faqs, selectedCategory, searchQuery]);
 
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <div className="bg-[#F8FAFC] min-h-screen">
       {/* Hero Banner */}
-      <section className="bg-navy-primary text-white py-14 lg:py-18 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none" />
+      <section className="bg-white text-[#0F1A48] py-14 lg:py-18 relative overflow-hidden border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-ash-light border border-white/10 text-xs font-semibold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEF2FF] text-[#0F1A48] border border-[#0F1A48]/15 text-xs font-semibold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
               <span>{t('Patient Guide & Answers', 'রোগীদের প্রশ্ন ও উত্তর')}</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0F1A48]">
               {t('Frequently Asked Questions', 'সাধারণ জিজ্ঞাসা ও প্রশ্নোত্তর')}
             </h1>
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-[#0F1A48]/80 leading-relaxed font-normal">
               {t(
                 'Everything you need to know about dental treatments, pain-free procedures, digital X-rays, sterilization protocols, and consultation appointments.',
                 'দাঁতের বিভিন্ন চিকিৎসা, ব্যথামুক্ত পদ্ধতি, ডিজিটাল এক্স-রে, অটোক্লেভ জীবাণুমুক্তকরণ ও সিরিয়াল নেওয়ার নিয়ম সম্পর্কে বিস্তারিত জানুন।'
@@ -88,12 +86,12 @@ export function FAQClient({ faqs }: FAQClientProps) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t('Search your question (e.g., pain, root canal, autoclave)...', 'আপনার প্রশ্ন লিখে খুঁজুন (যেমন: ব্যথা, রুট ক্যানেল, স্কেলিং)...')}
-            className="w-full pl-10 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-navy-primary/30 focus:border-navy-primary shadow-2xs transition-all"
+            className="w-full pl-10 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0F1A48]/30 focus:border-[#0F1A48] text-[#0F1A48] shadow-2xs transition-all"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs"
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer"
             >
               ✕
             </button>
@@ -115,8 +113,8 @@ export function FAQClient({ faqs }: FAQClientProps) {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
                   isSelected
-                    ? 'bg-navy-primary text-white shadow-sm'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
+                    ? 'bg-[#0F1A48] text-white shadow-sm'
+                    : 'bg-white hover:bg-[#EEF2FF] text-[#0F1A48] border border-slate-200'
                 }`}
               >
                 {label}
@@ -129,10 +127,10 @@ export function FAQClient({ faqs }: FAQClientProps) {
         {filteredFAQs.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-2xl border border-slate-200 p-6 space-y-2">
             <HelpCircle className="w-10 h-10 text-slate-300 mx-auto" />
-            <p className="text-sm font-semibold text-slate-700">
+            <p className="text-sm font-semibold text-[#0F1A48]">
               {t('No matching questions found', 'কোনো প্রশ্ন খুঁজে পাওয়া যায়নি')}
             </p>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-[#0F1A48]/70">
               {t('Feel free to call or WhatsApp us directly with your question.', 'আপনার যেকোনো জিজ্ঞাসায় আমাদের সরাসরি ফোন অথবা হোয়াটসঅ্যাপ করতে পারেন।')}
             </p>
           </div>
@@ -143,18 +141,18 @@ export function FAQClient({ faqs }: FAQClientProps) {
               return (
                 <div
                   key={faq.id}
-                  className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs overflow-hidden transition-all"
+                  className="bg-white rounded-2xl border border-slate-200 shadow-2xs overflow-hidden transition-all"
                 >
                   <button
                     onClick={() => toggleFAQ(faq.id)}
-                    className="w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 cursor-pointer hover:bg-slate-50/50 transition-colors"
+                    className="w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 cursor-pointer hover:bg-[#EEF2FF]/40 transition-colors"
                   >
-                    <span className="text-base sm:text-lg font-bold text-navy-primary">
+                    <span className="text-base sm:text-lg font-bold text-[#0F1A48]">
                       {t(faq.question_en, faq.question_bn)}
                     </span>
                     <span
-                      className={`w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 text-slate-500 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180 bg-navy-primary text-white' : ''
+                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
+                        isOpen ? 'rotate-180 bg-[#0F1A48] text-white' : 'bg-[#EEF2FF] text-[#0F1A48]'
                       }`}
                     >
                       <ChevronDown className="w-4 h-4" />
@@ -162,7 +160,7 @@ export function FAQClient({ faqs }: FAQClientProps) {
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/30">
+                    <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-[#0F1A48]/80 leading-relaxed border-t border-slate-100 bg-[#F8FAFC]">
                       {t(faq.answer_en, faq.answer_bn)}
                     </div>
                   )}
@@ -173,12 +171,12 @@ export function FAQClient({ faqs }: FAQClientProps) {
         )}
 
         {/* Still Have Questions CTA */}
-        <div className="mt-14 bg-gradient-to-r from-navy-primary to-navy-dark text-white rounded-3xl p-8 sm:p-10 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="mt-14 bg-white text-[#0F1A48] border border-slate-200 rounded-3xl p-8 sm:p-10 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center sm:text-left">
-            <h3 className="text-xl sm:text-2xl font-bold">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#0F1A48]">
               {t('Still have a dental question?', 'দাঁত নিয়ে আপনার অন্য কোনো জিজ্ঞাসা আছে?')}
             </h3>
-            <p className="text-xs sm:text-sm text-slate-200">
+            <p className="text-xs sm:text-sm text-[#0F1A48]/80">
               {t(
                 'Dr. Aktar Zahan Ony is happy to guide you. Send us a message on WhatsApp or call our chamber.',
                 'ডা. আক্তার জাহান অনি আপনার দাঁতের সমস্যা শুনে সঠিক দিকনির্দেশনা দেবেন।'
@@ -191,14 +189,14 @@ export function FAQClient({ faqs }: FAQClientProps) {
               href="https://wa.me/8801324558811"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold shadow transition-all flex items-center gap-1.5"
+              className="px-5 py-2.5 bg-[#EEF2FF] hover:bg-[#0F1A48] text-[#0F1A48] hover:text-white border border-[#0F1A48]/15 rounded-xl text-xs font-bold shadow-xs transition-all flex items-center gap-1.5"
             >
               <MessageSquare className="w-4 h-4" />
               <span>WhatsApp</span>
             </a>
             <button
               onClick={() => openBooking()}
-              className="px-5 py-2.5 bg-white hover:bg-slate-100 text-navy-primary rounded-xl text-xs font-bold shadow transition-all flex items-center gap-1.5 cursor-pointer"
+              className="px-5 py-2.5 bg-[#0F1A48] hover:bg-[#EEF2FF] text-white hover:text-[#0F1A48] border border-[#0F1A48] rounded-xl text-xs font-bold shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
             >
               <Calendar className="w-4 h-4" />
               <span>{t('Book Serial', 'সিরিয়াল নিন')}</span>

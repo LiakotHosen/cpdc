@@ -1056,7 +1056,8 @@ export const INITIAL_REVIEWS: Review[] = [
     date: '2 weeks ago',
     is_verified: true,
     is_featured: true,
-    sort_order: 1
+    sort_order: 1,
+    google_review_url: 'https://maps.app.goo.gl/tTvNAHkod8TfRVPz9?g_st=ac'
   },
   {
     id: 'rev-2',
@@ -1070,7 +1071,8 @@ export const INITIAL_REVIEWS: Review[] = [
     date: '1 month ago',
     is_verified: true,
     is_featured: true,
-    sort_order: 2
+    sort_order: 2,
+    google_review_url: 'https://maps.app.goo.gl/tTvNAHkod8TfRVPz9?g_st=ac'
   },
   {
     id: 'rev-3',
@@ -1084,7 +1086,8 @@ export const INITIAL_REVIEWS: Review[] = [
     date: '3 weeks ago',
     is_verified: true,
     is_featured: true,
-    sort_order: 3
+    sort_order: 3,
+    google_review_url: 'https://maps.app.goo.gl/tTvNAHkod8TfRVPz9?g_st=ac'
   },
   {
     id: 'rev-4',
@@ -1098,7 +1101,68 @@ export const INITIAL_REVIEWS: Review[] = [
     date: 'Last month',
     is_verified: true,
     is_featured: true,
-    sort_order: 4
+    sort_order: 4,
+    google_review_url: 'https://maps.app.goo.gl/tTvNAHkod8TfRVPz9?g_st=ac'
+  },
+  {
+    id: 'rev-5',
+    patient_name_en: 'Engr. Mahmudul Karim',
+    patient_name_bn: 'ইঞ্জি. মাহমুদুল করিম',
+    treatment_en: 'Dental Implant Consultation',
+    treatment_bn: 'ডেন্টাল ইমপ্ল্যান্ট পরামর্শ ও ক্যাপ',
+    rating: 5,
+    comment_en: 'Dr. Ony took instant digital RVG X-rays on the chair screen and showed me the exact root condition. Very transparent and honest advice.',
+    comment_bn: 'ডাক্তার আপা সাথে সাথে চেয়ারের ডিজিটাল আরভিজি এক্স-রেতে দাঁতের আসল অবস্থা বুঝিয়ে বললেন। কোনো অযথা চার্জ নেই, একদম সৎ পরামর্শ ও আধুনিক চিকিৎসা।',
+    date: '3 weeks ago',
+    is_verified: true,
+    is_featured: true,
+    sort_order: 5,
+    google_review_url: 'https://maps.app.goo.gl/tTvNAHkod8TfRVPz9?g_st=ac'
+  },
+  {
+    id: 'rev-6',
+    patient_name_en: 'Nusrat Jahan Juthi',
+    patient_name_bn: 'নুসরাত জাহান জুঁথী',
+    treatment_en: 'Pediatric Dental Care',
+    treatment_bn: 'বাচ্চাদের দাঁতের যত্ন ও ফিলিং',
+    rating: 5,
+    comment_en: 'Took my 6-year-old daughter for tooth filling. The doctor was so gentle that my child did not cry for a single second. Wonderful environment!',
+    comment_bn: 'আমার ৬ বছরের মেয়ের দাঁতে ফিলিং করাতে নিয়ে গিয়েছিলাম। ডাক্তার আপা এত মিষ্টি করে কথা বলে চিকিৎসা করলেন যে বাচ্চা একটুও কাঁদেনি। অসাধারণ পরিবেশ!',
+    date: '2 months ago',
+    is_verified: true,
+    is_featured: true,
+    sort_order: 6,
+    google_review_url: 'https://maps.app.goo.gl/tTvNAHkod8TfRVPz9?g_st=ac'
+  },
+  {
+    id: 'rev-7',
+    patient_name_en: 'Al-Amin Hossain',
+    patient_name_bn: 'আল-আমিন হোসেন',
+    treatment_en: 'Cosmetic Teeth Whitening',
+    treatment_bn: 'কসমেটিক টিথ হোয়াইটেনিং',
+    rating: 5,
+    comment_en: 'Got professional teeth whitening done before my wedding. Noticeable difference in just one session. Truly hospital-grade sterilization.',
+    comment_bn: 'বিয়ের আগে দাঁত হোয়াইটেনিং করিয়েছিলাম। মাত্র এক সেশনেই চমৎকার পরিবর্তন এসেছে। প্রতিটি সরঞ্জাম প্যাকেট থেকে খুলে ব্যবহার করতে দেখে নিশ্চিত হয়েছি।',
+    date: '1 month ago',
+    is_verified: true,
+    is_featured: true,
+    sort_order: 7,
+    google_review_url: 'https://maps.app.goo.gl/tTvNAHkod8TfRVPz9?g_st=ac'
+  },
+  {
+    id: 'rev-8',
+    patient_name_en: 'Shahida Begum',
+    patient_name_bn: 'শাহিদা বেগম',
+    treatment_en: 'Dentures & Restorative Care',
+    treatment_bn: 'কৃত্রিম দাঁতের পাটি ও রিস্টোরেটিভ',
+    rating: 5,
+    comment_en: 'My mother got custom flexible dentures here. She can now chew comfortably without any pain. Gratitude to Dr. Aktar Zahan Ony.',
+    comment_bn: 'আমার মায়ের জন্য কৃত্রিম দাঁতের পাটি বানিয়েছি। এখন উনি কোনো ব্যথা ছাড়াই স্বাভাবিকভাবে খাবার খেতে পারছেন। ডা. আক্তার জাহান অনির প্রতি আন্তরিক কৃতজ্ঞতা।',
+    date: '2 weeks ago',
+    is_verified: true,
+    is_featured: true,
+    sort_order: 8,
+    google_review_url: 'https://maps.app.goo.gl/tTvNAHkod8TfRVPz9?g_st=ac'
   }
 ];
 

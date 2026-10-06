@@ -132,6 +132,7 @@ export interface Review {
   is_verified: boolean;
   is_featured: boolean;
   sort_order: number;
+  google_review_url?: string;
 }
 
 export interface FAQ {

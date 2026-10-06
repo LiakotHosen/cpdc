@@ -344,6 +344,60 @@ export async function getReviews(): Promise<Review[]> {
   return getLocal<Review[]>(STORAGE_KEYS.REVIEWS, INITIAL_REVIEWS);
 }
 
+export async function saveReview(review: Partial<Review>): Promise<Review> {
+  const reviews = await getReviews();
+  let saved: Review;
+  let updatedList: Review[];
+
+  if (review.id) {
+    saved = { ...reviews.find(r => r.id === review.id), ...review } as Review;
+    updatedList = reviews.map(r => (r.id === review.id ? saved : r));
+  } else {
+    saved = {
+      ...review,
+      id: 'rev-' + Date.now(),
+      sort_order: reviews.length + 1,
+      rating: review.rating || 5,
+      date: review.date || 'Recent Patient',
+      is_verified: review.is_verified ?? true,
+      is_featured: review.is_featured ?? true,
+      patient_name_en: review.patient_name_en || 'Satisfied Patient',
+      patient_name_bn: review.patient_name_bn || 'সন্তুষ্ট রোগী',
+      comment_en: review.comment_en || '',
+      comment_bn: review.comment_bn || '',
+      treatment_en: review.treatment_en || '',
+      treatment_bn: review.treatment_bn || '',
+      google_review_url: review.google_review_url || 'https://maps.app.goo.gl/tTvNAHkod8TfRVPz9?g_st=ac'
+    } as Review;
+    updatedList = [...reviews, saved];
+  }
+
+  const supabase = createClient();
+  if (supabase) {
+    try {
+      await supabase.from('reviews').upsert(saved);
+    } catch {
+      // fallback
+    }
+  }
+  setLocal(STORAGE_KEYS.REVIEWS, updatedList);
+  return saved;
+}
+
+export async function deleteReview(id: string): Promise<void> {
+  const reviews = await getReviews();
+  const updated = reviews.filter(r => r.id !== id);
+  const supabase = createClient();
+  if (supabase) {
+    try {
+      await supabase.from('reviews').delete().eq('id', id);
+    } catch {
+      // fallback
+    }
+  }
+  setLocal(STORAGE_KEYS.REVIEWS, updated);
+}
+
 // 8. FAQs
 export async function getFAQs(): Promise<FAQ[]> {
   const supabase = createClient();

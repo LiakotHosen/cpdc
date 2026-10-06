@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { Feature } from '@/lib/types';
@@ -72,7 +72,6 @@ export function FeaturesSection({ features }: FeaturesSectionProps) {
   const [activeStageIndex, setActiveStageIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [animating, setAnimating] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
 
   // Group 17 features into 4 thematic stages (4 + 4 + 4 + 5)
   const stages: FeatureStage[] = [
@@ -161,98 +160,29 @@ export function FeaturesSection({ features }: FeaturesSectionProps) {
     return () => clearInterval(interval);
   }, [isPaused, stages.length]);
 
-  // Scroll wheel interaction: smoothly transition through stages when scrolling over this section
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    let isThrottled = false;
-
-    const handleWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) < 30) return;
-
-      // When scrolling down and not yet at the last stage, advance stage
-      if (e.deltaY > 30 && activeStageIndex < stages.length - 1) {
-        e.preventDefault();
-        if (!isThrottled) {
-          isThrottled = true;
-          handleStageChange(activeStageIndex + 1);
-          setTimeout(() => {
-            isThrottled = false;
-          }, 650);
-        }
-      } else if (e.deltaY < -30 && activeStageIndex > 0) {
-        // When scrolling up and not yet at the first stage, go to previous stage
-        e.preventDefault();
-        if (!isThrottled) {
-          isThrottled = true;
-          handleStageChange(activeStageIndex - 1);
-          setTimeout(() => {
-            isThrottled = false;
-          }, 650);
-        }
-      }
-    };
-
-    section.addEventListener('wheel', handleWheel, { passive: false });
-    return () => {
-      section.removeEventListener('wheel', handleWheel);
-    };
-  }, [activeStageIndex, stages.length]);
-
-  // Subtle zoom factor based on active stage
-  // Stage 0: 1.00 -> Stage 1: 1.05 -> Stage 2: 1.10 -> Stage 3: 1.15
-  const zoomScale = 1 + activeStageIndex * 0.05;
-
   return (
     <section
-      ref={sectionRef}
-      className="relative w-full py-16 lg:py-24 overflow-hidden bg-navy-dark text-white select-none border-b border-slate-800"
+      className="relative w-full py-16 lg:py-24 overflow-hidden bg-[#F8FAFC] text-[#0F1A48] border-b border-slate-200"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* 1. Cinematic Background Operatory Image with Dynamic Zoom-In */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/clinic_operatory_bg.jpg"
-          alt="Care Point Dental Clinic High-Tech Operatory"
-          className="w-full h-full object-cover transition-transform duration-1000 ease-out will-change-transform"
-          style={{ transform: `scale(${zoomScale})` }}
-        />
-
-        {/* Multi-layered Vignette & Dark Blue Tint for Maximum Readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/95 via-navy-dark/85 to-navy-dark/95" />
-        <div className="absolute inset-0 bg-radial from-transparent via-navy-dark/60 to-navy-dark/95" />
-
-        {/* Dynamic Ambient Glow Spheres */}
-        <div
-          className="absolute -top-32 -left-32 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl transition-opacity duration-700"
-          style={{ opacity: activeStageIndex % 2 === 0 ? 0.35 : 0.15 }}
-        />
-        <div
-          className="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-600/25 rounded-full blur-3xl transition-opacity duration-700"
-          style={{ opacity: activeStageIndex % 2 === 1 ? 0.4 : 0.2 }}
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         {/* Top Header & Context */}
         <ScrollReveal animation="fade-up" duration={600}>
           <div className="text-center max-w-3xl mx-auto mb-8 space-y-3">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-teal-300 text-xs font-bold uppercase tracking-wider shadow-lg">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EEF2FF] border border-[#0F1A48]/15 text-[#0F1A48] text-xs font-bold uppercase tracking-wider shadow-2xs">
+              <ShieldCheck className="w-4 h-4 text-[#0F1A48]" />
               <span>{t('Our Clinical Commitments', 'আপনার সুরক্ষায় ১৭টি বিশেষ অঙ্গীকার')}</span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white drop-shadow-md">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0F1A48]">
               {t(
                 'Why Patients Trust Care Point Dental Clinic',
                 'কেন আশুলিয়া ও সাভারের মানুষ আমাদের ওপর আস্থা রাখেন?'
               )}
             </h2>
 
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal">
+            <p className="text-xs sm:text-sm text-[#0F1A48]/80 leading-relaxed max-w-2xl mx-auto font-normal">
               {t(
                 'Modern dental care is not just about aesthetics—it is about absolute biological safety. We ensure zero cross-contamination through multi-stage autoclave sterilization, instant RVG digital imaging, and gentle surgeon-led treatment.',
                 'উন্নত ডেন্টাল চিকিৎসা শুধু সুন্দর হাসির জন্যই নয়, আপনার সুস্বাস্থ্যের পরম নিরাপত্তা। আমরা প্রতিটি রোগীর জন্য আলাদা জীবাণুমুক্ত সিল করা সরঞ্জাম, কম রেডিয়েশনের ডিজিটাল এক্স-রে ও দক্ষ ডেন্টাল সার্জনের নিখুঁত তত্ত্বাবধান নিশ্চিত করি।'
@@ -261,82 +191,89 @@ export function FeaturesSection({ features }: FeaturesSectionProps) {
           </div>
         </ScrollReveal>
 
-        {/* Stage Selector Tabs with Progress Indicators */}
+        {/* Stage Selector Tabs with 3D Segmented Floating Dock */}
         <ScrollReveal animation="fade-up" delay={150}>
-          <div className="flex items-center justify-center gap-2 mb-10 overflow-x-auto pb-2 scrollbar-none">
-            {stages.map((stg, idx) => {
-              const isActive = idx === activeStageIndex;
-              return (
-                <button
-                  key={stg.id}
-                  onClick={() => handleStageChange(idx)}
-                  className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer shrink-0 border ${
-                    isActive
-                      ? 'bg-gradient-to-r from-teal-500 to-blue-600 text-white border-teal-300/40 shadow-lg shadow-teal-500/25 scale-102'
-                      : 'bg-white/5 hover:bg-white/10 text-slate-300 border-white/10 hover:border-white/20'
-                  }`}
-                >
-                  <span
-                    className={`w-5 h-5 rounded-full text-[10px] font-black flex items-center justify-center ${
-                      isActive ? 'bg-white text-navy-dark' : 'bg-white/15 text-white'
+          <div className="flex items-center justify-center mb-12">
+            <div className="p-1.5 rounded-2xl bg-white border border-slate-200 shadow-[0_10px_30px_-6px_rgba(15,26,72,0.08),0_2px_8px_rgba(15,26,72,0.04)] inline-flex items-center gap-1.5 max-w-full overflow-x-auto scrollbar-none">
+              {stages.map((stg, idx) => {
+                const isActive = idx === activeStageIndex;
+                return (
+                  <button
+                    key={stg.id}
+                    onClick={() => handleStageChange(idx)}
+                    className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs font-extrabold transition-all duration-300 flex items-center gap-2 cursor-pointer shrink-0 border ${
+                      isActive
+                        ? 'bg-[#0F1A48] text-white border-[#0F1A48] shadow-[0_4px_14px_rgba(15,26,72,0.3)] scale-[1.02]'
+                        : 'bg-transparent hover:bg-[#EEF2FF] text-[#0F1A48] border-transparent hover:border-[#0F1A48]/15'
                     }`}
                   >
-                    {stg.stageNumber}
-                  </span>
-                  <span>{t(stg.tag_en, stg.tag_bn)}</span>
-                </button>
-              );
-            })}
+                    <span
+                      className={`w-5 h-5 rounded-full text-[10px] font-black flex items-center justify-center transition-colors ${
+                        isActive ? 'bg-[#EEF2FF] text-[#0F1A48]' : 'bg-[#EEF2FF] text-[#0F1A48]'
+                      }`}
+                    >
+                      {stg.stageNumber}
+                    </span>
+                    <span>{t(stg.tag_en, stg.tag_bn)}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </ScrollReveal>
 
-        {/* 2. Interactive Showcase: Center Hub with 4 Points Entering from Four Sides */}
-        <div className="relative min-h-[460px] sm:min-h-[520px] flex flex-col justify-center">
-          {/* Central Interactive Hub */}
-          <div className="hidden lg:flex absolute inset-0 items-center justify-center pointer-events-none">
-            <div className="relative w-56 h-56 rounded-full bg-navy-primary/60 backdrop-blur-xl border border-white/20 shadow-2xl flex flex-col items-center justify-center p-6 text-center space-y-2 group">
-              {/* Outer Pulsing Aura Ring */}
-              <div className="absolute -inset-3 rounded-full border border-teal-400/30 animate-pulse pointer-events-none" />
+        {/* 2. Interactive Showcase: Center 3D Hub with 4 Floating Quadrant Cards */}
+        <div className="relative min-h-[480px] sm:min-h-[540px] flex flex-col justify-center [perspective:1400px]">
+          {/* Central Interactive 3D Hub */}
+          <div className="hidden lg:flex absolute inset-0 items-center justify-center pointer-events-none z-10">
+            <div className="relative flex items-center justify-center">
+              {/* Concentric Ambient 3D Ripple Rings */}
+              <div className="absolute w-80 h-80 rounded-full border border-[#0F1A48]/10 animate-pulse-glow pointer-events-none" />
+              <div className="absolute w-72 h-72 rounded-full border border-[#0F1A48]/15 pointer-events-none" />
 
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-teal-400 to-blue-500 flex items-center justify-center text-white shadow-xl shadow-teal-500/30">
-                <ShieldCheck className="w-8 h-8" />
-              </div>
+              {/* Soft Floor Shadow beneath the hub */}
+              <div className="absolute -bottom-8 w-52 h-8 rounded-[100%] bg-[#0F1A48]/14 blur-xl transition-all duration-500 pointer-events-none" />
 
-              <div className="space-y-0.5">
-                <span className="text-[10px] font-black uppercase tracking-widest text-teal-300">
-                  {t(`Stage ${currentStage.stageNumber} of 04`, `ধাপ ${currentStage.stageNumber} / ০৪`)}
-                </span>
-                <h4 className="text-xs font-bold text-white leading-tight">
-                  {t(currentStage.title_en, currentStage.title_bn)}
-                </h4>
-              </div>
+              {/* 3D Floating Command Disc */}
+              <div className="relative w-64 h-64 rounded-full bg-white border-2 border-slate-200/90 shadow-[0_24px_50px_-12px_rgba(15,26,72,0.18),0_8px_24px_rgba(15,26,72,0.06),inset_0_2px_6px_rgba(255,255,255,1)] flex flex-col items-center justify-center p-7 text-center space-y-2.5 animate-float-slow pointer-events-auto">
+                {/* 3D Embossed Shield Icon */}
+                <div className="w-14 h-14 rounded-2xl bg-[#EEF2FF] border border-[#0F1A48]/15 flex items-center justify-center text-[#0F1A48] shadow-[0_4px_12px_rgba(15,26,72,0.1),inset_0_1px_2px_rgba(255,255,255,1)] group-hover:scale-105 transition-transform">
+                  <ShieldCheck className="w-8 h-8 text-[#0F1A48]" />
+                </div>
 
-              {/* Progress Dots */}
-              <div className="flex items-center gap-1.5 pt-1">
-                {stages.map((_, dotIdx) => (
-                  <span
-                    key={dotIdx}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      dotIdx === activeStageIndex
-                        ? 'w-6 bg-teal-400'
-                        : 'w-1.5 bg-white/30'
-                    }`}
-                  />
-                ))}
+                <div className="space-y-1">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-[#0F1A48]/70 block">
+                    {t(`STAGE ${currentStage.stageNumber} OF 04`, `ধাপ ${currentStage.stageNumber} / ০৪`)}
+                  </span>
+                  <h4 className="text-xs font-extrabold text-[#0F1A48] leading-tight px-1">
+                    {t(currentStage.title_en, currentStage.title_bn)}
+                  </h4>
+                </div>
+
+                {/* Progress Dots with Direct Click Navigation */}
+                <div className="flex items-center gap-1.5 pt-1">
+                  {stages.map((_, dotIdx) => (
+                    <button
+                      key={dotIdx}
+                      onClick={() => handleStageChange(dotIdx)}
+                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                        dotIdx === activeStageIndex
+                          ? 'w-7 bg-[#0F1A48] shadow-2xs'
+                          : 'w-2 bg-slate-300 hover:bg-slate-400'
+                      }`}
+                      aria-label={`Switch to stage ${dotIdx + 1}`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* 4 Corners / Quadrants Floating Features */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-x-72 lg:gap-y-8 relative z-20">
+          {/* 4 Corners / Quadrants 3D Floating Features */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-x-72 xl:gap-x-80 2xl:gap-x-96 lg:gap-y-10 relative z-20">
             {currentStage.features.slice(0, 4).map((feat, i) => {
               const Icon = ICON_MAP[feat.icon_name] || ShieldCheck;
 
-              // Animation trajectory based on quadrant:
-              // i === 0: Top-Left  (Enters from -x, -y)
-              // i === 1: Top-Right (Enters from +x, -y)
-              // i === 2: Bottom-Left (Enters from -x, +y)
-              // i === 3: Bottom-Right (Enters from +x, +y)
               const getQuadrantTransform = () => {
                 if (animating) {
                   if (i === 0) return '-translate-x-8 -translate-y-6 opacity-0 scale-95';
@@ -347,38 +284,74 @@ export function FeaturesSection({ features }: FeaturesSectionProps) {
                 return 'translate-x-0 translate-y-0 opacity-100 scale-100';
               };
 
-              return (
-                <div
-                  key={feat.id}
-                  className={`relative p-5 sm:p-6 rounded-3xl bg-slate-900/60 hover:bg-slate-900/80 backdrop-blur-xl border border-white/15 hover:border-teal-400/50 transition-all duration-700 ease-out shadow-xl hover:shadow-2xl hover:shadow-teal-500/10 group cursor-default ${getQuadrantTransform()}`}
-                  style={{
-                    transitionDelay: `${i * 100}ms`
-                  }}
-                >
-                  <div className="flex items-start gap-4">
-                    {/* Glowing Tech Icon Pill */}
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-500/20 to-blue-600/30 border border-teal-400/30 text-teal-300 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-teal-500 group-hover:text-white transition-all duration-300 shadow-md">
-                      <Icon className="w-6 h-6" />
-                    </div>
+              const getFloatClass = (idx: number) => {
+                switch (idx) {
+                  case 0:
+                    return 'animate-float [animation-duration:5s]';
+                  case 1:
+                    return 'animate-float-slow [animation-duration:6.5s] [animation-delay:1.2s]';
+                  case 2:
+                    return 'animate-float-reverse [animation-duration:5.8s] [animation-delay:0.6s]';
+                  case 3:
+                  default:
+                    return 'animate-float [animation-duration:6.2s] [animation-delay:1.8s]';
+                }
+              };
 
-                    <div className="space-y-1.5 flex-1">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-black text-teal-400 uppercase tracking-wider bg-teal-950/60 px-2 py-0.5 rounded-md border border-teal-800/50">
-                          #{feat.sort_order} Commitment
-                        </span>
-                        <Check className="w-4 h-4 text-emerald-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+              const get3DTiltClass = (idx: number) => {
+                switch (idx) {
+                  case 0:
+                    return 'hover:[transform:translateY(-12px)_scale(1.025)_rotateX(2deg)_rotateY(-2deg)]';
+                  case 1:
+                    return 'hover:[transform:translateY(-12px)_scale(1.025)_rotateX(2deg)_rotateY(2deg)]';
+                  case 2:
+                    return 'hover:[transform:translateY(-12px)_scale(1.025)_rotateX(-2deg)_rotateY(-2deg)]';
+                  case 3:
+                  default:
+                    return 'hover:[transform:translateY(-12px)_scale(1.025)_rotateX(-2deg)_rotateY(2deg)]';
+                }
+              };
+
+              return (
+                <div key={feat.id} className="relative group cursor-pointer">
+                  {/* Underneath 3D Cast Shadow (Creates authentic mid-air floating illusion) */}
+                  <div className="absolute -bottom-3 left-6 right-6 h-5 rounded-[100%] bg-[#0F1A48]/8 blur-md transition-all duration-300 pointer-events-none group-hover:bg-[#0F1A48]/18 group-hover:blur-xl group-hover:scale-90 group-hover:translate-y-3" />
+
+                  {/* 3D Floating Card Body */}
+                  <div
+                    className={`relative p-6 sm:p-7 rounded-3xl bg-white hover:bg-[#EEF2FF] border border-slate-200/90 border-t-white hover:border-[#0F1A48]/30 shadow-[0_16px_35px_-8px_rgba(15,26,72,0.08),0_6px_16px_rgba(15,26,72,0.04)] hover:shadow-[0_28px_60px_-10px_rgba(15,26,72,0.18),0_12px_24px_rgba(15,26,72,0.08)] transition-all duration-300 ease-out transform-gpu hover:[animation-play-state:paused] ${getFloatClass(i)} ${get3DTiltClass(i)} ${getQuadrantTransform()}`}
+                    style={{
+                      transitionDelay: `${i * 80}ms`
+                    }}
+                  >
+                    <div className="flex items-start gap-4 sm:gap-5">
+                      {/* Tactile 3D Icon Box */}
+                      <div className="relative w-14 h-14 rounded-2xl bg-white border border-[#0F1A48]/15 shadow-[0_6px_16px_rgba(15,26,72,0.08),inset_0_2px_4px_rgba(255,255,255,1)] text-[#0F1A48] flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[#0F1A48] group-hover:text-white group-hover:border-[#0F1A48] group-hover:shadow-[0_8px_20px_rgba(15,26,72,0.3)] transition-all duration-300">
+                        <Icon className="w-7 h-7 transition-transform group-hover:scale-105" />
                       </div>
 
-                      <h3 className="text-sm sm:text-base font-bold text-white group-hover:text-teal-200 transition-colors leading-snug">
-                        {t(feat.title_en, feat.title_bn)}
-                      </h3>
+                      <div className="space-y-2 flex-1">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-black text-[#0F1A48] uppercase tracking-wider bg-[#EEF2FF] px-2.5 py-1 rounded-md border border-[#0F1A48]/15 shadow-2xs group-hover:bg-white transition-colors">
+                            #{feat.sort_order} Commitment
+                          </span>
+                          <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-extrabold border border-emerald-200 shadow-2xs">
+                            <Check className="w-3.5 h-3.5 text-emerald-600" />
+                            <span>Verified</span>
+                          </div>
+                        </div>
 
-                      <p className="text-xs text-slate-300 leading-relaxed font-normal">
-                        {t(
-                          feat.description_en || feat.desc_en || '',
-                          feat.description_bn || feat.desc_bn || ''
-                        )}
-                      </p>
+                        <h3 className="text-base sm:text-lg font-extrabold text-[#0F1A48] leading-snug">
+                          {t(feat.title_en, feat.title_bn)}
+                        </h3>
+
+                        <p className="text-xs sm:text-sm text-[#0F1A48]/80 leading-relaxed font-normal">
+                          {t(
+                            feat.description_en || feat.desc_en || '',
+                            feat.description_bn || feat.desc_bn || ''
+                          )}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -389,32 +362,32 @@ export function FeaturesSection({ features }: FeaturesSectionProps) {
           {/* 5th feature if present in stage 4 */}
           {currentStage.features.length > 4 && (
             <div
-              className={`mt-4 mx-auto max-w-md w-full p-4 rounded-2xl bg-slate-900/60 backdrop-blur-md border border-white/10 text-center transition-all duration-700 ${
+              className={`mt-6 mx-auto max-w-lg w-full p-4.5 rounded-2xl bg-white border border-slate-200/90 shadow-[0_12px_28px_-6px_rgba(15,26,72,0.08)] hover:shadow-md text-center transition-all duration-500 hover:-translate-y-1 ${
                 animating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
               }`}
             >
-              <span className="text-xs text-teal-300 font-bold">
+              <span className="text-xs text-[#0F1A48] font-extrabold">
                 ✓ {t(currentStage.features[4].title_en, currentStage.features[4].title_bn)}:
               </span>{' '}
-              <span className="text-xs text-slate-300">
+              <span className="text-xs text-[#0F1A48]/80 font-medium">
                 {t(currentStage.features[4].description_en, currentStage.features[4].description_bn)}
               </span>
             </div>
           )}
         </div>
 
-        {/* 3. Bottom Controls: Prev, Next, Auto-Play status & Step Indicators */}
-        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* 3. Bottom Controls */}
+        <div className="mt-10 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsPaused(!isPaused)}
-              className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors text-xs font-semibold flex items-center gap-1.5 cursor-pointer border border-white/10"
+              className="p-2 rounded-xl bg-white hover:bg-[#EEF2FF] text-[#0F1A48] transition-colors text-xs font-semibold flex items-center gap-1.5 cursor-pointer border border-slate-200"
               title={isPaused ? 'Play auto-rotation' : 'Pause auto-rotation'}
             >
-              {isPaused ? <Play className="w-3.5 h-3.5 text-teal-400 fill-current" /> : <Pause className="w-3.5 h-3.5" />}
+              {isPaused ? <Play className="w-3.5 h-3.5 text-[#0F1A48] fill-current" /> : <Pause className="w-3.5 h-3.5 text-[#0F1A48]" />}
               <span className="text-[11px]">{isPaused ? t('Resume Auto-Showcase', 'অটো-প্লে চালান') : t('Auto-Showcase Running', 'অটো-শোকেস চলছে')}</span>
             </button>
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-[#0F1A48]/70">
               {t(`Step ${activeStageIndex + 1} of ${stages.length}`, `ধাপ ${activeStageIndex + 1} / ${stages.length}`)}
             </span>
           </div>
@@ -423,7 +396,7 @@ export function FeaturesSection({ features }: FeaturesSectionProps) {
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrev}
-              className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer border border-white/15 hover:scale-105"
+              className="p-2.5 rounded-xl bg-white hover:bg-[#EEF2FF] text-[#0F1A48] transition-all cursor-pointer border border-slate-200 hover:scale-105"
               aria-label="Previous clinical commitments stage"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -435,7 +408,7 @@ export function FeaturesSection({ features }: FeaturesSectionProps) {
                   key={i}
                   onClick={() => handleStageChange(i)}
                   className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    i === activeStageIndex ? 'w-8 bg-teal-400' : 'w-2 bg-white/30 hover:bg-white/50'
+                    i === activeStageIndex ? 'w-8 bg-[#0F1A48]' : 'w-2 bg-slate-300 hover:bg-slate-400'
                   }`}
                   aria-label={`Go to stage ${i + 1}`}
                 />
@@ -444,7 +417,7 @@ export function FeaturesSection({ features }: FeaturesSectionProps) {
 
             <button
               onClick={handleNext}
-              className="p-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white transition-all cursor-pointer shadow-md shadow-teal-500/20 hover:scale-105"
+              className="p-2.5 rounded-xl bg-[#0F1A48] hover:bg-[#EEF2FF] hover:text-[#0F1A48] text-white border border-[#0F1A48] transition-all cursor-pointer shadow-md hover:scale-105"
               aria-label="Next clinical commitments stage"
             >
               <ArrowRight className="w-4 h-4" />

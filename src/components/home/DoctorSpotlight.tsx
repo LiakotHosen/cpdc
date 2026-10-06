@@ -18,7 +18,8 @@ import {
   Activity,
   HeartPulse,
   BadgeCheck,
-  ArrowRight
+  ArrowRight,
+  MapPin,
 } from 'lucide-react';
 
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
@@ -32,28 +33,23 @@ export function DoctorSpotlight({ doctor }: DoctorSpotlightProps) {
   const { openBooking } = useAppointmentModal();
 
   return (
-    <section className="w-full py-20 lg:py-28 bg-gradient-to-br from-[#163F72] via-[#1E5292] to-[#2463AB] text-white relative overflow-hidden border-y border-blue-300/20 shadow-2xl">
-      {/* Full-Bleed Ambient Background Glows */}
-      <div className="absolute -top-32 right-0 w-[600px] h-[600px] bg-sky-400/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-32 left-0 w-[600px] h-[600px] bg-teal-400/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-blue-300/10 rounded-full blur-3xl pointer-events-none" />
-
-      {/* Main Container with Expansive Breathing Room */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+    <section className="w-full py-16 lg:py-24 bg-[#F8FAFC] text-[#0F1A48] relative overflow-hidden border-b border-slate-200">
+      {/* Main Container */}
+      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
         
         {/* Section Header */}
         <ScrollReveal animation="fade-up" duration={600}>
           <div className="text-center max-w-3xl mx-auto mb-14 lg:mb-18 space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 text-white text-xs font-black uppercase tracking-wider backdrop-blur-md border border-white/20 shadow-xs">
-              <Stethoscope className="w-4 h-4 text-teal-300" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EEF2FF] text-[#0F1A48] text-xs font-black uppercase tracking-wider border border-[#0F1A48]/15 shadow-2xs">
+              <Stethoscope className="w-4 h-4 text-[#0F1A48]" />
               <span>{t('Lead Oral & Dental Surgeon', 'প্রধান ডেন্টাল সার্জন পরিচিতি')}</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.2]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0F1A48] tracking-tight leading-[1.2]">
               {t('Meet Dr. Aktar Zahan Ony', 'আপনার ডেন্টাল কেয়ার ও পরামর্শে ডা. আক্তার জাহান অনি')}
             </h2>
 
-            <p className="text-base sm:text-lg text-blue-100 leading-relaxed font-normal max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-[#0F1A48]/80 leading-relaxed font-normal max-w-2xl mx-auto">
               {t(
                 'A compassionate dental surgeon dedicated to pain-free modern dentistry, sterile protocols, and patient-first care in Ashulia and Savar.',
                 'সাভার ও আশুলিয়ার মানুষের মুখে সুস্থ ও সুন্দর হাসি ফিরিয়ে দিতে আন্তর্জাতিক মানের আধুনিক প্রযুক্তি, নিখুঁত সার্জারি ও পরম আন্তরিকতায় নিবেদিতপ্রাণ ডেন্টাল সার্জন।'
@@ -62,16 +58,16 @@ export function DoctorSpotlight({ doctor }: DoctorSpotlightProps) {
           </div>
         </ScrollReveal>
 
-        {/* Full-Bleed 2-Column Showcase with Generous Grid Gap */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        {/* 2-Column Showcase */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
-          {/* Left Column: Expanded Surgeon Visual Showcase Card */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center">
-            <ScrollReveal animation="fade-right" duration={700} className="w-full max-w-md">
-              <div className="relative w-full rounded-3xl p-6 sm:p-7 bg-white/15 border border-white/25 shadow-2xl backdrop-blur-xl text-center space-y-5 hover:shadow-cyan-500/20 transition-all duration-300">
+          {/* Left Column: Surgeon Visual Showcase Card */}
+          <div className="lg:col-span-5 xl:col-span-4 flex flex-col items-center justify-center">
+            <ScrollReveal animation="fade-right" duration={700} className="w-full max-w-lg">
+              <div className="relative w-full rounded-3xl p-6 sm:p-7 bg-white border border-slate-200 shadow-md text-center space-y-5 transition-all duration-300">
                 
-                {/* Doctor Headshot Photo - Large & Prominent Portrait */}
-                <div className="relative w-full aspect-[4/4.2] sm:aspect-[4/4.5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 border-white/30 bg-navy-dark group/photo">
+                {/* Doctor Headshot Photo */}
+                <div className="relative w-full aspect-[4/4.2] sm:aspect-[4/4.5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border-2 border-slate-200 bg-[#EEF2FF] group/photo">
                   <Image
                     src={doctor.photo_url || '/images/doctor-ony.jpg'}
                     alt={doctor.name_en || 'Dr. Aktar Zahan Ony'}
@@ -81,13 +77,10 @@ export function DoctorSpotlight({ doctor }: DoctorSpotlightProps) {
                     priority
                   />
 
-                  {/* Subtle Image Bottom Shadow Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-
                   {/* Verified Surgeon Badges Overlay directly on Photo */}
                   <div className="absolute top-3.5 right-3.5 pointer-events-none">
                     <div
-                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500 text-white text-xs font-black shadow-lg border border-white/40 backdrop-blur-xs"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-600 text-white text-xs font-black shadow-md border border-white/40"
                       title="BMDC Registered Surgeon"
                     >
                       <BadgeCheck className="w-4 h-4" />
@@ -96,32 +89,35 @@ export function DoctorSpotlight({ doctor }: DoctorSpotlightProps) {
                   </div>
 
                   <div className="absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
-                    <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-xs font-bold shadow-md">
+                    <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#0F1A48]/90 text-white text-xs font-bold shadow-md">
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
                       <span>রেজিস্ট্রেশন: {doctor.bmdc_reg}</span>
                     </div>
-                    <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-teal-500/80 backdrop-blur-md text-white text-[11px] font-bold shadow-sm">
-                      <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
+                    <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#0F1A48]/90 text-white text-[11px] font-bold shadow-sm">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                       <span>চেম্বার সক্রিয়</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Consulting Timing & Consultation Fee Cards */}
+                {/* Consulting Timing & Chamber Location */}
                 <div className="grid grid-cols-2 gap-3 text-left">
-                  <div className="p-3.5 rounded-2xl bg-white/12 border border-white/18 backdrop-blur-xs hover:bg-white/18 transition-colors">
-                    <span className="text-[11px] text-blue-200 block font-medium">চেম্বার সময়সূচি</span>
-                    <span className="text-xs sm:text-sm font-bold text-white mt-1 flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5 text-amber-300 shrink-0" />
+                  <div className="p-3.5 rounded-2xl bg-[#EEF2FF] border border-[#0F1A48]/10 hover:bg-[#EEF2FF]/80 transition-colors">
+                    <span className="text-[11px] text-[#0F1A48]/75 block font-medium">চেম্বার সময়সূচি</span>
+                    <span className="text-xs sm:text-sm font-bold text-[#0F1A48] mt-1 flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                       ৪:০০ – ৯:০০ টা
                     </span>
-                    <span className="text-[10px] text-teal-200 block mt-0.5">প্রতিদিন চেম্বার খোলা</span>
+                    <span className="text-[10px] text-[#0F1A48]/70 block mt-0.5">প্রতিদিন চেম্বার খোলা</span>
                   </div>
 
-                  <div className="p-3.5 rounded-2xl bg-white/12 border border-white/18 backdrop-blur-xs hover:bg-white/18 transition-colors">
-                    <span className="text-[11px] text-blue-200 block font-medium">পরামর্শ ফি</span>
-                    <span className="text-sm sm:text-base font-black text-emerald-300 mt-1 block">৳২০০ (নির্দিষ্ট)</span>
-                    <span className="text-[10px] text-blue-200 block mt-0.5">কোনো লুকানো চার্জ নেই</span>
+                  <div className="p-3.5 rounded-2xl bg-[#EEF2FF] border border-[#0F1A48]/10 hover:bg-[#EEF2FF]/80 transition-colors">
+                    <span className="text-[11px] text-[#0F1A48]/75 block font-medium">চেম্বার অবস্থান</span>
+                    <span className="text-xs sm:text-sm font-bold text-[#0F1A48] mt-1 flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                      পল্লীবিদ্যুৎ, সাভার
+                    </span>
+                    <span className="text-[10px] text-[#0F1A48]/70 block mt-0.5">মফিজ উদ্দিন টাওয়ার</span>
                   </div>
                 </div>
 
@@ -129,46 +125,37 @@ export function DoctorSpotlight({ doctor }: DoctorSpotlightProps) {
                 <button
                   type="button"
                   onClick={() => openBooking(undefined, t(doctor.name_en, doctor.name_bn))}
-                  className="w-full py-3.5 px-5 bg-gradient-to-r from-teal-300 via-emerald-400 to-teal-400 hover:from-teal-200 hover:to-emerald-300 text-slate-900 rounded-2xl font-black text-sm sm:text-base shadow-xl hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3.5 px-5 bg-[#0F1A48] hover:bg-[#EEF2FF] hover:text-[#0F1A48] text-white border border-[#0F1A48] rounded-2xl font-black text-sm sm:text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
                 >
-                  <Calendar className="w-4 h-4 text-slate-900" />
+                  <Calendar className="w-4 h-4 text-amber-300 group-hover:text-[#0F1A48]" />
                   <span>{t('Book Serial with Dr. Ony', 'ডা. অনির সিরিয়াল বুক করুন')}</span>
                 </button>
               </div>
             </ScrollReveal>
           </div>
 
-          {/* Right Column: Bio, Credentials & Prescription Pad Safeguards */}
-          <div className="lg:col-span-7 space-y-7">
+          {/* Right Column: Credentials & Prescription Pad Safeguards */}
+          <div className="lg:col-span-7 xl:col-span-8 space-y-6">
             <ScrollReveal animation="fade-left" duration={700}>
-              {/* Header / Badges & Philosophy */}
-              <div className="space-y-3.5">
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 text-white text-xs font-bold border border-white/20 backdrop-blur-xs">
-                    <Award className="w-4 h-4 text-amber-300" />
-                    <span>{t('Professional Philosophy & Care', 'চিকিৎসা দর্শন ও আন্তরিক সেবা')}</span>
-                  </div>
-
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-400/20 text-teal-200 text-xs font-semibold border border-teal-300/30">
-                    <BadgeCheck className="w-3.5 h-3.5 text-teal-300" />
-                    <span>{doctor.degrees || t(doctor.qualifications_en, doctor.qualifications_bn)}</span>
-                  </div>
+              {/* Badges */}
+              <div className="flex flex-wrap items-center gap-2.5">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEF2FF] text-[#0F1A48] text-xs font-bold border border-[#0F1A48]/15">
+                  <Award className="w-4 h-4 text-amber-600" />
+                  <span>{t('Professional Philosophy & Care', 'চিকিৎসা দর্শন ও আন্তরিক সেবা')}</span>
                 </div>
 
-                <p className="text-base sm:text-lg text-blue-50 leading-relaxed font-normal">
-                  {t(
-                    'Dr. Aktar Zahan Ony combines academic excellence with gentle clinical expertise. Every patient receives a comprehensive systemic pre-check, low-radiation digital imaging, and customized pain-free treatment plans tailored to long-term oral health.',
-                    'ডা. আক্তার জাহান অনি রোগীর ভয় ও ব্যথামুক্ত চিকিৎসাকে সর্বোচ্চ প্রাধান্য দিয়ে আশুলিয়ার প্রতিটি মানুষের মুখে দীর্ঘমেয়াদী সুস্থ ও সুন্দর হাসি ফিরিয়ে দিতে নিবেদিত। আধুনিক ডিজিটাল সরঞ্জাম, সঠিক রোগ নির্ণয় ও সর্বোচ্চ পরিচ্ছন্নতার সাথে প্রতিটি চিকিৎসা সম্পন্ন করা হয়।'
-                  )}
-                </p>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#EEF2FF] text-[#0F1A48] text-xs font-semibold border border-[#0F1A48]/15">
+                  <BadgeCheck className="w-3.5 h-3.5 text-[#0F1A48]" />
+                  <span>{doctor.degrees || t(doctor.qualifications_en, doctor.qualifications_bn)}</span>
+                </div>
               </div>
             </ScrollReveal>
 
             {/* 4 Clinical Safeguards Extracted From Official Prescription Pad */}
             <div className="space-y-3.5 pt-1">
               <ScrollReveal animation="fade-up" delay={150}>
-                <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-teal-200 flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-amber-300" />
+                <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#0F1A48] flex items-center gap-2">
+                  <Activity className="w-4 h-4 text-amber-600" />
                   <span>{t('Clinical Investigation & Safety Protocols', 'প্রেসক্রিপশন প্যাড ক্লিনিকাল নিরাপত্তা প্রোটোকল')}</span>
                 </h4>
               </ScrollReveal>
@@ -182,7 +169,7 @@ export function DoctorSpotlight({ doctor }: DoctorSpotlightProps) {
                   },
                   {
                     title: 'ইনস্ট্যান্ট ডিজিটাল RVG এক্স-রে',
-                    desc: 'মাত্র ২০০ টাকায় কম্পিউটার স্ক্রিনে দাঁতের ভেতরের সুনির্দিষ্ট ইনফেকশন ও অবস্থা নির্ণয়।',
+                    desc: 'কম্পিউটার স্ক্রিনে দাঁতের ভেতরের সুনির্দিষ্ট ইনফেকশন ও অবস্থা নির্ণয়।',
                     delay: 280,
                   },
                   {
@@ -197,13 +184,13 @@ export function DoctorSpotlight({ doctor }: DoctorSpotlightProps) {
                   },
                 ].map((item, idx) => (
                   <ScrollReveal key={idx} animation="fade-up" delay={item.delay}>
-                    <div className="p-4 sm:p-4.5 bg-white/12 hover:bg-white/20 transition-all rounded-2xl border border-white/18 flex items-start gap-3 shadow-xs hover:-translate-y-1">
-                      <div className="w-8 h-8 rounded-xl bg-teal-400/20 text-teal-300 flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="p-4 sm:p-4.5 bg-white hover:bg-[#EEF2FF] transition-all rounded-2xl border border-slate-200 flex items-start gap-3 shadow-xs hover:-translate-y-1">
+                      <div className="w-8 h-8 rounded-xl bg-[#EEF2FF] text-[#0F1A48] flex items-center justify-center shrink-0 mt-0.5">
                         <CheckCircle2 className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="font-bold text-white block text-sm sm:text-base">{item.title}</span>
-                        <p className="text-xs text-blue-100 mt-1 leading-relaxed">
+                        <span className="font-bold text-[#0F1A48] block text-sm sm:text-base">{item.title}</span>
+                        <p className="text-xs text-[#0F1A48]/75 mt-1 leading-relaxed">
                           {item.desc}
                         </p>
                       </div>
@@ -218,18 +205,18 @@ export function DoctorSpotlight({ doctor }: DoctorSpotlightProps) {
               <div className="pt-2 flex flex-wrap items-center gap-3.5">
                 <button
                   onClick={() => openBooking(undefined, t(doctor.name_en, doctor.name_bn))}
-                  className="px-7 py-4 bg-white text-navy-primary hover:bg-blue-50 rounded-2xl font-black text-sm sm:text-base shadow-xl hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2.5 cursor-pointer group"
+                  className="px-7 py-4 bg-[#0F1A48] text-white hover:bg-[#EEF2FF] hover:text-[#0F1A48] border border-[#0F1A48] rounded-2xl font-black text-sm sm:text-base shadow-md hover:shadow-lg transition-all flex items-center gap-2.5 cursor-pointer group"
                 >
-                  <Calendar className="w-5 h-5 text-navy-primary group-hover:scale-110 transition-transform" />
-                  <span>{t('Book Consultation Serial (৳200)', 'সিরিয়াল নিন (পরামর্শ ফি ৳২০০)')}</span>
-                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:translate-x-1 transition-transform" />
+                  <Calendar className="w-5 h-5 text-amber-300 group-hover:text-[#0F1A48] transition-transform" />
+                  <span>{t('Book Serial', 'সিরিয়াল নিন')}</span>
+                  <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-[#0F1A48] group-hover:translate-x-1 transition-transform" />
                 </button>
 
                 <a
                   href="https://wa.me/8801324558811?text=Hello%20Care%20Point%20Dental,%20I%20want%20to%20consult%20Dr.%20Aktar%20Zahan%20Ony"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl font-bold text-sm sm:text-base transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20"
+                  className="px-6 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl font-bold text-sm sm:text-base transition-all flex items-center gap-2 shadow-md"
                 >
                   <MessageSquare className="w-5 h-5" />
                   <span>WhatsApp: 01324-558811</span>
@@ -237,9 +224,9 @@ export function DoctorSpotlight({ doctor }: DoctorSpotlightProps) {
 
                 <a
                   href="tel:+8801324558811"
-                  className="px-5 py-4 bg-white/15 hover:bg-white/25 text-white rounded-2xl font-bold text-sm sm:text-base border border-white/20 transition-all flex items-center gap-2"
+                  className="px-5 py-4 bg-white hover:bg-[#EEF2FF] text-[#0F1A48] rounded-2xl font-bold text-sm sm:text-base border border-slate-300 transition-all flex items-center gap-2"
                 >
-                  <Phone className="w-4 h-4 text-amber-300" />
+                  <Phone className="w-4 h-4 text-amber-600" />
                   <span>সরাসরি কল</span>
                 </a>
               </div>
