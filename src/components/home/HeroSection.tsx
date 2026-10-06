@@ -262,7 +262,7 @@ export function HeroSection({ settings, doctor }: HeroSectionProps) {
                 <div className="relative w-full aspect-[4/4.3] sm:aspect-[4/4.6] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-inner">
                   {activeVisual === 'doctor' ? (
                     <Image
-                      src={doctor.photo_url || '/images/doctor-ony.jpg'}
+                      src={doctor.photo_url || '/images/doctor-aktar-zahan-ony.webp'}
                       alt={doctor.name_en || 'Dr. Aktar Zahan Ony - Chief Dental Surgeon'}
                       fill
                       className="object-cover object-top transition-transform duration-700 ease-out hover:scale-105"

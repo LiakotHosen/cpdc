@@ -27,7 +27,7 @@ export const BUILTIN_CLINIC_MEDIA: MediaItem[] = [
   {
     id: 'media-doctor-ony',
     title: 'Dr. Aktar Zahan Ony (Dental Surgeon Portrait)',
-    url: '/images/doctor-ony.jpg',
+    url: '/images/doctor-aktar-zahan-ony.webp',
     category: 'doctor',
     source: 'Doctor Profile',
   },

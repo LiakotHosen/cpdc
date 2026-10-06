@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useAppointmentModal } from '@/lib/context/AppointmentModalContext';
 import { Doctor, SiteSettings } from '@/lib/types';
@@ -88,13 +89,19 @@ export function DoctorCard({ doctor, settings, compact = false }: DoctorCardProp
 
           {/* Doctor Core Profile Header */}
           <div className="mt-5 flex items-start gap-4">
-            {/* Stethoscope & Medical Crest Avatar */}
-            <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#EEF2FF] border-2 border-[#0F1A48]/20 flex items-center justify-center shadow-sm shrink-0">
-              <div className="text-center">
-                <Stethoscope className="w-8 h-8 sm:w-10 sm:h-10 text-[#0F1A48] mx-auto" />
-                <span className="text-[9px] font-black uppercase tracking-wider text-[#0F1A48] block">Surgeon</span>
-              </div>
-              <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center text-white shadow-sm" title="Verified BMDC Surgeon">
+            {/* Doctor Portrait Avatar */}
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#EEF2FF] border-2 border-[#0F1A48]/20 overflow-hidden shadow-sm shrink-0">
+              <Image
+                src={doctor.photo_url || '/images/doctor-aktar-zahan-ony.webp'}
+                alt={doctor.name_en || 'Dr. Aktar Zahan Ony'}
+                fill
+                className="object-cover object-top"
+                sizes="80px"
+              />
+              <div
+                className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center text-white shadow-sm z-10"
+                title="Verified BMDC Surgeon"
+              >
                 <CheckCircle2 className="w-3.5 h-3.5" />
               </div>
             </div>

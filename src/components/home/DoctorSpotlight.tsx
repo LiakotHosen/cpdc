@@ -67,17 +67,17 @@ export function DoctorSpotlight({ doctor }: DoctorSpotlightProps) {
               <div className="relative w-full rounded-3xl p-6 sm:p-7 bg-white border border-slate-200 shadow-md text-center space-y-5 transition-all duration-300">
                 
                 {/* Doctor Headshot Photo */}
-                <div className="relative w-full aspect-[4/4.2] sm:aspect-[4/4.5] rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border-2 border-slate-200 bg-[#EEF2FF] group/photo">
+                <div className="relative w-full aspect-[513/590] rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border-2 border-slate-200 bg-[#EEF2FF] group/photo">
                   <Image
-                    src={doctor.photo_url || '/images/doctor-ony.jpg'}
+                    src={doctor.photo_url || '/images/doctor-aktar-zahan-ony.webp'}
                     alt={doctor.name_en || 'Dr. Aktar Zahan Ony'}
                     fill
-                    className="object-cover object-top group-hover/photo:scale-105 transition-transform duration-700 ease-out"
+                    className="object-cover object-center group-hover/photo:scale-102 transition-transform duration-700 ease-out"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 440px, 460px"
                     priority
                   />
 
-                  {/* Verified Surgeon Badges Overlay directly on Photo */}
+                  {/* Top-Right: Verified Surgeon Badge */}
                   <div className="absolute top-3.5 right-3.5 pointer-events-none">
                     <div
                       className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-600 text-white text-xs font-black shadow-md border border-white/40"
@@ -88,12 +88,17 @@ export function DoctorSpotlight({ doctor }: DoctorSpotlightProps) {
                     </div>
                   </div>
 
-                  <div className="absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
-                    <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#0F1A48]/90 text-white text-xs font-bold shadow-md">
+                  {/* Top-Left: BMDC Registration Number */}
+                  <div className="absolute top-3.5 left-3.5 pointer-events-none">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0F1A48]/90 text-white text-xs font-bold shadow-md border border-white/20 backdrop-blur-md">
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>রেজিস্ট্রেশন: {doctor.bmdc_reg}</span>
+                      <span>রেজি: {doctor.bmdc_reg || '12990'}</span>
                     </div>
-                    <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#0F1A48]/90 text-white text-[11px] font-bold shadow-sm">
+                  </div>
+
+                  {/* Bottom-Right: Live Status */}
+                  <div className="absolute bottom-3 right-3 pointer-events-none">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0F1A48]/85 text-white text-[11px] font-bold shadow-sm backdrop-blur-xs">
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                       <span>চেম্বার সক্রিয়</span>
                     </div>

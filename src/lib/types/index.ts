@@ -30,6 +30,20 @@ export interface SiteSettings {
   updated_at?: string;
 }
 
+export interface DoctorTimelineItem {
+  id: string;
+  year: string;
+  degree_en: string;
+  degree_bn: string;
+  institution_en: string;
+  institution_bn: string;
+  description_en: string;
+  description_bn: string;
+  badge_en?: string;
+  badge_bn?: string;
+  type?: 'education' | 'experience' | 'certification';
+}
+
 export interface Doctor {
   id: string;
   name_en: string;
@@ -45,6 +59,8 @@ export interface Doctor {
   consulting_hours_en: string;
   consulting_hours_bn: string;
   photo_url: string;
+  cover_url?: string;
+  timeline?: DoctorTimelineItem[];
   is_active: boolean;
 }
 
@@ -70,6 +86,8 @@ export interface ServiceCategory {
   description_bn: string;
   icon_name: string;
   sort_order: number;
+  image_url?: string;
+  images?: string[];
 }
 
 export interface Service {

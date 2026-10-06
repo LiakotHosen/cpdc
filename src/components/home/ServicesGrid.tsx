@@ -46,7 +46,7 @@ const CATEGORY_ICON_MAP: Record<string, LucideIcon> = {
 const AUTOPLAY_MS = 5000;
 const MEDIA_MS = 2800;
 
-// Image sets per category: the first is shown collapsed; all cycle in the expanded left pane.
+// Fallback image sets per category (max 3 per category)
 const IMG = {
   diag3d: '/images/services/cat-diagnostic-3d.jpg',
   cosmetic3d: '/images/services/cat-cosmetic-3d.jpg',
@@ -90,50 +90,38 @@ interface Dims {
   g: number; // gap
   h: number; // card height
   stacked: boolean; // media on top, info below (small screens)
-  compact: boolean; // vertical titles on narrow collapsed cards
 }
 
 function computeDims(w: number): Dims {
   if (w < 640) {
-    const c = 80, g = 10;
-    return { c, g, e: Math.max(300, w - c - g * 2), h: 540, stacked: true, compact: true };
+    const c = 75;
+    const g = 10;
+    const e = Math.min(Math.max(280, w - 36), 400);
+    return { c, g, e, h: 560, stacked: true };
   }
   if (w < 1024) {
-    const c = 180, g = 14;
-    return { c, g, e: Math.min(700, w - 2 * (c + g)), h: 520, stacked: true, compact: false };
+    const c = 160;
+    const g = 14;
+    const e = Math.min(680, w - 60);
+    return { c, g, e, h: 520, stacked: true };
   }
   if (w < 1440) {
-    const c = 260, g = 18;
-    return {
-      c,
-      g,
-      e: 840,
-      h: 500,
-      stacked: false,
-      compact: false
-    };
+    const c = 240;
+    const g = 16;
+    const e = Math.min(840, w - 80);
+    return { c, g, e, h: 510, stacked: false };
   }
   if (w < 1920) {
-    const c = 290, g = 20;
-    return {
-      c,
-      g,
-      e: 920,
-      h: 510,
-      stacked: false,
-      compact: false
-    };
+    const c = 270;
+    const g = 18;
+    const e = 900;
+    return { c, g, e, h: 520, stacked: false };
   }
-  // 1920px+ (2133px+ ultra-wide viewports)
-  const c = 320, g = 24;
-  return {
-    c,
-    g,
-    e: 980,
-    h: 520,
-    stacked: false,
-    compact: false
-  };
+  // 1920px+ (ultra-wide viewports)
+  const c = 290;
+  const g = 20;
+  const e = 960;
+  return { c, g, e, h: 530, stacked: false };
 }
 
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
@@ -152,76 +140,163 @@ export function ServicesGrid({ categories, services }: ServicesGridProps) {
   const { t } = useLanguage();
   const { openBooking } = useAppointmentModal();
 
-  const [active, setActive] = useState(0);
+  const total = categories.length;
+  // Triple array for seamless infinite looping: [prevSet, currentSet, nextSet]
+  const items = React.useMemo(() => {
+    if (!categories || categories.length === 0) return [];
+    return [...categories, ...categories, ...categories];
+  }, [categories]);
+
+  // Start in the middle set at index = total (category 0)
+  const [virtualIndex, setVirtualIndex] = useState(() => total);
+  const [enableTransition, setEnableTransition] = useState(true);
+  const [containerWidth, setContainerWidth] = useState(1280);
   const [dims, setDims] = useState<Dims>(() => computeDims(1280));
+
   const [manualPaused, setManualPaused] = useState(false);
   const [hovering, setHovering] = useState(false);
   const [focused, setFocused] = useState(false);
   const [touchHold, setTouchHold] = useState(false);
   const [inView, setInView] = useState(false);
+
   const reducedMotion = useSyncExternalStore(
     subscribeReducedMotion,
     () => window.matchMedia(REDUCED_MOTION_QUERY).matches,
     () => false
   );
 
+  const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const touchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
 
-  const total = categories.length;
+  const activeCategory = total > 0 ? ((virtualIndex % total) + total) % total : 0;
   const paused = manualPaused || hovering || focused || touchHold || !inView || reducedMotion;
 
-  // Measure track width -> card geometry
+  // Measure container width -> update card geometry and centering
   useEffect(() => {
-    const el = trackRef.current;
+    const el = containerRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(([entry]) => setDims(computeDims(entry.contentRect.width)));
+    const ro = new ResizeObserver(([entry]) => {
+      const w = entry.contentRect.width;
+      setContainerWidth(w);
+      setDims(computeDims(w));
+    });
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
 
-  // Only autoplay while visible
+  // Only autoplay while section is visible in viewport
   useEffect(() => {
-    const el = trackRef.current;
+    const el = containerRef.current;
     if (!el) return;
-    const io = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.35 });
+    const io = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.3 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
-  useEffect(() => () => {
-    if (touchTimer.current) clearTimeout(touchTimer.current);
+  // Center offset calculation:
+  // Distance from track start to the left of card `virtualIndex` is:
+  // virtualIndex * (dims.c + dims.g)
+  // To center card `virtualIndex` (width dims.e) in container of width containerWidth:
+  // its left edge in container should be at: (containerWidth - dims.e) / 2
+  const centerTarget = (containerWidth - dims.e) / 2;
+  const cardStartOffset = virtualIndex * (dims.c + dims.g);
+  const trackOffset = centerTarget - cardStartOffset;
+
+  // Next / Prev slide handlers
+  const goToNext = useCallback(() => {
+    setEnableTransition(true);
+    setVirtualIndex((curr) => curr + 1);
   }, []);
 
-  // Activate a card and center it. Final layout is deterministic (one expanded card),
-  // so the target offset can be computed up front and scrolled in parallel with the expansion.
-  const goTo = useCallback(
-    (index: number) => {
-      const i = (index + total) % total;
-      setActive(i);
-      const el = trackRef.current;
-      if (!el) return;
-      const left = i * (dims.c + dims.g) - (el.clientWidth - dims.e) / 2;
-      el.scrollTo({ left: Math.max(0, left), behavior: reducedMotion ? 'auto' : 'smooth' });
+  const goToPrev = useCallback(() => {
+    setEnableTransition(true);
+    setVirtualIndex((curr) => curr - 1);
+  }, []);
+
+  const goToVirtual = useCallback((idx: number) => {
+    setEnableTransition(true);
+    setVirtualIndex(idx);
+  }, []);
+
+  // Navigate to category from top quick pills
+  const handlePillClick = useCallback(
+    (catIdx: number) => {
+      if (total <= 0) return;
+      const currentCat = ((virtualIndex % total) + total) % total;
+      let diff = catIdx - currentCat;
+      if (diff > total / 2) diff -= total;
+      if (diff < -total / 2) diff += total;
+      setEnableTransition(true);
+      setVirtualIndex((curr) => curr + diff);
     },
-    [total, dims, reducedMotion]
+    [total, virtualIndex]
   );
 
-  // Pause briefly after touch interaction so the user can read the opened card
-  const holdForTouch = () => {
-    setTouchHold(true);
-    if (touchTimer.current) clearTimeout(touchTimer.current);
-    touchTimer.current = setTimeout(() => setTouchHold(false), 9000);
-  };
+  // Seamless infinite loop boundary snap when transition finishes
+  const handleTrackTransitionEnd = useCallback(
+    (e: React.TransitionEvent<HTMLDivElement>) => {
+      if (e.target !== trackRef.current || e.propertyName !== 'transform') return;
+      if (total <= 0) return;
 
+      // If out of the middle set [total, 2*total - 1], snap back to middle set
+      if (virtualIndex >= 2 * total || virtualIndex < total) {
+        setEnableTransition(false);
+        const normalized = ((virtualIndex % total) + total) % total + total;
+        setVirtualIndex(normalized);
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setEnableTransition(true);
+          });
+        });
+      }
+    },
+    [total, virtualIndex]
+  );
+
+  // Autoplay timer: advances by 1 card every AUTOPLAY_MS while not paused
+  useEffect(() => {
+    if (paused || total <= 0) return;
+    const timer = setTimeout(() => {
+      goToNext();
+    }, AUTOPLAY_MS);
+    return () => clearTimeout(timer);
+  }, [virtualIndex, paused, total, goToNext]);
+
+  // Keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowRight') {
       e.preventDefault();
-      goTo(active + 1);
+      goToNext();
     } else if (e.key === 'ArrowLeft') {
       e.preventDefault();
-      goTo(active - 1);
+      goToPrev();
     }
+  };
+
+  // Touch swipe support
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    setTouchHold(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    const deltaY = e.changedTouches[0].clientY - (touchStartY.current || 0);
+    touchStartX.current = null;
+    touchStartY.current = null;
+
+    if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX < 0) {
+        goToNext();
+      } else {
+        goToPrev();
+      }
+    }
+    setTimeout(() => setTouchHold(false), 2500);
   };
 
   const trackStyle = {
@@ -230,8 +305,11 @@ export function ServicesGrid({ categories, services }: ServicesGridProps) {
     '--g': `${dims.g}px`,
     '--h': `${dims.h}px`,
     '--pw': `${dims.stacked ? dims.e : Math.round(dims.e * 0.52)}px`,
-    '--mw': `${dims.stacked ? dims.e : dims.e - Math.round(dims.e * 0.52)}px`
+    '--mw': `${dims.stacked ? dims.e : dims.e - Math.round(dims.e * 0.52)}px`,
+    '--track-offset': `${trackOffset}px`
   } as React.CSSProperties;
+
+  if (!categories || categories.length === 0) return null;
 
   return (
     <section className="py-16 lg:py-24 bg-[#F8FAFC] border-b border-slate-200 relative overflow-hidden">
@@ -282,14 +360,14 @@ export function ServicesGrid({ categories, services }: ServicesGridProps) {
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-4 scrollbar-none" role="tablist">
           {categories.map((cat, idx) => {
             const Icon = CATEGORY_ICON_MAP[cat.icon_name] || Activity;
-            const isSelected = idx === active;
+            const isSelected = idx === activeCategory;
             return (
               <button
                 key={cat.id}
                 id={`treatment-pill-${cat.slug}`}
                 role="tab"
                 aria-selected={isSelected}
-                onClick={() => goTo(idx)}
+                onClick={() => handlePillClick(idx)}
                 className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 shrink-0 cursor-pointer flex items-center gap-2 border ${
                   isSelected
                     ? 'bg-[#0F1A48] text-white border-[#0F1A48] shadow-md'
@@ -303,13 +381,13 @@ export function ServicesGrid({ categories, services }: ServicesGridProps) {
           })}
         </div>
 
-        {/* Controls */}
+        {/* Controls Bar */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-baseline gap-2 text-[#0F1A48]">
-            <span className="text-2xl font-black tabular-nums">{String(active + 1).padStart(2, '0')}</span>
+            <span className="text-2xl font-black tabular-nums">{String(activeCategory + 1).padStart(2, '0')}</span>
             <span className="text-sm font-bold text-slate-400 tabular-nums">/ {String(total).padStart(2, '0')}</span>
             <span className="hidden sm:inline text-xs font-semibold text-slate-500 ml-2">
-              {t('Hover a card to explore', 'বিস্তারিত দেখতে কার্ডে রাখুন')}
+              {t('Click any card to expand in center', 'মাঝখানে দেখতে যেকোনো কার্ডে ক্লিক করুন')}
             </span>
           </div>
 
@@ -324,7 +402,7 @@ export function ServicesGrid({ categories, services }: ServicesGridProps) {
             </button>
             <button
               id="treatment-slider-prev"
-              onClick={() => goTo(active - 1)}
+              onClick={goToPrev}
               className="p-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#0F1A48] hover:bg-slate-50 shadow-2xs transition-all cursor-pointer active:scale-95"
               aria-label={t('Previous category', 'পূর্ববর্তী বিভাগ')}
             >
@@ -332,7 +410,7 @@ export function ServicesGrid({ categories, services }: ServicesGridProps) {
             </button>
             <button
               id="treatment-slider-next"
-              onClick={() => goTo(active + 1)}
+              onClick={goToNext}
               className="p-2 rounded-xl bg-[#0F1A48] border border-[#0F1A48] text-white hover:bg-emerald-600 hover:border-emerald-600 shadow-2xs transition-all cursor-pointer active:scale-95"
               aria-label={t('Next category', 'পরবর্তী বিভাগ')}
             >
@@ -341,18 +419,16 @@ export function ServicesGrid({ categories, services }: ServicesGridProps) {
           </div>
         </div>
 
-        {/* Expanding card track */}
+        {/* Expanding card carousel container */}
         <div
-          ref={trackRef}
-          className={styles.track}
-          style={trackStyle}
-          data-stacked={dims.stacked}
-          data-compact={dims.compact}
+          ref={containerRef}
+          className={styles.carouselViewport}
           tabIndex={-1}
           onKeyDown={handleKeyDown}
           onPointerEnter={(e) => e.pointerType === 'mouse' && setHovering(true)}
           onPointerLeave={(e) => e.pointerType === 'mouse' && setHovering(false)}
-          onTouchStart={holdForTouch}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
           onFocus={() => setFocused(true)}
           onBlur={(e) => {
             if (!e.currentTarget.contains(e.relatedTarget as Node)) setFocused(false);
@@ -360,41 +436,51 @@ export function ServicesGrid({ categories, services }: ServicesGridProps) {
           aria-roledescription="carousel"
           aria-label={t('Treatment categories', 'চিকিৎসা বিভাগসমূহ')}
         >
-          {categories.map((cat, idx) => (
-            <TreatmentCard
-              key={cat.id}
-              cat={cat}
-              index={idx}
-              total={total}
-              isActive={idx === active}
-              services={services.filter((s) => s.category_id === cat.id)}
-              animateMedia={!reducedMotion}
-              onActivate={() => {
-                if (idx === active) return;
-                goTo(idx);
-              }}
-              onBook={openBooking}
-            />
-          ))}
+          <div
+            ref={trackRef}
+            className={styles.track}
+            style={trackStyle}
+            data-stacked={dims.stacked}
+            data-no-transition={!enableTransition}
+            onTransitionEnd={handleTrackTransitionEnd}
+          >
+            {items.map((cat, idx) => (
+              <TreatmentCard
+                key={`${cat.id}-${idx}`}
+                cat={cat}
+                index={idx % total}
+                virtualIndex={idx}
+                total={total}
+                isActive={idx === virtualIndex}
+                services={services.filter((s) => s.category_id === cat.id)}
+                animateMedia={!reducedMotion}
+                onActivate={() => goToVirtual(idx)}
+                onBook={openBooking}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Autoplay progress */}
+        {/* Autoplay progress bar indicator */}
         <div className="flex items-center justify-center gap-1.5 mt-2" aria-hidden>
           {categories.map((cat, idx) => (
             <button
               key={cat.id}
               tabIndex={-1}
-              onClick={() => goTo(idx)}
+              onClick={() => handlePillClick(idx)}
               className={`h-1.5 rounded-full overflow-hidden cursor-pointer transition-all duration-500 ${
-                idx === active ? 'w-12 bg-slate-200' : idx < active ? 'w-3 bg-[#0F1A48]/70' : 'w-3 bg-slate-300 hover:bg-slate-400'
+                idx === activeCategory
+                  ? 'w-12 bg-slate-200'
+                  : idx < activeCategory
+                  ? 'w-3 bg-[#0F1A48]/70'
+                  : 'w-3 bg-slate-300 hover:bg-slate-400'
               }`}
             >
-              {idx === active && !reducedMotion && (
+              {idx === activeCategory && !reducedMotion && (
                 <span
-                  key={active}
+                  key={virtualIndex}
                   className={styles.fill}
                   style={{ animationDuration: `${AUTOPLAY_MS}ms`, animationPlayState: paused ? 'paused' : 'running' }}
-                  onAnimationEnd={() => goTo(active + 1)}
                 />
               )}
             </button>
@@ -410,6 +496,7 @@ export function ServicesGrid({ categories, services }: ServicesGridProps) {
 interface TreatmentCardProps {
   cat: ServiceCategory;
   index: number;
+  virtualIndex: number;
   total: number;
   isActive: boolean;
   services: Service[];
@@ -418,18 +505,46 @@ interface TreatmentCardProps {
   onBook: (serviceId?: string, label?: string) => void;
 }
 
-function TreatmentCard({ cat, index, total, isActive, services, animateMedia, onActivate, onBook }: TreatmentCardProps) {
+function TreatmentCard({
+  cat,
+  index,
+  total,
+  isActive,
+  services,
+  animateMedia,
+  onActivate,
+  onBook
+}: TreatmentCardProps) {
   const { t } = useLanguage();
   const Icon = CATEGORY_ICON_MAP[cat.icon_name] || Activity;
-  const images = getCategoryImages(cat.slug);
+
+  // Determine images: cat.images array, cat.image_url string, or fallback presets.
+  // Limitation: minimum 1, maximum 3 images per category.
+  const rawImages =
+    cat.images && cat.images.length > 0
+      ? cat.images
+      : cat.image_url
+      ? [cat.image_url]
+      : getCategoryImages(cat.slug);
+  const images = rawImages.slice(0, 3);
+  const isSingle = images.length <= 1;
+
   const [slide, setSlide] = useState(0);
 
-  // Continuous image carousel inside the expanded left pane
+  // If only 1 image, keep it static without cycling.
+  // If 2 or 3 images, cycle through them while the card is expanded in the center.
   useEffect(() => {
-    if (!isActive || !animateMedia) return;
-    const id = setInterval(() => setSlide((s) => (s + 1) % images.length), MEDIA_MS);
+    if (!isActive || !animateMedia || isSingle) return;
+    const id = setInterval(() => {
+      setSlide((s) => (s + 1) % images.length);
+    }, MEDIA_MS);
     return () => clearInterval(id);
-  }, [isActive, animateMedia, images.length]);
+  }, [isActive, animateMedia, isSingle, images.length]);
+
+  // Reset slide index when becoming active
+  useEffect(() => {
+    if (isActive) setSlide(0);
+  }, [isActive]);
 
   const name = t(cat.name_en, cat.name_bn);
   const shown = services.slice(0, 4);
@@ -438,33 +553,49 @@ function TreatmentCard({ cat, index, total, isActive, services, animateMedia, on
 
   return (
     <article
-      id={`treatment-card-${cat.slug}`}
+      id={`treatment-card-${cat.slug}-${index}`}
       className={styles.card}
       data-active={isActive}
       tabIndex={0}
       aria-label={name}
-      onPointerEnter={(e) => e.pointerType === 'mouse' && onActivate()}
-      onClick={() => onActivate()}
-      onFocus={(e) => e.target === e.currentTarget && onActivate()}
+      onClick={() => {
+        // Only activate on click when collapsed! (No hover activation)
+        if (!isActive) onActivate();
+      }}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          if (!isActive) {
+            e.preventDefault();
+            onActivate();
+          }
+        }
+      }}
     >
-      {/* Left: visual pane */}
+      {/* Left (or top): visual pane */}
       <div className={styles.media}>
         {images.map((src, i) => {
-          const state = i === slide ? 'current' : i === (slide - 1 + images.length) % images.length ? 'prev' : 'next';
+          const state = isSingle
+            ? 'current'
+            : i === slide
+            ? 'current'
+            : i === (slide - 1 + images.length) % images.length
+            ? 'prev'
+            : 'next';
           return (
-            <div key={src + i} className={styles.slide} data-state={state}>
+            <div key={`${src}-${i}`} className={styles.slide} data-state={state} data-single={isSingle}>
               <Image
                 src={src}
                 alt={i === 0 ? name : ''}
                 fill
                 className="object-cover object-center"
-                sizes="(max-width: 640px) 90vw, (max-width: 1000px) 60vw, 360px"
+                sizes="(max-width: 640px) 90vw, (max-width: 1000px) 60vw, 420px"
               />
             </div>
           );
         })}
         <div className={styles.shade} />
 
+        {/* Collapsed label: icon, number, category name, and procedures count */}
         <div className={styles.label}>
           <div className="flex items-start justify-between gap-2">
             <span className="w-10 h-10 shrink-0 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center">
@@ -480,16 +611,33 @@ function TreatmentCard({ cat, index, total, isActive, services, animateMedia, on
           </div>
         </div>
 
-        <div className={styles.dots} aria-hidden>
-          {images.map((src, i) => (
-            <span key={src + i} className={styles.dot} data-on={i === slide} />
-          ))}
-        </div>
+        {/* Dots indicator: only rendered when there are multiple images (2 or 3) */}
+        {!isSingle && (
+          <div className={styles.dots} aria-hidden={!isActive}>
+            {images.map((src, i) => (
+              <button
+                key={`${src}-${i}`}
+                type="button"
+                tabIndex={isActive ? 0 : -1}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSlide(i);
+                }}
+                className={styles.dot}
+                data-on={i === slide}
+                aria-label={`Slide ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Right: info pane */}
+      {/* Right (or bottom): info pane (expanded center card only) */}
       <div className={styles.panel} aria-hidden={!isActive}>
-        <div className={`${styles.reveal} flex items-center justify-between gap-2`} style={{ '--i': 0 } as React.CSSProperties}>
+        <div
+          className={`${styles.reveal} flex items-center justify-between gap-2`}
+          style={{ '--i': 0 } as React.CSSProperties}
+        >
           <span className="text-[11px] font-bold uppercase tracking-wider text-[#0F1A48]/55">
             {t('Category', 'বিভাগ')} {num} / {String(total).padStart(2, '0')}
           </span>

@@ -94,12 +94,25 @@ export async function getDoctor(): Promise<Doctor> {
   if (supabase) {
     try {
       const { data, error } = await supabase.from('doctors').select('*').eq('is_active', true).limit(1).maybeSingle();
-      if (!error && data) return data;
+      if (!error && data) {
+        return {
+          ...INITIAL_DOCTOR,
+          ...data,
+          cover_url: data.cover_url || INITIAL_DOCTOR.cover_url,
+          timeline: data.timeline && data.timeline.length > 0 ? data.timeline : INITIAL_DOCTOR.timeline
+        };
+      }
     } catch {
       // fallback
     }
   }
-  return getLocal<Doctor>(STORAGE_KEYS.DOCTOR, INITIAL_DOCTOR);
+  const local = getLocal<Doctor>(STORAGE_KEYS.DOCTOR, INITIAL_DOCTOR);
+  return {
+    ...INITIAL_DOCTOR,
+    ...local,
+    cover_url: local.cover_url || INITIAL_DOCTOR.cover_url,
+    timeline: local.timeline && local.timeline.length > 0 ? local.timeline : INITIAL_DOCTOR.timeline
+  };
 }
 
 export async function updateDoctor(doctor: Partial<Doctor>): Promise<Doctor> {
@@ -156,6 +169,26 @@ export async function getCategories(): Promise<ServiceCategory[]> {
     }
   }
   return getLocal<ServiceCategory[]>(STORAGE_KEYS.CATEGORIES, INITIAL_CATEGORIES);
+}
+
+export async function saveCategory(category: Partial<ServiceCategory> & { id: string }): Promise<ServiceCategory> {
+  const categories = await getCategories();
+  const existing = categories.find((c) => c.id === category.id);
+  if (!existing) throw new Error('Category not found');
+  const updated: ServiceCategory = { ...existing, ...category };
+  const updatedList = categories.map((c) => (c.id === category.id ? updated : c));
+  setLocal(STORAGE_KEYS.CATEGORIES, updatedList);
+
+  const supabase = createClient();
+  if (supabase) {
+    try {
+      await supabase.from('service_categories').upsert(updated);
+    } catch {
+      // fallback
+    }
+  }
+
+  return updated;
 }
 
 export async function getServices(): Promise<Service[]> {

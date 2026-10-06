@@ -53,8 +53,89 @@ export const INITIAL_DOCTOR: Doctor = {
   bio_bn: 'অভিজ্ঞ ওরাল এন্ড ডেন্টাল সার্জন। রুট ক্যানেল, কসমেটিক স্মাইল ডিজাইন, আঁকাবাঁকা দাঁতের চিকিৎসা ও ব্যথামুক্ত সার্জারিতে বিশেষভাবে দক্ষ। রোগীর সর্বোচ্চ শারীরিক নিরাপত্তা, শতভাগ জীবাণুমুক্ত পরিবেশ ও পরিবারের মতো আন্তরিক সেবায় সর্বদা নিবেদিতপ্রাণ।',
   consulting_hours_en: '04:00 PM to 09:00 PM Daily',
   consulting_hours_bn: 'প্রতিদিন বিকাল ৪:০০ টা – রাত ৯:০০ টা',
-  photo_url: '/images/doctor-ony.jpg',
-  is_active: true
+  photo_url: '/images/doctor-aktar-zahan-ony.webp',
+  cover_url: '/images/about-clinic-cover.webp',
+  is_active: true,
+  timeline: [
+    {
+      id: 'tl-1',
+      year: '2014 – 2019',
+      degree_en: 'Bachelor of Dental Surgery (B.D.S)',
+      degree_bn: 'ব্যাচেলর অব ডেন্টাল সার্জারি (বি.ডি.এস)',
+      institution_en: 'Rangpur Dental College, Rajshahi University (RU)',
+      institution_bn: 'রংপুর ডেন্টাল কলেজ, রাজশাহী বিশ্ববিদ্যালয়',
+      description_en: 'Comprehensive 5-year dental surgery training with clinical rotations in operative dentistry, oral surgery, prosthodontics, periodontics, and pediatric dental medicine.',
+      description_bn: 'অপারেটিভ ডেন্টিস্ট্রি, ওরাল অ্যান্ড ম্যাক্সিলোফেসিয়াল সার্জারি, প্রস্থোডন্টিক্স এবং পেডিয়াট্রিক ডেন্টাল কেয়ারে পূর্ণাঙ্গ ক্লিনিক্যাল ট্রেনিং সম্পন্ন।',
+      badge_en: 'Graduation & Clinical Internship',
+      badge_bn: 'গ্র্যাজুয়েশন ও ইন্টার্নশিপ',
+      type: 'education'
+    },
+    {
+      id: 'tl-2',
+      year: '2020',
+      degree_en: 'BMDC Professional Medical License',
+      degree_bn: 'বিএমডিসি পেশাদার মেডিকেল লাইসেন্স',
+      institution_en: 'Bangladesh Medical & Dental Council (BMDC)',
+      institution_bn: 'বাংলাদেশ মেডিকেল অ্যান্ড ডেন্টাল কাউন্সিল (বিএমডিসি)',
+      description_en: 'Officially certified and licensed registered dental surgeon (Registration No: 12990) authorized for clinical dental practice across Bangladesh.',
+      description_bn: 'বাংলাদেশ মেডিকেল অ্যান্ড ডেন্টাল কাউন্সিল কর্তৃক আনুষ্ঠানিকভাবে নিবন্ধিত ও অনুমোদিত ডেন্টাল সার্জন (রেজিস্ট্রেশন নং: ১২৯৯০)।',
+      badge_en: 'BMDC Reg. No: 12990',
+      badge_bn: 'বিএমডিসি রেজি: ১২৯৯০',
+      type: 'certification'
+    },
+    {
+      id: 'tl-3',
+      year: '2021',
+      degree_en: 'Rotary Endodontics & Micro-Dentistry Certification',
+      degree_bn: 'রোটারি এন্ডোডন্টিক্স ও মাইক্রো-ডেন্টিস্ট্রি প্রশিক্ষণ',
+      institution_en: 'Advanced Endodontic Clinical Training Institute',
+      institution_bn: 'এডভান্সড এন্ডোডন্টিক ক্লিনিক্যাল ট্রেনিং ইনস্টিটিউট',
+      description_en: 'Specialized clinical hands-on mastery in motorized rotary root canal systems, apex locator precision, dental operating microscope protocols, and single-sitting painless RCT.',
+      description_bn: 'মোটরাইজড রোটারি সিস্টেম, নিখুঁত অ্যাপেক্স লোকেশন ও সিঙ্গেল-সিটিং ব্যথামুক্ত রুট ক্যানেল চিকিৎসায় বিশেষ ক্লিনিক্যাল প্রশিক্ষণ ও দক্ষতা।',
+      badge_en: 'Advanced Endodontics',
+      badge_bn: 'উন্নত এন্ডোডন্টিক্স',
+      type: 'certification'
+    },
+    {
+      id: 'tl-4',
+      year: '2022 – 2024',
+      degree_en: 'Master of Public Health (M.P.H.)',
+      degree_bn: 'মাস্টার অব পাবলিক হেলথ (এম.পি.এইচ)',
+      institution_en: 'Jahangirnagar University (JU)',
+      institution_bn: 'জাহাঙ্গীরনগর বিশ্ববিদ্যালয়',
+      description_en: 'Postgraduate degree focused on preventive healthcare, dental epidemiology, infection control sterilization protocols, and community health management.',
+      description_bn: 'প্রিভেন্টিভ হেলথকেয়ার, ডেন্টাল এপিডেমিওলজি, আন্তর্জাতিক স্টেরিলাইজেশন প্রোটোকল ও কমিউনিটি ওরাল হেলথ ম্যানেজমেন্টে স্নাতকোত্তর ডিগ্রি অর্জন।',
+      badge_en: 'Postgraduate Degree',
+      badge_bn: 'পোস্টগ্র্যাজুয়েট ডিগ্রি',
+      type: 'education'
+    },
+    {
+      id: 'tl-5',
+      year: '2023 – 2024',
+      degree_en: 'Aesthetic Dentistry & Smile Architecture',
+      degree_bn: 'এসথেটিক ডেন্টিস্ট্রি ও স্মাইল আর্কিটেকচার',
+      institution_en: 'Academy of Cosmetic Dentistry & Restorative Care',
+      institution_bn: 'একাডেমি অব কসমেটিক ডেন্টিস্ট্রি অ্যান্ড রিস্টোরেটিভ কেয়ার',
+      description_en: 'Hands-on certification in direct composite veneers, smile designing, diastema closure, tooth reshaping, and high-aesthetic biomimetic anterior restorations.',
+      description_bn: 'ডিরেক্ট কম্পোজিট ভেনিয়ার, স্মাইল ডিজাইনিং, দাঁতের ফাঁক বন্ধকরণ ও অত্যন্ত নান্দনিক বায়োমিমেটিক সামনের দাঁত সাজানোর আধুনিক কলাকৌশলে পারদর্শী।',
+      badge_en: 'Cosmetic Dentistry',
+      badge_bn: 'কসমেটিক ডেন্টিস্ট্রি',
+      type: 'certification'
+    },
+    {
+      id: 'tl-6',
+      year: '2024 – Present',
+      degree_en: 'Chief Dental Surgeon & Founder',
+      degree_bn: 'চিফ ডেন্টাল সার্জন ও প্রতিষ্ঠাতা',
+      institution_en: 'Care Point Dental Clinic (CPDC), Pollibidyut, Savar',
+      institution_bn: 'কেয়ার পয়েন্ট ডেন্টাল ক্লিনিক (সিপিডিসি), পল্লীবিদ্যুৎ, সাভার',
+      description_en: 'Leading private clinical practice dedicated to modern, painless dental care, Class-B autoclave sterilization, digital RVG radiography, and empathetic patient relationships.',
+      description_bn: 'অত্যাধুনিক ডেন্টাল কেয়ার, ক্লাস-বি অটোক্লেভ জীবাণুমুক্তকরণ ব্যবস্থা, ডিজিটাল আরভিজি এক্স-রে ও আন্তরিক সেবায় নিবেদিত প্রধান ডেন্টাল সার্জন হিসেবে দায়িত্ব পালন।',
+      badge_en: 'Lead Consultant',
+      badge_bn: 'প্রধান পরামর্শক',
+      type: 'experience'
+    }
+  ]
 };
 
 export const INITIAL_FEATURES: Feature[] = [
@@ -239,7 +320,12 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description_en: 'Comprehensive oral consultations, digital RVG x-rays, and routine ultrasonic cleaning.',
     description_bn: 'প্রাথমিক চেকআপ, আধুনিক ডিজিটাল এক্স-রে ও দাঁতের সার্বিক রোগ নির্ণয়।',
     icon_name: 'Stethoscope',
-    sort_order: 1
+    sort_order: 1,
+    images: [
+      '/images/services/cat-diagnostic-3d.jpg',
+      '/images/services/general-diagnostic.jpg',
+      '/images/clinic_operatory_bg.jpg'
+    ]
   },
   {
     id: 'c2',
@@ -249,7 +335,12 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description_en: 'Advanced teeth whitening, front teeth aesthetic gap closure, and personalized smile designing.',
     description_bn: 'দাঁতের স্বাভাবিক শুভ্রতা ফেরানো ও হাসির সৌন্দর্য বৃদ্ধি।',
     icon_name: 'Sparkles',
-    sort_order: 2
+    sort_order: 2,
+    images: [
+      '/images/services/cat-cosmetic-3d.jpg',
+      '/images/services/cosmetic-dentistry.jpg',
+      '/images/services-hero-bg.jpg'
+    ]
   },
   {
     id: 'c3',
@@ -259,7 +350,12 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description_en: 'Tooth-colored composite fillings, durable PFM and high-strength Zirconia ceramic crowns and bridges.',
     description_bn: 'ক্ষয়প্রাপ্ত দাঁত মেরামত এবং ক্যাপ ও ব্রিজের মাধ্যমে দাঁত সংরক্ষণ।',
     icon_name: 'Shield',
-    sort_order: 3
+    sort_order: 3,
+    images: [
+      '/images/dental_3d_shield.jpg',
+      '/images/services/cat-diagnostic-3d.jpg',
+      '/images/clinic_operatory_bg.jpg'
+    ]
   },
   {
     id: 'c4',
@@ -269,7 +365,12 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description_en: 'Single or multi-visit painless root canal therapy for anterior and posterior teeth saving infected natural teeth.',
     description_bn: 'প্রদাহ বা ইনফেকশনে আক্রান্ত প্রাকৃতিক দাঁত রক্ষা করার ব্যথামুক্ত চিকিৎসা।',
     icon_name: 'Activity',
-    sort_order: 4
+    sort_order: 4,
+    images: [
+      '/images/services/cat-diagnostic-3d.jpg',
+      '/images/services-hero-bg.jpg',
+      '/images/clinic_operatory_bg.jpg'
+    ]
   },
   {
     id: 'c5',
@@ -279,7 +380,12 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description_en: 'Simple and surgical tooth extractions, impacted wisdom tooth removal, and periapical surgery.',
     description_bn: 'আক্কেল দাঁতের জটিল অপারেশন ও সার্জিক্যাল পদ্ধতিতে ব্যথামুক্ত দাঁত অপসারণ।',
     icon_name: 'Scissors',
-    sort_order: 5
+    sort_order: 5,
+    images: [
+      '/images/services/cat-surgery-3d.jpg',
+      '/images/clinic_operatory_bg.jpg',
+      '/images/services-hero-bg.jpg'
+    ]
   },
   {
     id: 'c6',
@@ -289,7 +395,12 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description_en: 'Flexible dentures, acrylic partials, cast partials, and full complete denture solutions.',
     description_bn: 'হারিয়ে যাওয়া দাঁতের বদলে সহজে ব্যবহারযোগ্য আরামদায়ক কৃত্রিম দাঁত।',
     icon_name: 'Layers',
-    sort_order: 6
+    sort_order: 6,
+    images: [
+      '/images/services/cat-cosmetic-3d.jpg',
+      '/images/dental_3d_shield.jpg',
+      '/images/clinic_operatory_bg.jpg'
+    ]
   },
   {
     id: 'c7',
@@ -299,7 +410,12 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description_en: 'Child-friendly dental fillings, painless primary extractions, and preventive sealants.',
     description_bn: 'শিশুদের দাঁতের যত্ন ও ক্ষয়রোধে বিশেষায়িত ও মমতাময়ী চিকিৎসা সেবা।',
     icon_name: 'Baby',
-    sort_order: 7
+    sort_order: 7,
+    images: [
+      '/images/services-hero-bg.jpg',
+      '/images/services/cosmetic-dentistry.jpg',
+      '/images/services/cat-diagnostic-3d.jpg'
+    ]
   },
   {
     id: 'c8',
@@ -309,7 +425,12 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description_en: 'Removable and fixed orthodontic appliances to straighten crooked, crowded, or spaced teeth.',
     description_bn: 'আঁকাবাঁকা, ফাঁকা বা অসমান দাঁত সুন্দর বিন্যাসে সোজা করার চিকিৎসা।',
     icon_name: 'SmilePlus',
-    sort_order: 8
+    sort_order: 8,
+    images: [
+      '/images/services/cat-cosmetic-3d.jpg',
+      '/images/services/cosmetic-dentistry.jpg',
+      '/images/services-hero-bg.jpg'
+    ]
   },
   {
     id: 'c9',
@@ -319,7 +440,12 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description_en: 'Modern titanium implants restoring permanent functional and aesthetic teeth.',
     description_bn: 'প্রাকৃতিক দাঁতের মতো স্থায়ীভাবে টাইটানিয়াম পোস্ট বসিয়ে নতুন দাঁত প্রতিস্থাপন।',
     icon_name: 'Anchor',
-    sort_order: 9
+    sort_order: 9,
+    images: [
+      '/images/dental_3d_shield.jpg',
+      '/images/services/cat-surgery-3d.jpg',
+      '/images/clinic_operatory_bg.jpg'
+    ]
   },
   {
     id: 'c10',
@@ -329,7 +455,12 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description_en: 'Fluoride varnish, SDF pit and fissure sealants, and pulp vitality management.',
     description_bn: 'দাঁতের ক্ষয় ও সেনসিটিভিটি থেকে আগে থেকেই সুরক্ষা নিশ্চিতকরণ।',
     icon_name: 'ShieldCheck',
-    sort_order: 10
+    sort_order: 10,
+    images: [
+      '/images/services/general-diagnostic.jpg',
+      '/images/services/cat-diagnostic-3d.jpg',
+      '/images/clinic_operatory_bg.jpg'
+    ]
   }
 ];
 

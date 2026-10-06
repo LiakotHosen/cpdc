@@ -1,26 +1,64 @@
-/* Treatment categories slider — expanding card carousel.
+/* Treatment categories slider — centered expanding card carousel.
    Geometry (--c collapsed, --e expanded, --g gap, --h height, --mw media width,
-   --pw panel width) is set inline from JS so scroll math stays exact. */
+   --pw panel width, --track-offset transform) is computed dynamically. */
+
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.carouselViewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 12px 0 28px;
+}
+
+/* Subtle edge gradients for infinite illusion */
+.carouselViewport::before,
+.carouselViewport::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 28px;
+  width: 48px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.carouselViewport::before {
+  left: 0;
+  background: linear-gradient(to right, #f8fafc, transparent);
+}
+
+.carouselViewport::after {
+  right: 0;
+  background: linear-gradient(to left, #f8fafc, transparent);
+}
 
 .track {
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   display: flex;
   gap: var(--g);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-  padding: 8px 0 28px;
   outline: none;
+  width: max-content;
+  transform: translate3d(var(--track-offset, 0px), 0, 0);
+  transition: transform 600ms var(--ease);
+  will-change: transform;
 }
 
-.track::-webkit-scrollbar {
-  display: none;
+.track[data-no-transition='true'],
+.track[data-no-transition='true'] .card,
+.track[data-no-transition='true'] .media,
+.track[data-no-transition='true'] .panel {
+  transition: none !important;
 }
 
 /* ---------- Card ---------- */
 .card {
   position: relative;
   flex: 0 0 var(--c);
+  width: var(--c);
   height: var(--h);
   border-radius: 28px;
   overflow: hidden;
@@ -30,25 +68,30 @@
   outline: none;
   box-shadow: 0 14px 30px -20px rgba(15, 26, 72, 0.55);
   transition:
-    flex-basis 550ms var(--ease),
-    box-shadow 400ms var(--ease);
-  will-change: flex-basis;
+    width 600ms var(--ease),
+    flex-basis 600ms var(--ease),
+    box-shadow 400ms var(--ease),
+    transform 300ms ease;
+  will-change: width, flex-basis;
+  user-select: none;
 }
 
 .card[data-active='true'] {
-  flex-basis: var(--e);
+  flex: 0 0 var(--e);
+  width: var(--e);
   cursor: default;
   box-shadow: 0 34px 60px -28px rgba(15, 26, 72, 0.7);
+}
+
+.card:not([data-active='true']):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 36px -16px rgba(15, 26, 72, 0.65);
 }
 
 .card:focus-visible {
   box-shadow:
     0 0 0 3px #fff,
     0 0 0 6px #10b981;
-}
-
-.card:not([data-active='true']):hover .slide[data-state='current'] img {
-  transform: scale(1.06);
 }
 
 /* ---------- Media (left pane) ---------- */
@@ -60,8 +103,8 @@
   height: 100%;
   overflow: hidden;
   transition:
-    width 750ms var(--ease),
-    height 750ms var(--ease);
+    width 600ms var(--ease),
+    height 600ms var(--ease);
 }
 
 .card[data-active='true'] .media {
@@ -70,17 +113,17 @@
 
 .track[data-stacked='true'] .card[data-active='true'] .media {
   width: 100%;
-  height: 40%;
+  height: 42%;
 }
 
 .slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transform: translateX(22%) scale(1.04);
+  transform: translateX(18%) scale(1.04);
   transition:
-    opacity 900ms var(--ease),
-    transform 1100ms var(--ease);
+    opacity 800ms var(--ease),
+    transform 900ms var(--ease);
 }
 
 .slide[data-state='current'] {
@@ -92,31 +135,42 @@
   transform: translateX(-14%) scale(1.04);
 }
 
+/* Single static image: no translation or animation */
+.slide[data-single='true'] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
 .slide img {
   transition: transform 900ms var(--ease);
 }
 
-/* Fresh activation: current image glides in from the right */
-.card[data-active='true'] .slide[data-state='current'] img {
-  animation: imageIn 900ms var(--ease) both;
+.card:not([data-active='true']):hover .slide[data-state='current'] img,
+.card:not([data-active='true']):hover .slide[data-single='true'] img {
+  transform: scale(1.05);
 }
 
 .shade {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    linear-gradient(to top, rgba(10, 18, 52, 0.92) 0%, rgba(10, 18, 52, 0.25) 45%, rgba(10, 18, 52, 0.35) 100%);
+  background: linear-gradient(
+    to top,
+    rgba(10, 18, 52, 0.92) 0%,
+    rgba(10, 18, 52, 0.35) 45%,
+    rgba(10, 18, 52, 0.3) 100%
+  );
 }
 
-/* Collapsed label */
+/* Collapsed card labels */
 .label {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 18px;
+  padding: 20px;
   color: #fff;
   pointer-events: none;
 }
@@ -124,29 +178,17 @@
 .title {
   color: #fff;
   font-weight: 800;
-  font-size: 1.125rem;
-  line-height: 1.2;
+  font-size: 1.05rem;
+  line-height: 1.25;
   letter-spacing: -0.01em;
   transition:
     opacity 400ms var(--ease),
     transform 500ms var(--ease);
 }
 
-.track[data-compact='true'] .title {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-size: 1rem;
-  align-self: center;
-  white-space: nowrap;
-}
-
 .card[data-active='true'] .title {
   opacity: 0;
   transform: translateY(12px);
-}
-
-.track[data-compact='true'] .card[data-active='true'] .title {
-  transform: rotate(180deg) translateY(-12px);
 }
 
 .meta {
@@ -157,22 +199,20 @@
   transition: opacity 400ms var(--ease);
 }
 
-.track[data-compact='true'] .meta {
-  display: none;
-}
-
 .card[data-active='true'] .count {
   opacity: 0;
 }
 
+/* Image carousel dots (shown when 2 or 3 images) */
 .dots {
   position: absolute;
-  left: 18px;
-  bottom: 18px;
+  left: 20px;
+  bottom: 20px;
   display: flex;
   gap: 6px;
   opacity: 0;
   transition: opacity 400ms var(--ease);
+  z-index: 5;
 }
 
 .card[data-active='true'] .dots {
@@ -185,9 +225,12 @@
   width: 6px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.45);
+  border: none;
+  padding: 0;
+  cursor: pointer;
   transition:
-    width 500ms var(--ease),
-    background 500ms;
+    width 400ms var(--ease),
+    background 400ms;
 }
 
 .dot[data-on='true'] {
@@ -204,7 +247,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 32px 34px 26px;
+  padding: 30px 32px 24px;
   overflow: hidden;
   background: linear-gradient(165deg, #ffffff 0%, #f3f6ff 100%);
   opacity: 0;
@@ -219,8 +262,8 @@
   bottom: 0;
   left: 0;
   right: auto;
-  height: 60%;
-  padding: 18px 18px 16px;
+  height: 58%;
+  padding: 18px 20px 16px;
 }
 
 .card[data-active='true'] .panel {
@@ -240,7 +283,7 @@
   animation-delay: calc(120ms + var(--i, 0) * 45ms);
 }
 
-/* ---------- Autoplay progress ---------- */
+/* ---------- Autoplay progress bar ---------- */
 .fill {
   display: block;
   height: 100%;
@@ -253,20 +296,10 @@
   animation-fill-mode: both;
 }
 
-@keyframes imageIn {
-  from {
-    transform: translateX(30%) scale(1.12);
-  }
-
-  to {
-    transform: none;
-  }
-}
-
 @keyframes reveal {
   from {
     opacity: 0;
-    transform: translateX(32px) scale(0.96);
+    transform: translateX(28px) scale(0.97);
   }
 
   to {
@@ -286,7 +319,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-
+  .track,
   .card,
   .media,
   .slide,
@@ -296,8 +329,7 @@
     transition-duration: 1ms !important;
   }
 
-  .card[data-active='true'] .reveal,
-  .card[data-active='true'] .slide[data-state='current'] img {
+  .card[data-active='true'] .reveal {
     animation: none;
     opacity: 1;
   }

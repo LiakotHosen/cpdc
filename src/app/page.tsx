@@ -37,6 +37,12 @@ export default async function HomePage() {
       <FeaturesSection features={features} />
       <ServicesGrid categories={categories} services={services} />
 
+      {/* Authentic Clinic Video Reels */}
+      <VideoReelsSection reels={reels} />
+
+      {/* Patient Reviews & Ratings */}
+      <ReviewsSection reviews={reviews} />
+
       {/* Cost Calculator Section */}
       <CostCalculatorWidget services={services} categories={categories} fullPageMode={false} />
 
@@ -47,8 +53,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <VideoReelsSection reels={reels} />
-      <ReviewsSection reviews={reviews} />
       <EmergencyBanner />
     </div>
   );
