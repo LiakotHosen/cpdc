@@ -3,7 +3,7 @@
 import React from 'react';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useAppointmentModal } from '@/lib/context/AppointmentModalContext';
-import { Phone, Calendar, MessageSquare, AlertCircle, Clock, MapPin } from 'lucide-react';
+import { Phone, Calendar, AlertCircle, Clock, MapPin } from 'lucide-react';
 
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 

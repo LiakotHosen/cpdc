@@ -17,6 +17,7 @@ import {
   Star,
   HelpCircle,
   BookOpen,
+  Megaphone,
   LogOut,
   ExternalLink,
   Menu,
@@ -32,6 +33,7 @@ export function AdminSidebar() {
   const navItems = [
     { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/admin/appointments', label: 'Appointments', icon: CalendarCheck },
+    { href: '/admin/announcements', label: 'Notices & Offers', icon: Megaphone },
     { href: '/admin/services', label: 'Services & Pricing', icon: Stethoscope },
     { href: '/admin/settings', label: 'Clinic Settings', icon: Settings },
     { href: '/admin/doctor', label: 'Doctor Profile', icon: UserCheck },

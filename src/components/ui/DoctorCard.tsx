@@ -10,7 +10,6 @@ import {
   Clock,
   MapPin,
   Phone,
-  MessageSquare,
   Calendar,
   Sparkles,
   Award,
@@ -23,6 +22,7 @@ import {
   Check,
   Zap,
 } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 
 interface DoctorCardProps {
   doctor: Doctor;
@@ -361,10 +361,10 @@ export function DoctorCard({ doctor, settings, compact = false }: DoctorCardProp
             href="https://wa.me/8801324558811?text=Hello%20Care%20Point%20Dental,%20I%20would%20like%20to%20book%20an%20appointment%20with%20Dr.%20Aktar%20Zahan%20Ony"
             target="_blank"
             rel="noopener noreferrer"
-            className="py-3 px-3.5 bg-[#EEF2FF] hover:bg-[#0F1A48] text-[#0F1A48] hover:text-white border border-[#0F1A48]/20 rounded-xl font-bold text-xs transition-all flex items-center gap-1.5"
+            className="py-3 px-3.5 bg-emerald-50 hover:bg-[#25D366] text-emerald-800 hover:text-white border border-emerald-200/80 rounded-xl font-bold text-xs transition-all flex items-center gap-1.5 group shadow-xs"
             title="WhatsApp Consultation"
           >
-            <MessageSquare className="w-4 h-4" />
+            <WhatsAppIcon className="w-4 h-4 text-[#25D366] group-hover:text-white fill-current transition-colors" />
             <span className="hidden sm:inline">WhatsApp</span>
           </a>
 

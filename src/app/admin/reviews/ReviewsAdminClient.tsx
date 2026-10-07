@@ -10,7 +10,6 @@ import {
   Trash2,
   CheckCircle,
   ExternalLink,
-  MessageSquare,
   Search,
   X,
   Sparkles

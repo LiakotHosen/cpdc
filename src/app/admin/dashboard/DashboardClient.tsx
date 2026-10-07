@@ -16,10 +16,11 @@ import {
   XCircle,
   AlertCircle,
   Phone,
-  MessageSquare,
   Sparkles,
   ExternalLink,
+  Megaphone,
 } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 
 interface DashboardClientProps {
   initialAppointments: Appointment[];
@@ -160,7 +161,14 @@ export function DashboardClient({
       </div>
 
       {/* Quick Action Navigation Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        <Link
+          href="/admin/announcements"
+          className="p-4 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-center space-y-2 group shadow-2xs transition-all"
+        >
+          <Megaphone className="w-5 h-5 mx-auto text-amber-500 group-hover:scale-110 transition-transform" />
+          <span className="text-xs font-bold text-slate-700 block">Notices & Offers</span>
+        </Link>
         <Link
           href="/admin/services"
           className="p-4 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-center space-y-2 group shadow-2xs transition-all"
@@ -288,7 +296,7 @@ export function DashboardClient({
                         className="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100"
                         title="Chat on WhatsApp"
                       >
-                        <MessageSquare className="w-3.5 h-3.5" />
+                        <WhatsAppIcon className="w-3.5 h-3.5 fill-[#25D366]" />
                       </a>
                       {app.status === 'pending' && (
                         <button

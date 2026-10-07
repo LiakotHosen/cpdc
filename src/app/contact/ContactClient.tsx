@@ -9,7 +9,6 @@ import { LocationWayfindingSection } from '@/components/common/LocationWayfindin
 import {
   MapPin,
   Phone,
-  MessageSquare,
   Mail,
   Clock,
   ExternalLink,
@@ -19,6 +18,7 @@ import {
   Send,
   HelpCircle
 } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 interface ContactClientProps {
@@ -103,8 +103,8 @@ export function ContactClient({ settings, doctor }: ContactClientProps) {
 
                 {/* WhatsApp */}
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-                    <MessageSquare className="w-5 h-5" />
+                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#25D366] flex items-center justify-center shrink-0 border border-emerald-100">
+                    <WhatsAppIcon className="w-5 h-5 fill-current" />
                   </div>
                   <div className="space-y-1">
                     <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">

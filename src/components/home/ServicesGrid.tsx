@@ -11,14 +11,13 @@ import styles from './ServicesGrid.module.css';
 import {
   Stethoscope,
   Sparkles,
-  Shield,
-  Activity,
-  Scissors,
-  Layers,
-  Baby,
-  SmilePlus,
-  Anchor,
   ShieldCheck,
+  Microscope,
+  Crosshair,
+  Smile,
+  Heart,
+  SmilePlus,
+  Award,
   ArrowRight,
   ArrowUpRight,
   Calendar,
@@ -27,21 +26,135 @@ import {
   ChevronRight,
   Play,
   Pause,
+  Activity,
   LucideIcon
 } from 'lucide-react';
 
 const CATEGORY_ICON_MAP: Record<string, LucideIcon> = {
   Stethoscope,
   Sparkles,
-  Shield,
-  Activity,
-  Scissors,
-  Layers,
-  Baby,
+  ShieldCheck,
+  Microscope,
+  Crosshair,
+  Smile,
+  Heart,
   SmilePlus,
-  Anchor,
-  ShieldCheck
+  Award,
+  // Graceful formal fallbacks for legacy/informal names
+  Scissors: Crosshair,
+  Anchor: Award,
+  Baby: Heart,
+  Layers: Smile,
+  Activity: Microscope,
+  Shield: ShieldCheck
 };
+
+/**
+ * High-definition, formal, medical-grade dental insignias for all 10 clinical categories.
+ */
+function CategoryInsignia({
+  slug,
+  iconName,
+  className = 'w-5 h-5 text-white',
+}: {
+  slug: string;
+  iconName?: string;
+  className?: string;
+}) {
+  switch (slug) {
+    case 'general-diagnostic':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M4.5 3v5a4.5 4.5 0 0 0 9 0V3" />
+          <path d="M9 12.5v4a2.5 2.5 0 0 0 5 0v-2.5" />
+          <circle cx="14" cy="14" r="2.5" fill="currentColor" fillOpacity="0.25" stroke="currentColor" strokeWidth="1.6" />
+          <circle cx="4.5" cy="3" r="1.5" fill="currentColor" />
+          <circle cx="13.5" cy="3" r="1.5" fill="currentColor" />
+        </svg>
+      );
+    case 'cosmetic-dentistry':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2C8 2 5.5 4.5 5.5 8C5.5 11 7 13.5 8.5 16C9.2 17.2 9.5 19 9.8 21.5C10.6 20.8 11.4 20.8 12 20.8C12.6 20.8 13.4 20.8 14.2 21.5C14.5 19 14.8 17.2 15.5 16C17 13.5 18.5 11 18.5 8C18.5 4.5 16 2.5 12 2.5Z" fill="currentColor" fillOpacity="0.25" />
+          <path d="M8.5 11.5C9.5 14 14.5 14 15.5 11.5" stroke="#FEF08A" strokeWidth="2.2" />
+          <path d="M18 4L18.6 5.5L20 6.1L18.6 6.7L18 8.2L17.4 6.7L16 6.1L17.4 5.5L18 4Z" fill="#FEF08A" stroke="none" />
+        </svg>
+      );
+    case 'restorative':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2C8 2 6 4 6 7.5C6 9.5 7 11 8 13C9 15 9.5 17.5 9.5 22C10.5 21 11.5 21 12 21C12.5 21 13.5 21 14.5 22C14.5 17.5 15 15 16 13C17 11 18 9.5 18 7.5C18 4 16 2 12 2Z" fill="currentColor" fillOpacity="0.25" />
+          <path d="M8.5 8.5C10.5 10.5 13.5 10.5 15.5 8.5" stroke="#93C5FD" strokeWidth="2" />
+          <circle cx="12" cy="14" r="2" fill="#93C5FD" stroke="none" />
+        </svg>
+      );
+    case 'root-canal':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2C8.5 2 6 4.2 6 7.8C6 9.8 7 11.2 8 13.2C8.8 14.8 9.2 17 9.4 21C10.2 20.2 11.2 20.2 12 20.2C12.8 20.2 13.8 20.2 14.6 21C14.8 17 15.2 14.8 16 13.2C17 11.2 18 9.8 18 7.8C18 4.2 15.5 2 12 2Z" fill="currentColor" fillOpacity="0.25" />
+          <path d="M12 6V15" stroke="#FDE047" strokeWidth="2.2" />
+          <circle cx="12" cy="15.5" r="1.5" fill="#FDE047" stroke="none" />
+          <path d="M9.5 9.5H14.5" stroke="#FDE047" strokeWidth="1.6" />
+        </svg>
+      );
+    case 'oral-surgery':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="9" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M12 4v16M4 12h16" stroke="#7DD3FC" strokeWidth="2" strokeLinecap="round" />
+          <circle cx="12" cy="12" r="4.5" stroke="#7DD3FC" strokeWidth="1.6" />
+          <circle cx="12" cy="12" r="1.5" fill="#7DD3FC" stroke="none" />
+        </svg>
+      );
+    case 'dentures':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M4 14C4 8.5 7.5 4 12 4C16.5 4 20 8.5 20 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <path d="M6 14C7.5 17 9.5 18 12 18C14.5 18 16.5 17 18 14" stroke="#FDE047" strokeWidth="2.2" strokeLinecap="round" />
+          <circle cx="8.5" cy="10" r="1.5" fill="white" stroke="none" />
+          <circle cx="12" cy="8.5" r="1.5" fill="white" stroke="none" />
+          <circle cx="15.5" cy="10" r="1.5" fill="white" stroke="none" />
+        </svg>
+      );
+    case 'pediatric':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 21.2C11.6 21 4.5 16.2 4.5 9.8C4.5 6.5 7 4 10 4C11.5 4 12 4.8 12 4.8C12 4.8 12.5 4 14 4C17 4 19.5 6.5 19.5 9.8C19.5 16.2 12.4 21 12 21.2Z" fill="currentColor" fillOpacity="0.25" />
+          <path d="M9 11C10 13 14 13 15 11" stroke="#FEF08A" strokeWidth="2.2" strokeLinecap="round" />
+        </svg>
+      );
+    case 'orthodontics':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 13C6 9 18 9 21 13" stroke="#93C5FD" strokeWidth="2.2" strokeLinecap="round" />
+          <rect x="6" y="9.5" width="3" height="3" rx="0.8" fill="#FDE047" stroke="none" />
+          <rect x="10.5" y="8" width="3" height="3" rx="0.8" fill="#FDE047" stroke="none" />
+          <rect x="15" y="9.5" width="3" height="3" rx="0.8" fill="#FDE047" stroke="none" />
+        </svg>
+      );
+    case 'implants':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 3H15V6H9V3Z" fill="currentColor" fillOpacity="0.25" stroke="currentColor" strokeWidth="1.6" />
+          <path d="M10 6V9M14 6V9" stroke="currentColor" strokeWidth="1.6" />
+          <path d="M8 9H16L15 15H9L8 9Z" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.6" />
+          <path d="M10 15L11 21H13L14 15" stroke="#93C5FD" strokeWidth="2" strokeLinecap="round" />
+          <path d="M9.5 17H14.5M10.5 19H13.5" stroke="#FDE047" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      );
+    case 'preventive':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2.5L19 5.5V11C19 16.5 15.8 20.2 12 22C8.2 20.2 5 16.5 5 11V5.5L12 2.5Z" fill="currentColor" fillOpacity="0.25" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M9 12L11 14L15 10" stroke="#86EFAC" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    default: {
+      const FallbackIcon = CATEGORY_ICON_MAP[iconName || ''] || ShieldCheck;
+      return <FallbackIcon className={className} strokeWidth={2} />;
+    }
+  }
+}
 
 const AUTOPLAY_MS = 5000;
 const MEDIA_MS = 2800;
@@ -516,7 +629,6 @@ function TreatmentCard({
   onBook
 }: TreatmentCardProps) {
   const { t } = useLanguage();
-  const Icon = CATEGORY_ICON_MAP[cat.icon_name] || Activity;
 
   // Determine images: cat.images array, cat.image_url string, or fallback presets.
   // Limitation: minimum 1, maximum 3 images per category.
@@ -598,8 +710,8 @@ function TreatmentCard({
         {/* Collapsed label: icon, number, category name, and procedures count */}
         <div className={styles.label}>
           <div className="flex items-start justify-between gap-2">
-            <span className="w-10 h-10 shrink-0 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center">
-              <Icon className="w-5 h-5 text-white" />
+            <span className="w-11 h-11 shrink-0 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 shadow-md flex items-center justify-center transition-transform group-hover:scale-105">
+              <CategoryInsignia slug={cat.slug} iconName={cat.icon_name} className="w-5 h-5 text-white drop-shadow-xs" />
             </span>
             <span className={styles.meta}>{num}</span>
           </div>
@@ -647,12 +759,17 @@ function TreatmentCard({
           </span>
         </div>
 
-        <h3
-          className={`${styles.reveal} mt-2 text-xl lg:text-2xl font-black text-[#0F1A48] leading-tight tracking-tight`}
-          style={{ '--i': 1 } as React.CSSProperties}
-        >
-          {name}
-        </h3>
+        <div className="flex items-center gap-2.5 mt-2">
+          <span className="w-8 h-8 rounded-xl bg-[#0F1A48] flex items-center justify-center shrink-0 shadow-xs">
+            <CategoryInsignia slug={cat.slug} iconName={cat.icon_name} className="w-4 h-4 text-white" />
+          </span>
+          <h3
+            className={`${styles.reveal} text-xl lg:text-2xl font-black text-[#0F1A48] leading-tight tracking-tight`}
+            style={{ '--i': 1 } as React.CSSProperties}
+          >
+            {name}
+          </h3>
+        </div>
 
         <p
           className={`${styles.reveal} mt-2 text-xs sm:text-sm text-[#0F1A48]/70 leading-relaxed line-clamp-2 lg:line-clamp-3`}

@@ -12,11 +12,11 @@ import {
   Sparkles,
   ArrowRight,
   Stethoscope,
-  MessageSquare,
   Star,
-  Zap,
+  ScanLine,
   BadgeCheck,
 } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 
 interface HeroSectionProps {
   settings: SiteSettings;
@@ -173,7 +173,7 @@ export function HeroSection({ settings, doctor }: HeroSectionProps) {
                   rel="noopener noreferrer"
                   className="px-6 py-4 bg-white hover:bg-[#EEF2FF] text-[#0F1A48] border border-slate-300/90 rounded-full font-bold text-sm sm:text-base shadow-xs hover:border-[#0F1A48]/30 hover:-translate-y-0.5 active:scale-[0.98] transition-all flex items-center gap-2 cursor-pointer"
                 >
-                  <MessageSquare className="w-5 h-5 text-emerald-600" />
+                  <WhatsAppIcon className="w-5 h-5 text-[#25D366] fill-current" />
                   <span>{t('WhatsApp Chat', 'হোয়াটসঅ্যাপে পরামর্শ')}</span>
                 </a>
               </div>
@@ -330,7 +330,7 @@ export function HeroSection({ settings, doctor }: HeroSectionProps) {
 
                 {/* Floating Pill 2 (Bottom Right) */}
                 <div className="absolute -bottom-3 -right-3 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-lg animate-float-slow">
-                  <Zap className="w-3.5 h-3.5 text-amber-500" />
+                  <ScanLine className="w-3.5 h-3.5 text-blue-600" />
                   <span className="text-xs font-black text-[#0F1A48]">
                     {t('Digital RVG X-Ray ৳200', 'ডিজিটাল RVG এক্স-রে ৳২০০')}
                   </span>

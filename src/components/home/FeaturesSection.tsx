@@ -18,6 +18,9 @@ import {
   Zap,
   Wind,
   Video,
+  BatteryCharging,
+  Thermometer,
+  Camera,
   HeartPulse,
   AlertCircle,
   HeartHandshake,
@@ -37,13 +40,16 @@ const ICON_MAP: Record<string, LucideIcon> = {
   UserCheck,
   Smile,
   ShieldCheck,
-  Flame,
+  Flame: ShieldCheck, // Formal sterile badge instead of flame
   PackageCheck,
   ScanLine,
   CheckCircle2,
-  Zap,
-  Wind,
-  Video,
+  Zap: BatteryCharging, // Formal hospital power backup instead of cartoon lightning
+  BatteryCharging,
+  Wind: Thermometer, // Formal climate control instead of wind
+  Thermometer,
+  Video: Camera, // Formal surveillance camera instead of camcorder
+  Camera,
   HeartPulse,
   AlertCircle,
   HeartHandshake,

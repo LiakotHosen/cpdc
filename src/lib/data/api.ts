@@ -9,7 +9,8 @@ import {
   INITIAL_REVIEWS,
   INITIAL_FAQS,
   INITIAL_BLOGS,
-  INITIAL_APPOINTMENTS
+  INITIAL_APPOINTMENTS,
+  INITIAL_ANNOUNCEMENTS
 } from './initial-data';
 import {
   SiteSettings,
@@ -22,7 +23,8 @@ import {
   Review,
   FAQ,
   BlogPost,
-  Appointment
+  Appointment,
+  TopAnnouncement
 } from '../types';
 import { createClient } from '../supabase/client';
 
@@ -37,7 +39,8 @@ const STORAGE_KEYS = {
   REVIEWS: 'cpdc_reviews',
   FAQS: 'cpdc_faqs',
   BLOGS: 'cpdc_blogs',
-  APPOINTMENTS: 'cpdc_appointments'
+  APPOINTMENTS: 'cpdc_appointments',
+  ANNOUNCEMENTS: 'cpdc_announcements'
 };
 
 function getLocal<T>(key: string, fallback: T): T {
@@ -622,3 +625,123 @@ export async function deleteAppointment(id: string): Promise<void> {
   }
   setLocal(STORAGE_KEYS.APPOINTMENTS, updated);
 }
+
+// 12. Top Bar Announcements & Offers
+export async function getAnnouncements(): Promise<TopAnnouncement[]> {
+  const supabase = createClient();
+  if (supabase) {
+    try {
+      const { data, error } = await supabase
+        .from('announcements')
+        .select('*')
+        .order('sort_order', { ascending: true });
+      if (!error && data && data.length > 0) return data;
+    } catch {
+      // fallback
+    }
+  }
+  return getLocal<TopAnnouncement[]>(STORAGE_KEYS.ANNOUNCEMENTS, INITIAL_ANNOUNCEMENTS);
+}
+
+export async function saveAnnouncement(announcement: Partial<TopAnnouncement>): Promise<TopAnnouncement> {
+  const list = await getAnnouncements();
+  let saved: TopAnnouncement;
+  let updatedList: TopAnnouncement[];
+
+  if (announcement.id) {
+    saved = {
+      ...list.find(a => a.id === announcement.id),
+      ...announcement,
+      updated_at: new Date().toISOString()
+    } as TopAnnouncement;
+    updatedList = list.map(a => (a.id === announcement.id ? saved : a));
+  } else {
+    saved = {
+      id: 'ann-' + Date.now(),
+      occasion_en: announcement.occasion_en || 'Special Offer',
+      occasion_bn: announcement.occasion_bn || 'বিশেষ অফার',
+      benefit_en: announcement.benefit_en || '',
+      benefit_bn: announcement.benefit_bn || '',
+      badge_text_en: announcement.badge_text_en || 'OFFER',
+      badge_text_bn: announcement.badge_text_bn || 'অফার',
+      badge_color: announcement.badge_color || 'emerald',
+      action_type: announcement.action_type || 'booking',
+      action_text_en: announcement.action_text_en || 'Book Now',
+      action_text_bn: announcement.action_text_bn || 'সিরিয়াল নিন',
+      action_url: announcement.action_url || '',
+      is_active: announcement.is_active ?? true,
+      sort_order: list.length + 1,
+      duration_seconds: announcement.duration_seconds || 15,
+      created_at: new Date().toISOString()
+    } as TopAnnouncement;
+    updatedList = [...list, saved];
+  }
+
+  const supabase = createClient();
+  if (supabase) {
+    try {
+      await supabase.from('announcements').upsert(saved);
+    } catch {
+      // fallback
+    }
+  }
+
+  setLocal(STORAGE_KEYS.ANNOUNCEMENTS, updatedList);
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('cpdc_announcements_updated', { detail: updatedList }));
+  }
+  return saved;
+}
+
+export async function deleteAnnouncement(id: string): Promise<void> {
+  const list = await getAnnouncements();
+  const updated = list.filter(a => a.id !== id);
+  const supabase = createClient();
+  if (supabase) {
+    try {
+      await supabase.from('announcements').delete().eq('id', id);
+    } catch {
+      // fallback
+    }
+  }
+  setLocal(STORAGE_KEYS.ANNOUNCEMENTS, updated);
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('cpdc_announcements_updated', { detail: updated }));
+  }
+}
+
+export async function toggleAnnouncementActive(id: string, is_active: boolean): Promise<void> {
+  const list = await getAnnouncements();
+  const updated = list.map(a => (a.id === id ? { ...a, is_active, updated_at: new Date().toISOString() } : a));
+  const supabase = createClient();
+  if (supabase) {
+    try {
+      await supabase.from('announcements').update({ is_active }).eq('id', id);
+    } catch {
+      // fallback
+    }
+  }
+  setLocal(STORAGE_KEYS.ANNOUNCEMENTS, updated);
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('cpdc_announcements_updated', { detail: updated }));
+  }
+}
+
+export async function reorderAnnouncements(reordered: TopAnnouncement[]): Promise<void> {
+  const updated = reordered.map((a, index) => ({ ...a, sort_order: index + 1 }));
+  const supabase = createClient();
+  if (supabase) {
+    try {
+      for (const item of updated) {
+        await supabase.from('announcements').update({ sort_order: item.sort_order }).eq('id', item.id);
+      }
+    } catch {
+      // fallback
+    }
+  }
+  setLocal(STORAGE_KEYS.ANNOUNCEMENTS, updated);
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('cpdc_announcements_updated', { detail: updated }));
+  }
+}
+

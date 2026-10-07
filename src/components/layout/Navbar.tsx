@@ -6,7 +6,9 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useAppointmentModal } from '@/lib/context/AppointmentModalContext';
-import { Phone, MessageSquare, Calendar, Menu, X, Globe, Clock, MapPin, ChevronRight } from 'lucide-react';
+import { Phone, Calendar, Menu, X, Globe, ChevronRight } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
+import { TopAnnouncementBar } from '@/components/layout/TopAnnouncementBar';
 
 export function Navbar() {
   const { lang, toggleLang, t } = useLanguage();
@@ -40,51 +42,8 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full transition-all duration-300">
-      {/* Top Notification & Quick Emergency Bar */}
-      <div className="bg-navy-dark text-slate-300 text-[11.5px] py-1.5 px-4 border-b border-white/10 hidden md:block">
-        <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-1.5 text-slate-300 font-medium">
-              <MapPin className="w-3.5 h-3.5 text-teal-400 shrink-0" />
-              <span>
-                {t(
-                  '2nd Floor, Mofizuddin Tower, Pollibidyut, Ashulia, Savar',
-                  '২য় তলা, মফিজ উদ্দিন টাওয়ার (ইউসিবি ব্যাংকের পাশে), পল্লীবিদ্যুৎ, আশুলিয়া, সাভার'
-                )}
-              </span>
-            </div>
-            <div className="flex items-center gap-1.5 text-slate-300 font-medium">
-              <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-              <span>
-                {t(
-                  'Consulting: 4:00 PM – 9:00 PM Daily (Dr. Aktar Zahan Ony)',
-                  'রোগী দেখার সময়: প্রতিদিন বিকাল ৪:০০ – রাত ৯:০০ (ডা. আক্তার জাহান অনি)'
-                )}
-              </span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <a
-              href="https://wa.me/8801324558811?text=Hello%20Care%20Point%20Dental,%20I%20want%20to%20consult%20Dr.%20Aktar%20Zahan%20Ony"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors font-semibold"
-            >
-              <MessageSquare className="w-3.5 h-3.5" />
-              <span>WhatsApp: +880 1324-558811</span>
-            </a>
-            <span className="text-slate-600">|</span>
-            <a
-              href="tel:+8801324558811"
-              className="flex items-center gap-1.5 text-white hover:text-amber-300 font-bold transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5 text-amber-400" />
-              <span>01324-558811</span>
-            </a>
-          </div>
-        </div>
-      </div>
+      {/* Top Interactive Announcement & Notice Bar */}
+      <TopAnnouncementBar />
 
       {/* Main Modern Clean Navbar */}
       <nav
@@ -229,7 +188,7 @@ export function Navbar() {
                   rel="noopener noreferrer"
                   className="py-2.5 px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
                 >
-                  <MessageSquare className="w-3.5 h-3.5" />
+                  <WhatsAppIcon className="w-3.5 h-3.5 fill-current" />
                   <span>WhatsApp</span>
                 </a>
               </div>

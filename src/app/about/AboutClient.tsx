@@ -29,13 +29,13 @@ import {
   Layers,
   ChevronRight,
   ExternalLink,
-  MessageSquare,
   Building,
   Check,
   Smile,
   Activity,
   Microscope,
 } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 
 interface AboutClientProps {
   doctor: Doctor;
@@ -530,9 +530,9 @@ export function AboutClient({ doctor, settings, features }: AboutClientProps) {
                   href={`https://wa.me/8801324558811?text=Hello%20Dr.%20Ony,%20I%20want%20to%20consult%20at%20Care%20Point%20Dental`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-3.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold rounded-xl text-sm border border-emerald-200 transition-all flex items-center gap-2"
+                  className="px-5 py-3.5 bg-emerald-50 hover:bg-[#25D366] text-emerald-800 hover:text-white font-bold rounded-xl text-sm border border-emerald-200 transition-all flex items-center gap-2 group shadow-xs"
                 >
-                  <MessageSquare className="w-4 h-4 text-emerald-600" />
+                  <WhatsAppIcon className="w-4 h-4 text-[#25D366] group-hover:text-white fill-current transition-colors" />
                   <span>WhatsApp</span>
                 </a>
               </div>
@@ -780,7 +780,7 @@ export function AboutClient({ doctor, settings, features }: AboutClientProps) {
               rel="noopener noreferrer"
               className="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs sm:text-sm shadow-md flex items-center gap-2 transition-all cursor-pointer"
             >
-              <MessageSquare className="w-4 h-4" />
+              <WhatsAppIcon className="w-4 h-4 fill-white" />
               <span>WhatsApp: 01324-558811</span>
             </a>
 

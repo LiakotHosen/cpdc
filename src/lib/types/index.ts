@@ -62,6 +62,10 @@ export interface Doctor {
   cover_url?: string;
   timeline?: DoctorTimelineItem[];
   is_active: boolean;
+  experience_years?: string;
+  patients_treated?: string;
+  specialties_en?: string[];
+  specialties_bn?: string[];
 }
 
 export interface Feature {
@@ -198,5 +202,25 @@ export interface Appointment {
   status: 'pending' | 'confirmed' | 'completed' | 'cancelled';
   admin_notes?: string;
   created_at: string;
+  updated_at?: string;
+}
+
+export interface TopAnnouncement {
+  id: string;
+  occasion_en: string;
+  occasion_bn: string;
+  benefit_en: string;
+  benefit_bn: string;
+  badge_text_en?: string;
+  badge_text_bn?: string;
+  badge_color?: 'emerald' | 'amber' | 'rose' | 'indigo' | 'purple' | 'teal';
+  action_type: 'booking' | 'whatsapp' | 'link' | 'none';
+  action_text_en?: string;
+  action_text_bn?: string;
+  action_url?: string;
+  is_active: boolean;
+  sort_order: number;
+  duration_seconds: number;
+  created_at?: string;
   updated_at?: string;
 }

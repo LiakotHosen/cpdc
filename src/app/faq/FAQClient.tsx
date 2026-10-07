@@ -8,10 +8,10 @@ import {
   HelpCircle,
   Search,
   ChevronDown,
-  MessageSquare,
   Calendar,
   Sparkles,
 } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 
 interface FAQClientProps {
   faqs: FAQ[];
@@ -189,9 +189,9 @@ export function FAQClient({ faqs }: FAQClientProps) {
               href="https://wa.me/8801324558811"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 bg-[#EEF2FF] hover:bg-[#0F1A48] text-[#0F1A48] hover:text-white border border-[#0F1A48]/15 rounded-xl text-xs font-bold shadow-xs transition-all flex items-center gap-1.5"
+              className="px-5 py-2.5 bg-emerald-50 hover:bg-[#25D366] text-emerald-800 hover:text-white border border-emerald-200/80 rounded-xl text-xs font-bold shadow-xs transition-all flex items-center gap-1.5 group"
             >
-              <MessageSquare className="w-4 h-4" />
+              <WhatsAppIcon className="w-4 h-4 text-[#25D366] group-hover:text-white fill-current transition-colors" />
               <span>WhatsApp</span>
             </a>
             <button

@@ -9,7 +9,8 @@ import {
   Review,
   FAQ,
   BlogPost,
-  Appointment
+  Appointment,
+  TopAnnouncement
 } from '../types';
 
 export const INITIAL_SITE_SETTINGS: SiteSettings = {
@@ -56,6 +57,20 @@ export const INITIAL_DOCTOR: Doctor = {
   photo_url: '/images/doctor-aktar-zahan-ony.webp',
   cover_url: '/images/about-clinic-cover.webp',
   is_active: true,
+  experience_years: '7+',
+  patients_treated: '3,000+',
+  specialties_en: [
+    'Advanced Rotary Endodontics (Single Sitting RCT)',
+    'Aesthetic Smile Architecture & Biomimetic Restorations',
+    'Painless Oral Surgery & Impacted Wisdom Tooth Extractions',
+    'Conservative Pediatric & Preventive Dental Healthcare'
+  ],
+  specialties_bn: [
+    'উন্নত রোটারি এন্ডোডন্টিক্স (ব্যথামুক্ত সিঙ্গেল সিটিং রুট ক্যানেল)',
+    'এসথেটিক স্মাইল আর্কিটেকচার ও বায়োমিমেটিক ভেনিয়ার',
+    'ব্যথাহীন মাইনর ওরাল সার্জারি ও আক্কেল দাঁত তোলা',
+    'প্রাকৃতিক দাঁত সংরক্ষণ, শিশু ও পারিবারিক ডেন্টাল কেয়ার'
+  ],
   timeline: [
     {
       id: 'tl-1',
@@ -195,7 +210,7 @@ export const INITIAL_FEATURES: Feature[] = [
     title_bn: 'Autoclave ও UV Sterilizer প্রযুক্তি',
     description_en: 'All tools undergo rigorous multi-stage autoclave and ultraviolet sterilization.',
     description_bn: 'প্রতিটি মেটাল ইন্সট্রুমেন্ট স্বয়ংক্রিয় অটোক্লেভ ও ইউভি মেশিনে জীবাণুমুক্ত হয়।',
-    icon_name: 'Flame',
+    icon_name: 'ShieldCheck',
     sort_order: 6,
     is_active: true
   },
@@ -235,7 +250,7 @@ export const INITIAL_FEATURES: Feature[] = [
     title_bn: 'সার্বক্ষণিক বিদ্যুৎ ব্যবস্থা (Power Backup)',
     description_en: 'Instant generator backup ensures uninterrupted dental procedures.',
     description_bn: 'চিকিৎসাধীন অবস্থায় বিদ্যুৎ বিভ্রাট এড়াতে সার্বক্ষণিক ব্যাকআপ ব্যবস্থা।',
-    icon_name: 'Zap',
+    icon_name: 'BatteryCharging',
     sort_order: 10,
     is_active: true
   },
@@ -245,7 +260,7 @@ export const INITIAL_FEATURES: Feature[] = [
     title_bn: 'শীতাতপ নিয়ন্ত্রিত (AC) পরিবেশ',
     description_en: 'Relaxing, climate-controlled clinical suites for maximum patient ease.',
     description_bn: 'চেম্বারে অপেক্ষার সময় এবং চিকিৎসা চলাকালীন আরামদায়ক পরিবেশ।',
-    icon_name: 'Wind',
+    icon_name: 'Thermometer',
     sort_order: 11,
     is_active: true
   },
@@ -255,7 +270,7 @@ export const INITIAL_FEATURES: Feature[] = [
     title_bn: 'সার্বক্ষণিক সিসি ক্যামেরা নিরাপত্তা',
     description_en: 'Round-the-clock surveillance for patient and asset protection.',
     description_bn: 'নিরাপত্তা নিশ্চিত করতে পুরো ক্লিনিক সার্বক্ষণিক নজরদারিতে থাকে।',
-    icon_name: 'Video',
+    icon_name: 'Camera',
     sort_order: 12,
     is_active: true
   },
@@ -349,7 +364,7 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     name_bn: 'দাঁতের ফিলিং, ক্যাপ ও ব্রিজ',
     description_en: 'Tooth-colored composite fillings, durable PFM and high-strength Zirconia ceramic crowns and bridges.',
     description_bn: 'ক্ষয়প্রাপ্ত দাঁত মেরামত এবং ক্যাপ ও ব্রিজের মাধ্যমে দাঁত সংরক্ষণ।',
-    icon_name: 'Shield',
+    icon_name: 'ShieldCheck',
     sort_order: 3,
     images: [
       '/images/dental_3d_shield.jpg',
@@ -364,7 +379,7 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     name_bn: 'রুট ক্যানেল চিকিৎসা',
     description_en: 'Single or multi-visit painless root canal therapy for anterior and posterior teeth saving infected natural teeth.',
     description_bn: 'প্রদাহ বা ইনফেকশনে আক্রান্ত প্রাকৃতিক দাঁত রক্ষা করার ব্যথামুক্ত চিকিৎসা।',
-    icon_name: 'Activity',
+    icon_name: 'Microscope',
     sort_order: 4,
     images: [
       '/images/services/cat-diagnostic-3d.jpg',
@@ -379,7 +394,7 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     name_bn: 'ওরাল ও ডেন্টাল সার্জারি',
     description_en: 'Simple and surgical tooth extractions, impacted wisdom tooth removal, and periapical surgery.',
     description_bn: 'আক্কেল দাঁতের জটিল অপারেশন ও সার্জিক্যাল পদ্ধতিতে ব্যথামুক্ত দাঁত অপসারণ।',
-    icon_name: 'Scissors',
+    icon_name: 'Crosshair',
     sort_order: 5,
     images: [
       '/images/services/cat-surgery-3d.jpg',
@@ -394,7 +409,7 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     name_bn: 'কৃত্রিম দাঁত ও ডেনচার',
     description_en: 'Flexible dentures, acrylic partials, cast partials, and full complete denture solutions.',
     description_bn: 'হারিয়ে যাওয়া দাঁতের বদলে সহজে ব্যবহারযোগ্য আরামদায়ক কৃত্রিম দাঁত।',
-    icon_name: 'Layers',
+    icon_name: 'Smile',
     sort_order: 6,
     images: [
       '/images/services/cat-cosmetic-3d.jpg',
@@ -409,7 +424,7 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     name_bn: 'শিশুদের দাঁতের চিকিৎসা',
     description_en: 'Child-friendly dental fillings, painless primary extractions, and preventive sealants.',
     description_bn: 'শিশুদের দাঁতের যত্ন ও ক্ষয়রোধে বিশেষায়িত ও মমতাময়ী চিকিৎসা সেবা।',
-    icon_name: 'Baby',
+    icon_name: 'Heart',
     sort_order: 7,
     images: [
       '/images/services-hero-bg.jpg',
@@ -439,7 +454,7 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     name_bn: 'স্থায়ী ডেন্টাল ইমপ্ল্যান্ট',
     description_en: 'Modern titanium implants restoring permanent functional and aesthetic teeth.',
     description_bn: 'প্রাকৃতিক দাঁতের মতো স্থায়ীভাবে টাইটানিয়াম পোস্ট বসিয়ে নতুন দাঁত প্রতিস্থাপন।',
-    icon_name: 'Anchor',
+    icon_name: 'Award',
     sort_order: 9,
     images: [
       '/images/dental_3d_shield.jpg',
@@ -1546,3 +1561,58 @@ export const INITIAL_APPOINTMENTS: Appointment[] = [
     created_at: '2026-09-04T15:30:00Z'
   }
 ];
+
+export const INITIAL_ANNOUNCEMENTS: TopAnnouncement[] = [
+  {
+    id: 'ann-1',
+    occasion_en: 'Holy Ramadan Special Dental Care Offer',
+    occasion_bn: 'পবিত্র মাহে রমজান উপলক্ষে বিশেষ অফার',
+    benefit_en: 'Flat 25% Discount on Scaling & Polishing + Free Oral Health Consultation!',
+    benefit_bn: 'দাঁতের স্কেলিং ও পলিশিং-এ ২৫% বিশেষ ছাড় এবং সাথে ফ্রি ওরাল হেলথ চেকআপ!',
+    badge_text_en: 'RAMADAN OFFER',
+    badge_text_bn: 'রমজান অফার',
+    badge_color: 'emerald',
+    action_type: 'booking',
+    action_text_en: 'Book Serial Now',
+    action_text_bn: 'সিরিয়াল কনফার্ম করুন',
+    is_active: true,
+    sort_order: 1,
+    duration_seconds: 15,
+    created_at: '2026-09-01T00:00:00Z'
+  },
+  {
+    id: 'ann-2',
+    occasion_en: 'Shab-e-Barat Flash Discount',
+    occasion_bn: 'পবিত্র শবে বরাত উপলক্ষে স্পেশাল ডিসকাউন্ট',
+    benefit_en: 'Special 20% discount on Root Canal & Tooth-Colored Aesthetic Fillings.',
+    benefit_bn: 'রুট ক্যানেল ও নন্দনতাত্ত্বিক লাইট কিউর ফিলিং-এ ২০% ছাড় ও ফ্রি ডিজিটাল আরভিজি এক্স-রে!',
+    badge_text_en: 'FLASH SALE',
+    badge_text_bn: 'ফ্ল্যাশ সেল',
+    badge_color: 'amber',
+    action_type: 'whatsapp',
+    action_text_en: 'Consult on WhatsApp',
+    action_text_bn: 'হোয়াটসঅ্যাপে জানুন',
+    is_active: true,
+    sort_order: 2,
+    duration_seconds: 15,
+    created_at: '2026-09-02T00:00:00Z'
+  },
+  {
+    id: 'ann-3',
+    occasion_en: 'Friday Family & Kids Oral Screening',
+    occasion_bn: 'প্রতি শুক্রবার শিশু ও পরিবারের ফ্রি ডেন্টাল ক্যাম্প',
+    benefit_en: 'Free dental checkup & oral hygiene counseling for kids & seniors every Friday.',
+    benefit_bn: 'প্রতি শুক্রবার শিশু ও বয়োজ্যেষ্ঠদের জন্য সম্পূর্ণ ফ্রি ডেন্টাল স্ক্রীনিং ও পরামর্শ।',
+    badge_text_en: 'SPECIAL NOTICE',
+    badge_text_bn: 'বিশেষ নোটিশ',
+    badge_color: 'indigo',
+    action_type: 'booking',
+    action_text_en: 'Book Free Consultation',
+    action_text_bn: 'ফ্রি সিরিয়াল বুক করুন',
+    is_active: true,
+    sort_order: 3,
+    duration_seconds: 15,
+    created_at: '2026-09-03T00:00:00Z'
+  }
+];
+

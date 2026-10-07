@@ -6,7 +6,8 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/lib/context/LanguageContext';
 import { useAppointmentModal } from '@/lib/context/AppointmentModalContext';
-import { Phone, Mail, MapPin, Clock, MessageSquare, QrCode, ShieldCheck, Heart, Lock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, QrCode, ShieldCheck, Heart, Lock } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 import QRCode from 'qrcode';
 
 export function Footer() {
@@ -171,10 +172,10 @@ export function Footer() {
                   href="https://wa.me/8801324558811"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-[#EEF2FF] hover:bg-[#0F1A48] text-[#0F1A48] hover:text-white border border-[#0F1A48]/15 flex items-center justify-center transition-colors shadow-xs"
+                  className="w-8 h-8 rounded-lg bg-[#EEF2FF] hover:bg-[#25D366] text-[#0F1A48] hover:text-white border border-[#0F1A48]/15 flex items-center justify-center transition-colors shadow-xs"
                   aria-label="WhatsApp"
                 >
-                  <MessageSquare className="w-4 h-4" />
+                  <WhatsAppIcon className="w-4 h-4 fill-current" />
                 </a>
               </div>
             </div>

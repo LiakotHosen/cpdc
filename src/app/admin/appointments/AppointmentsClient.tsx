@@ -7,7 +7,6 @@ import {
   CalendarCheck,
   Search,
   Phone,
-  MessageSquare,
   Clock,
   CheckCircle,
   XCircle,
@@ -17,6 +16,7 @@ import {
   Calendar,
   FileText,
 } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 
 interface AppointmentsClientProps {
   initialAppointments: Appointment[];
@@ -168,7 +168,7 @@ export function AppointmentsClient({ initialAppointments }: AppointmentsClientPr
                           className="p-1 rounded bg-emerald-50 text-emerald-600 hover:bg-emerald-100"
                           title="WhatsApp chat"
                         >
-                          <MessageSquare className="w-3 h-3" />
+                          <WhatsAppIcon className="w-3 h-3 fill-[#25D366]" />
                         </a>
                       </div>
                     </td>
@@ -319,7 +319,7 @@ export function AppointmentsClient({ initialAppointments }: AppointmentsClientPr
                 rel="noopener noreferrer"
                 className="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold text-center flex items-center justify-center gap-1.5"
               >
-                <MessageSquare className="w-3.5 h-3.5" />
+                <WhatsAppIcon className="w-3.5 h-3.5 fill-white" />
                 <span>WhatsApp</span>
               </a>
             </div>

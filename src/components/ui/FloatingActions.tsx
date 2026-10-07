@@ -3,7 +3,8 @@
 import { usePathname } from 'next/navigation';
 import { useAppointmentModal } from '@/lib/context/AppointmentModalContext';
 import { useLanguage } from '@/lib/context/LanguageContext';
-import { MessageSquare, Phone, Calendar } from 'lucide-react';
+import { Phone, Calendar } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 
 export function FloatingActions() {
   const pathname = usePathname();
@@ -42,12 +43,12 @@ export function FloatingActions() {
           href="https://wa.me/8801324558811?text=Hello%20Care%20Point%20Dental%20Clinic,%20I%20would%20like%20to%20inquire%20about%20dental%20appointment"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-xl hover:bg-emerald-600 hover:scale-105 transition-all"
+          className="relative w-12 h-12 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-full flex items-center justify-center shadow-xl hover:scale-105 transition-all"
           title="Chat on WhatsApp: +880 1324-558811"
           aria-label="Chat on WhatsApp"
         >
           <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-white animate-pulse" />
-          <MessageSquare className="w-6 h-6" />
+          <WhatsAppIcon className="w-6 h-6 fill-white" />
         </a>
       </div>
     </div>

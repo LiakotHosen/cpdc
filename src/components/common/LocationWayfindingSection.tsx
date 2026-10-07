@@ -10,7 +10,6 @@ import {
   Copy,
   Check,
   Phone,
-  MessageSquare,
   Clock,
   Compass,
   Building2,
@@ -19,6 +18,7 @@ import {
   ShieldCheck,
   Car
 } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
@@ -186,7 +186,7 @@ export function LocationWayfindingSection({
                 className="py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                 title="Ask Location on WhatsApp"
               >
-                <MessageSquare className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4 fill-current" />
                 <span>WhatsApp</span>
               </a>
             </div>

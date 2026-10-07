@@ -249,6 +249,34 @@ export function DoctorAdminClient({ initialDoctor }: DoctorAdminClientProps) {
               />
             </div>
           </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-1">
+            <div>
+              <label className="block font-bold text-slate-700 mb-1">
+                Clinical Experience (e.g. 7+ Years)
+              </label>
+              <input
+                type="text"
+                value={doctor.experience_years || ''}
+                onChange={(e) => setDoctor({ ...doctor, experience_years: e.target.value })}
+                placeholder="7+ Years / ৭+ বছর"
+                className="w-full px-3 py-2 border border-slate-300 rounded-xl bg-slate-50 focus:bg-white text-slate-800"
+              />
+            </div>
+
+            <div>
+              <label className="block font-bold text-slate-700 mb-1">
+                Treated Patients Count (e.g. 3,000+)
+              </label>
+              <input
+                type="text"
+                value={doctor.patients_treated || ''}
+                onChange={(e) => setDoctor({ ...doctor, patients_treated: e.target.value })}
+                placeholder="3,000+ / ৩,০০০+"
+                className="w-full px-3 py-2 border border-slate-300 rounded-xl bg-slate-50 focus:bg-white text-slate-800"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Educational Background & Career Milestones Timeline */}
