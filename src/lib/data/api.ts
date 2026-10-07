@@ -110,11 +110,18 @@ export async function getDoctor(): Promise<Doctor> {
     }
   }
   const local = getLocal<Doctor>(STORAGE_KEYS.DOCTOR, INITIAL_DOCTOR);
+  const isOldLocal = !local.timeline || local.timeline.length <= 6 || local.title_en === 'Oral & Dental Surgeon';
+  if (isOldLocal && typeof window !== 'undefined') {
+    setLocal(STORAGE_KEYS.DOCTOR, INITIAL_DOCTOR);
+  }
   return {
     ...INITIAL_DOCTOR,
-    ...local,
+    ...(isOldLocal ? {} : local),
     cover_url: local.cover_url || INITIAL_DOCTOR.cover_url,
-    timeline: local.timeline && local.timeline.length > 0 ? local.timeline : INITIAL_DOCTOR.timeline
+    timeline: !isOldLocal && local.timeline && local.timeline.length > 6 ? local.timeline : INITIAL_DOCTOR.timeline,
+    trainings: INITIAL_DOCTOR.trainings,
+    languages_en: INITIAL_DOCTOR.languages_en,
+    languages_bn: INITIAL_DOCTOR.languages_bn,
   };
 }
 
@@ -495,7 +502,12 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       // fallback
     }
   }
-  return getLocal<BlogPost[]>(STORAGE_KEYS.BLOGS, INITIAL_BLOGS);
+  const local = getLocal<BlogPost[]>(STORAGE_KEYS.BLOGS, INITIAL_BLOGS);
+  if (Array.isArray(local) && local.length < INITIAL_BLOGS.length) {
+    setLocal(STORAGE_KEYS.BLOGS, INITIAL_BLOGS);
+    return INITIAL_BLOGS;
+  }
+  return local;
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {

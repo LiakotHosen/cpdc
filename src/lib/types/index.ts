@@ -66,6 +66,17 @@ export interface Doctor {
   patients_treated?: string;
   specialties_en?: string[];
   specialties_bn?: string[];
+  phone?: string;
+  languages_en?: string[];
+  languages_bn?: string[];
+  trainings?: {
+    id: string;
+    title_en: string;
+    title_bn: string;
+    year: string;
+    focus_en: string;
+    focus_bn: string;
+  }[];
 }
 
 export interface Feature {

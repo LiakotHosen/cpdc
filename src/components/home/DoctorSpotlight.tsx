@@ -37,9 +37,9 @@ export function DoctorSpotlight({ doctor }: DoctorSpotlightProps) {
   const { openBooking } = useAppointmentModal();
 
   const doctorName = t(doctor.name_en || 'Dr. Aktar Zahan Ony', doctor.name_bn || 'ডা. আক্তার জাহান অনি');
-  const doctorTitle = t(doctor.title_en || 'Oral & Dental Surgeon', doctor.title_bn || 'ওরাল এন্ড ডেন্টাল সার্জন');
-  const doctorDegrees = doctor.degrees || t(doctor.qualifications_en || 'BDS, MPH, JU', doctor.qualifications_bn || 'বিডিএস (রাবি), এমপিএইচ (জেইউ)');
-  const experienceYears = doctor.experience_years || '7+';
+  const doctorTitle = t(doctor.title_en || 'Chief Oral & Dental Surgeon', doctor.title_bn || 'চিফ ওরাল অ্যান্ড ডেন্টাল সার্জন');
+  const doctorDegrees = doctor.degrees || t(doctor.qualifications_en || 'BDS, MPH (JU - Enrolled)', doctor.qualifications_bn || 'বিডিএস (রাবি), এমপিএইচ (জেইউ - চলমান)');
+  const experienceYears = doctor.experience_years || '5+';
   const treatedPatients = doctor.patients_treated || '3,000+';
 
   return (
@@ -193,6 +193,11 @@ export function DoctorSpotlight({ doctor }: DoctorSpotlightProps) {
                 <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 text-amber-900 text-xs font-bold border border-amber-200 shadow-2xs">
                   <Star className="w-3.5 h-3.5 text-amber-600 fill-amber-500" />
                   <span>{t(`${treatedPatients} Treated Patients`, `${treatedPatients} সফল চিকিৎসা ও হাসিমুখ`)}</span>
+                </div>
+
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 text-blue-900 text-xs font-bold border border-blue-200 shadow-2xs">
+                  <span className="text-xs">🌐</span>
+                  <span>{t('Languages: Bangla, English, Hindi', 'ভাষা: বাংলা • ইংরেজি • হিন্দি')}</span>
                 </div>
               </div>
             </ScrollReveal>

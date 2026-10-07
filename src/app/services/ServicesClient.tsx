@@ -25,6 +25,9 @@ import {
   UserCheck,
 } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { InteractiveTreatmentShowcase } from '@/components/services/InteractiveTreatmentShowcase';
+import { TreatmentImage } from '@/components/services/TreatmentImage';
+import { getTreatmentImage } from '@/lib/data/treatment-images';
 
 interface ServicesClientProps {
   categories: ServiceCategory[];
@@ -132,8 +135,11 @@ export function ServicesClient({ categories, services }: ServicesClientProps) {
         </div>
       </section>
 
+      {/* Interactive 33+ Treatments Showcase Studio */}
+      <InteractiveTreatmentShowcase categories={categories} services={services} />
+
       {/* Main Content Area */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+      <div id="treatments-grid-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
         {/* Search & Action Bar */}
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-8">
           <div className="relative w-full md:max-w-lg">
@@ -261,6 +267,17 @@ export function ServicesClient({ categories, services }: ServicesClientProps) {
                   <article
                     className="bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-navy-light/40 transition-all duration-300 flex flex-col justify-between overflow-hidden group h-full pro-card"
                   >
+                  {/* Card Visual: Real Image or Cream Skeleton Fallback */}
+                  <div className="p-4 sm:p-5 pb-0 bg-slate-50/40">
+                    <TreatmentImage
+                      src={getTreatmentImage(service)}
+                      alt={t(service.name_en, service.name_bn)}
+                      variant="card"
+                      categoryName={parentCat ? t(parentCat.name_en, parentCat.name_bn) : undefined}
+                      treatmentName={t(service.name_en, service.name_bn)}
+                    />
+                  </div>
+
                   {/* Card Header & Badges */}
                   <div className="p-6 pb-4 border-b border-slate-100 bg-slate-50/50">
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-2">

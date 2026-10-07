@@ -461,6 +461,20 @@ export function AboutClient({ doctor, settings, features }: AboutClientProps) {
                 {t(doctor.bio_en, doctor.bio_bn)}
               </p>
 
+              {/* Languages Spoken Row */}
+              <div className="flex flex-wrap items-center gap-2 pt-1 pb-1">
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{t('Languages Spoken:', 'পরামর্শের ভাষা:')}</span>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-[#EEF2FF] text-[#0F1A48] border border-[#0F1A48]/15">
+                  🇧🇩 {t('Bangla (Native)', 'বাংলা (মাতৃভাষা)')}
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-[#EEF2FF] text-[#0F1A48] border border-[#0F1A48]/15">
+                  🇬🇧 {t('English (Professional)', 'ইংরেজি (পেশাদার)')}
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-[#EEF2FF] text-[#0F1A48] border border-[#0F1A48]/15">
+                  🇮🇳 {t('Hindi (Conversational)', 'হিন্দি (কথোপকথন)')}
+                </span>
+              </div>
+
               {/* Clinical Specialties Grid */}
               <div className="space-y-2 pt-1">
                 <h3 className="text-xs font-black uppercase tracking-wider text-slate-500">
@@ -541,6 +555,148 @@ export function AboutClient({ doctor, settings, features }: AboutClientProps) {
         </div>
       </section>
 
+      {/* 2.5 Specialized Clinical Training & Hands-on Certifications */}
+      <section className="py-14 lg:py-20 bg-gradient-to-b from-white via-slate-50 to-slate-100/50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal animation="fade-up" duration={500}>
+            <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#0F1A48]/10 text-[#0F1A48] text-xs font-black uppercase tracking-wider border border-[#0F1A48]/15 shadow-2xs">
+                <Award className="w-3.5 h-3.5 text-amber-500" />
+                <span>{t('Advanced Clinical Training', 'উচ্চতর বিশেষায়িত ক্লিনিক্যাল প্রশিক্ষণ')}</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F1A48] tracking-tight">
+                {t('Specialized Post-Graduate Clinical Masteries', 'বিশেষায়িত হ্যান্ডস-অন প্রশিক্ষণ ও ক্লিনিক্যাল সনদ')}
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                {t(
+                  'Continuous medical training and advanced hands-on clinical certifications completed by Dr. Aktar Zahan Ony to provide modern, sterile, and pain-free dentistry.',
+                  'আধুনিকতম ব্যথামুক্ত চিকিৎসা ও নির্ভুল ফলাফলের নিশ্চয়তায় ডা. আক্তার জাহান অনির সম্পন্নকৃত পোস্ট-গ্র্যাজুয়েট বিশেষায়িত প্রশিক্ষণসমূহ।'
+                )}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1: Advanced Endodontics */}
+            <ScrollReveal animation="fade-up" delay={100}>
+              <div className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-lg hover:border-indigo-300 transition-all flex flex-col justify-between h-full group">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full text-xs font-black bg-indigo-50 text-indigo-800 border border-indigo-200">
+                      2026 • {t('Completed', 'সম্পন্ন')}
+                    </span>
+                    <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Activity className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-black text-[#0F1A48] group-hover:text-indigo-900 transition-colors">
+                      {t('Specialized Training in Advanced Endodontics', 'উন্নত এন্ডোডন্টিক্স বিশেষ প্রশিক্ষণ')}
+                    </h3>
+                    <p className="text-xs font-bold text-slate-400 mt-0.5">
+                      {t('Modern Rotary Root Canal Protocol', 'রোটারি রুট ক্যানেল ও মাইক্রো-ডেন্টিস্ট্রি')}
+                    </p>
+                  </div>
+                  <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
+                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                      {t('Clinical Focus:', 'প্রশিক্ষণ ফোকাস:')}
+                    </span>
+                    <p className="text-xs text-slate-700 leading-relaxed">
+                      {t(
+                        'Modern rotary instrumentation, complex root canal anatomy management, electronic apex locator precision, and complex retreatment techniques.',
+                        'মোটরাইজড রোটারি ইন্সট্রুমেন্টেশন, জটিল রুট ক্যানেল অ্যানাটমি সমাধান ও ব্যথামুক্ত রি-ট্রিটমেন্ট পদ্ধতি।'
+                      )}
+                    </p>
+                  </div>
+                </div>
+                <div className="pt-4 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>{t('Single Sitting Painless RCT Certified', 'সিঙ্গেল সিটিং রুট ক্যানেলে দক্ষ')}</span>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Card 2: Oral Cancer Screening */}
+            <ScrollReveal animation="fade-up" delay={200}>
+              <div className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-lg hover:border-rose-300 transition-all flex flex-col justify-between h-full group">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full text-xs font-black bg-rose-50 text-rose-800 border border-rose-200">
+                      2026 • {t('Completed', 'সম্পন্ন')}
+                    </span>
+                    <div className="w-10 h-10 rounded-2xl bg-rose-50 text-rose-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <ShieldCheck className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-black text-[#0F1A48] group-hover:text-rose-900 transition-colors">
+                      {t('Specialized Training in Oral Cancer', 'ওরাল ক্যান্সার স্ক্রিনিং বিশেষ প্রশিক্ষণ')}
+                    </h3>
+                    <p className="text-xs font-bold text-slate-400 mt-0.5">
+                      {t('Diagnostic Screening & Early Detection', 'প্রাথমিক লক্ষণ শনাক্তকরণ ও বায়োপসি')}
+                    </p>
+                  </div>
+                  <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
+                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                      {t('Clinical Focus:', 'প্রশিক্ষণ ফোকাস:')}
+                    </span>
+                    <p className="text-xs text-slate-700 leading-relaxed">
+                      {t(
+                        'Early detection, diagnostic biopsy techniques, soft-tissue lesion screening, and preventative oral oncology guidelines.',
+                        'মুখের ক্যান্সারের প্রাথমিক লক্ষণ শনাক্তকরণ, ডায়াগনস্টিক বায়োপসি ও প্রিভেন্টিভ ওরাল অনকোলজি স্ক্রিনিং।'
+                      )}
+                    </p>
+                  </div>
+                </div>
+                <div className="pt-4 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-semibold text-rose-700">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>{t('Preventative Oral Oncology Protocol', 'প্রিভেন্টিভ ক্যান্সার স্ক্রিনিং সমর্থিত')}</span>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Card 3: Aesthetic Dentistry */}
+            <ScrollReveal animation="fade-up" delay={300}>
+              <div className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-xs hover:shadow-lg hover:border-amber-300 transition-all flex flex-col justify-between h-full group">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full text-xs font-black bg-amber-50 text-amber-800 border border-amber-200">
+                      2025 • {t('Completed', 'সম্পন্ন')}
+                    </span>
+                    <div className="w-10 h-10 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Sparkles className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-black text-[#0F1A48] group-hover:text-amber-900 transition-colors">
+                      {t('Specialized Training in Aesthetic Dentistry', 'এসথেটিক ডেন্টিস্ট্রি ও স্মাইল আর্কিটেকচার')}
+                    </h3>
+                    <p className="text-xs font-bold text-slate-400 mt-0.5">
+                      {t('Cosmetic Smile Architecture & Bonding', 'কম্পোজিট ভেনিয়ার ও স্মাইল মেকওভার')}
+                    </p>
+                  </div>
+                  <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
+                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                      {t('Clinical Focus:', 'প্রশিক্ষণ ফোকাস:')}
+                    </span>
+                    <p className="text-xs text-slate-700 leading-relaxed">
+                      {t(
+                        'Direct and indirect cosmetic restorations, veneer preparations, polychromatic composite layering, and aesthetic smile design.',
+                        'ডিরেক্ট ও ইনডিরেক্ট কসমেটিক রিস্টোরেশন, ভেনিয়ার প্রস্তুতি, কম্পোজিট লেয়ারিং ও স্মাইল আর্কিটেকচার।'
+                      )}
+                    </p>
+                  </div>
+                </div>
+                <div className="pt-4 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-semibold text-amber-700">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>{t('Lifelike Biomimetic Aesthetic Results', 'বায়োমিমেটিক ন্যাচারাল স্মাইল রেজাল্ট')}</span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
       {/* 3. Educational Background & Career Milestones Timeline (Designer Effect with Dynamic Scroll Animation) */}
       <section className="py-16 lg:py-24 bg-[#F8FAFC] border-b border-slate-200 relative overflow-hidden">
         {/* Background Ambient Glows */}
@@ -573,9 +729,9 @@ export function AboutClient({ doctor, settings, features }: AboutClientProps) {
               <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
                 {[
                   { key: 'all', label_en: 'All Milestones', label_bn: 'সকল মাইলফলক' },
-                  { key: 'education', label_en: 'Academic Degrees', label_bn: 'উচ্চতর ডিগ্রি' },
-                  { key: 'certification', label_en: 'Certifications & BMDC', label_bn: 'সনদ ও বিএমডিসি' },
-                  { key: 'experience', label_en: 'Clinical Leadership', label_bn: 'ক্লিনিক্যাল লিডারশিপ' },
+                  { key: 'experience', label_en: 'Clinical Experience', label_bn: 'ক্লিনিক্যাল কর্মঅভিজ্ঞতা' },
+                  { key: 'education', label_en: 'Academic Degrees', label_bn: 'শিক্ষাগত যোগ্যতা' },
+                  { key: 'certification', label_en: 'Specialized Training & BMDC', label_bn: 'বিশেষ প্রশিক্ষণ ও বিএমডিসি' },
                 ].map((filter) => (
                   <button
                     key={filter.key}

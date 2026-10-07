@@ -45,110 +45,238 @@ export const INITIAL_DOCTOR: Doctor = {
   id: 'b0000000-0000-0000-0000-000000000001',
   name_en: 'Dr. Aktar Zahan Ony',
   name_bn: 'ডা. আক্তার জাহান অনি',
-  title_en: 'Oral & Dental Surgeon',
-  title_bn: 'ওরাল এন্ড ডেন্টাল সার্জন',
-  qualifications_en: 'BDS, MPH, JU',
-  qualifications_bn: 'বিডিএস (রাবি), এমপিএইচ (জেইউ)',
+  title_en: 'Chief Oral & Dental Surgeon',
+  title_bn: 'চিফ ওরাল অ্যান্ড ডেন্টাল সার্জন',
+  qualifications_en: 'BDS, MPH (JU - Enrolled)',
+  qualifications_bn: 'বিডিএস (রাবি), এমপিএইচ (জেইউ - চলমান)',
+  degrees: 'BDS (Rangpur Dental College), MPH (Jahangirnagar University - Enrolled)',
   bmdc_reg: '12990',
-  bio_en: 'Dedicated Oral & Dental Surgeon with specialized expertise in advanced endodontics, cosmetic smile design, and pain-free surgical tooth extractions. Dr. Ony is devoted to 100% sterile protocols and empathetic patient care for adults and children.',
-  bio_bn: 'অভিজ্ঞ ওরাল এন্ড ডেন্টাল সার্জন। রুট ক্যানেল, কসমেটিক স্মাইল ডিজাইন, আঁকাবাঁকা দাঁতের চিকিৎসা ও ব্যথামুক্ত সার্জারিতে বিশেষভাবে দক্ষ। রোগীর সর্বোচ্চ শারীরিক নিরাপত্তা, শতভাগ জীবাণুমুক্ত পরিবেশ ও পরিবারের মতো আন্তরিক সেবায় সর্বদা নিবেদিতপ্রাণ।',
+  phone: '+880 1324-558811',
+  bio_en: 'Dedicated and detail-oriented Chief Oral and Dental Surgeon with over five years of clinical expertise spanning endodontics, aesthetic dentistry, and oral surgery. Proven track record in clinical leadership, complex root canal therapy, and patient-centered treatment planning. Currently pursuing a Master of Public Health (MPH) to combine advanced clinical practice with public health initiatives in oral healthcare.',
+  bio_bn: 'অভিজ্ঞ ও নিষ্ঠাবান চিফ ওরাল অ্যান্ড ডেন্টাল সার্জন। এন্ডোডন্টিক্স (রুট ক্যানেল), এসথেটিক স্মাইল ডিজাইন ও ওরাল সার্জারিতে ৫ বছরেরও বেশি ক্লিনিক্যাল অভিজ্ঞতাসম্পন্ন। ক্লিনিক্যাল লিডারশিপ, আধুনিক ব্যথামুক্ত রুট ক্যানেল থেরাপি ও রোগীর সর্বোচ্চ মানসম্মত চিকিৎসা পরিকল্পনায় সফল ট্র্যাক রেকর্ড রয়েছে। বর্তমানে আধুনিক ক্লিনিক্যাল প্র্যাকটিসের সাথে ওরাল হেলথকেয়ারের সার্বিক উন্নয়নে জাহাঙ্গীরনগর বিশ্ববিদ্যালয় থেকে মাস্টার অব পাবলিক হেলথ (এমপিএইচ) ডিগ্রি সম্পন্ন করছেন।',
   consulting_hours_en: '04:00 PM to 09:00 PM Daily',
   consulting_hours_bn: 'প্রতিদিন বিকাল ৪:০০ টা – রাত ৯:০০ টা',
   photo_url: '/images/doctor-aktar-zahan-ony.webp',
   cover_url: '/images/about-clinic-cover.webp',
   is_active: true,
-  experience_years: '7+',
+  experience_years: '5+',
   patients_treated: '3,000+',
+  languages_en: ['Bangla (Native)', 'English (Professional)', 'Hindi (Conversational)'],
+  languages_bn: ['বাংলা (মাতৃভাষা)', 'ইংরেজি (পেশাদার)', 'হিন্দি (কথোপকথন)'],
   specialties_en: [
-    'Advanced Rotary Endodontics (Single Sitting RCT)',
-    'Aesthetic Smile Architecture & Biomimetic Restorations',
+    'Advanced Rotary Endodontics & Complex RCT',
+    'Aesthetic Smile Architecture & Veneer Restoration',
+    'Oral Cancer Diagnostic Screening & Lesion Evaluation',
     'Painless Oral Surgery & Impacted Wisdom Tooth Extractions',
     'Conservative Pediatric & Preventive Dental Healthcare'
   ],
   specialties_bn: [
-    'উন্নত রোটারি এন্ডোডন্টিক্স (ব্যথামুক্ত সিঙ্গেল সিটিং রুট ক্যানেল)',
-    'এসথেটিক স্মাইল আর্কিটেকচার ও বায়োমিমেটিক ভেনিয়ার',
-    'ব্যথাহীন মাইনর ওরাল সার্জারি ও আক্কেল দাঁত তোলা',
+    'উন্নত রোটারি এন্ডোডন্টিক্স ও জটিল রুট ক্যানেল থেরাপি',
+    'এসথেটিক স্মাইল ডিজাইন, ভেনিয়ার ও কসমেটিক রিস্টোরেশন',
+    'প্রাথমিক ওরাল ক্যান্সার স্ক্রিনিং ও ডায়াগনস্টিক বায়োপসি',
+    'ব্যথামুক্ত ওরাল সার্জারি ও বাঁকা আক্কেল দাঁত অপসারণ',
     'প্রাকৃতিক দাঁত সংরক্ষণ, শিশু ও পারিবারিক ডেন্টাল কেয়ার'
   ],
+  trainings: [
+    {
+      id: 'tr-1',
+      title_en: 'Specialized Training in Advanced Endodontics',
+      title_bn: 'স্পেশালাইজড ট্রেনিং ইন এডভান্সড এন্ডোডন্টিক্স',
+      year: '2026',
+      focus_en: 'Modern rotary instrumentation, complex root canal anatomy management, and retreatment techniques.',
+      focus_bn: 'আধুনিক রোটারি ইন্সট্রুমেন্টেশন, জটিল রুট ক্যানেল অ্যানাটমি সমাধান ও ব্যথামুক্ত রি-ট্রিটমেন্ট কৌশল।'
+    },
+    {
+      id: 'tr-2',
+      title_en: 'Specialized Training in Oral Cancer',
+      title_bn: 'স্পেশালাইজড ট্রেনিং ইন ওরাল ক্যান্সার',
+      year: '2026',
+      focus_en: 'Early detection, diagnostic biopsy techniques, lesion screening, and preventative oral oncology.',
+      focus_bn: 'মুখের ক্যান্সারের প্রাথমিক লক্ষণ শনাক্তকরণ, ডায়াগনস্টিক বায়োপসি ও প্রিভেন্টিভ ওরাল অনকোলজি স্ক্রিনিং।'
+    },
+    {
+      id: 'tr-3',
+      title_en: 'Specialized Training in Aesthetic Dentistry',
+      title_bn: 'স্পেশালাইজড ট্রেনিং ইন এসথেটিক ডেন্টিস্ট্রি',
+      year: '2025',
+      focus_en: 'Direct and indirect cosmetic restorations, veneer preparations, composite layering, and smile design.',
+      focus_bn: 'ডিরেক্ট ও ইনডিরেক্ট কসমেটিক রিস্টোরেশন, ভেনিয়ার প্রস্তুতি, কম্পোজিট লেয়ারিং ও স্মাইল আর্কিটেকচার।'
+    }
+  ],
   timeline: [
+    // Clinical Leadership & Experience
     {
-      id: 'tl-1',
-      year: '2014 – 2019',
-      degree_en: 'Bachelor of Dental Surgery (B.D.S)',
-      degree_bn: 'ব্যাচেলর অব ডেন্টাল সার্জারি (বি.ডি.এস)',
-      institution_en: 'Rangpur Dental College, Rajshahi University (RU)',
-      institution_bn: 'রংপুর ডেন্টাল কলেজ, রাজশাহী বিশ্ববিদ্যালয়',
-      description_en: 'Comprehensive 5-year dental surgery training with clinical rotations in operative dentistry, oral surgery, prosthodontics, periodontics, and pediatric dental medicine.',
-      description_bn: 'অপারেটিভ ডেন্টিস্ট্রি, ওরাল অ্যান্ড ম্যাক্সিলোফেসিয়াল সার্জারি, প্রস্থোডন্টিক্স এবং পেডিয়াট্রিক ডেন্টাল কেয়ারে পূর্ণাঙ্গ ক্লিনিক্যাল ট্রেনিং সম্পন্ন।',
-      badge_en: 'Graduation & Clinical Internship',
-      badge_bn: 'গ্র্যাজুয়েশন ও ইন্টার্নশিপ',
-      type: 'education'
+      id: 'tl-exp-1',
+      year: 'May 2026 – Present',
+      degree_en: 'Chief Oral & Dental Surgeon',
+      degree_bn: 'চিফ ওরাল অ্যান্ড ডেন্টাল সার্জন',
+      institution_en: 'Care Point Dental Clinic, Pollibidyut, Savar',
+      institution_bn: 'কেয়ার পয়েন্ট ডেন্টাল ক্লিনিক, পল্লীবিদ্যুৎ, সাভার',
+      description_en: 'Directing clinical operations, overseeing daily dental diagnostics, restorative treatments, complex endodontic therapies, cosmetic smile redesigns, and mentoring clinical staff under hospital-grade sterile standards.',
+      description_bn: 'ক্লিনিক্যাল অপারেশনস পরিচালনা, জটিল এন্ডোডন্টিক (রুট ক্যানেল) চিকিৎসা, কসমেটিক স্মাইল রিডিজাইন এবং শতভাগ অটোক্লেভ জীবাণুমুক্ত পরিবেশে রোগীদের সর্বোচ্চ সেবা প্রদান ও তদারকি।',
+      badge_en: 'Chief Surgeon & Leadership',
+      badge_bn: 'চিফ সার্জন ও লিডারশিপ',
+      type: 'experience'
     },
     {
-      id: 'tl-2',
-      year: '2020',
-      degree_en: 'BMDC Professional Medical License',
-      degree_bn: 'বিএমডিসি পেশাদার মেডিকেল লাইসেন্স',
-      institution_en: 'Bangladesh Medical & Dental Council (BMDC)',
-      institution_bn: 'বাংলাদেশ মেডিকেল অ্যান্ড ডেন্টাল কাউন্সিল (বিএমডিসি)',
-      description_en: 'Officially certified and licensed registered dental surgeon (Registration No: 12990) authorized for clinical dental practice across Bangladesh.',
-      description_bn: 'বাংলাদেশ মেডিকেল অ্যান্ড ডেন্টাল কাউন্সিল কর্তৃক আনুষ্ঠানিকভাবে নিবন্ধিত ও অনুমোদিত ডেন্টাল সার্জন (রেজিস্ট্রেশন নং: ১২৯৯০)।',
-      badge_en: 'BMDC Reg. No: 12990',
-      badge_bn: 'বিএমডিসি রেজি: ১২৯৯০',
-      type: 'certification'
+      id: 'tl-exp-2',
+      year: 'March 2024 – April 2026',
+      degree_en: 'Senior Dental Surgeon',
+      degree_bn: 'সিনিয়র ডেন্টাল সার্জন',
+      institution_en: 'Oral and Dental Healthcare',
+      institution_bn: 'ওরাল অ্যান্ড ডেন্টাল হেলথকেয়ার',
+      description_en: 'Delivered comprehensive dental care, specialized endodontic interventions, aesthetic restorations, and early-stage oral cancer screenings and evaluations.',
+      description_bn: 'সমন্বিত ডেন্টাল কেয়ার, বিশেষায়িত রুট ক্যানেল, নান্দনিক ফিলিং এবং উচ্চ ঝুঁকিপূর্ণ রোগীদের প্রাথমিক ওরাল ক্যান্সার স্ক্রিনিং ও ডায়াগনোসিস পরিচালনা।',
+      badge_en: 'Senior Surgeon',
+      badge_bn: 'সিনিয়র সার্জন',
+      type: 'experience'
     },
     {
-      id: 'tl-3',
-      year: '2021',
-      degree_en: 'Rotary Endodontics & Micro-Dentistry Certification',
-      degree_bn: 'রোটারি এন্ডোডন্টিক্স ও মাইক্রো-ডেন্টিস্ট্রি প্রশিক্ষণ',
+      id: 'tl-exp-3',
+      year: 'September 2023 – February 2024',
+      degree_en: 'Senior Dental Surgeon',
+      degree_bn: 'সিনিয়র ডেন্টাল সার্জন',
+      institution_en: 'Naz Dental Care',
+      institution_bn: 'নাজ ডেন্টাল কেয়ার',
+      description_en: 'Managed high-volume outpatient patient care involving restorative dentistry, extractions, and crown work focusing on pain management and restoration.',
+      description_bn: 'আউটপেশেন্ট রোগীদের রিস্টোরেটিভ ডেন্টিস্ট্রি, ব্যথামুক্ত দাঁত তোলা এবং ক্যাপ ও ক্রাউন চিকিৎসায় কার্যকর সেবা পরিচালনা।',
+      badge_en: 'Restorative Care',
+      badge_bn: 'রিস্টোরেটিভ কেয়ার',
+      type: 'experience'
+    },
+    {
+      id: 'tl-exp-4',
+      year: 'January 2021 – May 2023',
+      degree_en: 'Junior Dental Surgeon',
+      degree_bn: 'জুনিয়র ডেন্টাল সার্জন',
+      institution_en: 'Dental Surgery and Root Canal Center',
+      institution_bn: 'ডেন্টাল সার্জারি অ্যান্ড রুট ক্যানেল সেন্টার',
+      description_en: 'Performed routine and intricate root canal treatments under modern rotary endodontic protocols and supported senior surgeons in complex oral surgeries.',
+      description_bn: 'আধুনিক রোটারি প্রোটোকলে নির্ভুল রুট ক্যানেল চিকিৎসা এবং জটিল ওরাল সার্জারিতে সিনিয়র সার্জনদের সহায়তা প্রদান।',
+      badge_en: 'Endodontic Protocols',
+      badge_bn: 'এন্ডোডন্টিক প্রোটোকল',
+      type: 'experience'
+    },
+    {
+      id: 'tl-exp-5',
+      year: 'January 2020 – December 2020',
+      degree_en: 'Dental Intern Doctor',
+      degree_bn: 'ডেন্টাল ইন্টার্ন ডক্টর',
+      institution_en: 'Rangpur Dental College & Hospital',
+      institution_bn: 'রংপুর ডেন্টাল কলেজ অ্যান্ড হসপিটাল',
+      description_en: 'Completed full-term compulsory rotatory internship across Conservative Dentistry, Oral & Maxillofacial Surgery, Prosthodontics, and Orthodontics.',
+      description_bn: 'কনজারভেটিভ ডেন্টিস্ট্রি, ওরাল অ্যান্ড ম্যাক্সিলোফেসিয়াল সার্জারি, প্রস্থোডন্টিক্স এবং অর্থোডন্টিক্সে পূর্ণাঙ্গ বাধ্যতামূলক ইন্টার্নশিপ সম্পন্ন।',
+      badge_en: 'Clinical Internship',
+      badge_bn: 'ক্লিনিক্যাল ইন্টার্নশিপ',
+      type: 'experience'
+    },
+
+    // Specialized Clinical Training & Licensing
+    {
+      id: 'tl-cert-1',
+      year: '2026',
+      degree_en: 'Specialized Training in Advanced Endodontics',
+      degree_bn: 'স্পেশালাইজড ট্রেনিং ইন এডভান্সড এন্ডোডন্টিক্স',
       institution_en: 'Advanced Endodontic Clinical Training Institute',
       institution_bn: 'এডভান্সড এন্ডোডন্টিক ক্লিনিক্যাল ট্রেনিং ইনস্টিটিউট',
-      description_en: 'Specialized clinical hands-on mastery in motorized rotary root canal systems, apex locator precision, dental operating microscope protocols, and single-sitting painless RCT.',
-      description_bn: 'মোটরাইজড রোটারি সিস্টেম, নিখুঁত অ্যাপেক্স লোকেশন ও সিঙ্গেল-সিটিং ব্যথামুক্ত রুট ক্যানেল চিকিৎসায় বিশেষ ক্লিনিক্যাল প্রশিক্ষণ ও দক্ষতা।',
+      description_en: 'Modern rotary instrumentation, complex root canal anatomy management, and advanced retreatment techniques.',
+      description_bn: 'আধুনিক রোটারি ইন্সট্রুমেন্টেশন, জটিল রুট ক্যানেল অ্যানাটমি সমাধান ও ব্যথামুক্ত রি-ট্রিটমেন্ট কৌশল।',
       badge_en: 'Advanced Endodontics',
       badge_bn: 'উন্নত এন্ডোডন্টিক্স',
       type: 'certification'
     },
     {
-      id: 'tl-4',
-      year: '2022 – 2024',
-      degree_en: 'Master of Public Health (M.P.H.)',
-      degree_bn: 'মাস্টার অব পাবলিক হেলথ (এম.পি.এইচ)',
-      institution_en: 'Jahangirnagar University (JU)',
-      institution_bn: 'জাহাঙ্গীরনগর বিশ্ববিদ্যালয়',
-      description_en: 'Postgraduate degree focused on preventive healthcare, dental epidemiology, infection control sterilization protocols, and community health management.',
-      description_bn: 'প্রিভেন্টিভ হেলথকেয়ার, ডেন্টাল এপিডেমিওলজি, আন্তর্জাতিক স্টেরিলাইজেশন প্রোটোকল ও কমিউনিটি ওরাল হেলথ ম্যানেজমেন্টে স্নাতকোত্তর ডিগ্রি অর্জন।',
-      badge_en: 'Postgraduate Degree',
-      badge_bn: 'পোস্টগ্র্যাজুয়েট ডিগ্রি',
-      type: 'education'
-    },
-    {
-      id: 'tl-5',
-      year: '2023 – 2024',
-      degree_en: 'Aesthetic Dentistry & Smile Architecture',
-      degree_bn: 'এসথেটিক ডেন্টিস্ট্রি ও স্মাইল আর্কিটেকচার',
-      institution_en: 'Academy of Cosmetic Dentistry & Restorative Care',
-      institution_bn: 'একাডেমি অব কসমেটিক ডেন্টিস্ট্রি অ্যান্ড রিস্টোরেটিভ কেয়ার',
-      description_en: 'Hands-on certification in direct composite veneers, smile designing, diastema closure, tooth reshaping, and high-aesthetic biomimetic anterior restorations.',
-      description_bn: 'ডিরেক্ট কম্পোজিট ভেনিয়ার, স্মাইল ডিজাইনিং, দাঁতের ফাঁক বন্ধকরণ ও অত্যন্ত নান্দনিক বায়োমিমেটিক সামনের দাঁত সাজানোর আধুনিক কলাকৌশলে পারদর্শী।',
-      badge_en: 'Cosmetic Dentistry',
-      badge_bn: 'কসমেটিক ডেন্টিস্ট্রি',
+      id: 'tl-cert-2',
+      year: '2026',
+      degree_en: 'Specialized Training in Oral Cancer',
+      degree_bn: 'স্পেশালাইজড ট্রেনিং ইন ওরাল ক্যান্সার',
+      institution_en: 'Oral Oncology Diagnostic & Screening Center',
+      institution_bn: 'ওরাল অনকোলজি স্ক্রিনিং সেন্টার',
+      description_en: 'Early detection, diagnostic biopsy techniques, lesion screening, and preventative oral oncology protocols.',
+      description_bn: 'মুখের ক্যান্সারের প্রাথমিক লক্ষণ শনাক্তকরণ, ডায়াগনস্টিক বায়োপসি ও প্রিভেন্টিভ ওরাল অনকোলজি স্ক্রিনিং।',
+      badge_en: 'Oral Cancer Screening',
+      badge_bn: 'ওরাল ক্যান্সার স্ক্রিনিং',
       type: 'certification'
     },
     {
-      id: 'tl-6',
-      year: '2024 – Present',
-      degree_en: 'Chief Dental Surgeon & Founder',
-      degree_bn: 'চিফ ডেন্টাল সার্জন ও প্রতিষ্ঠাতা',
-      institution_en: 'Care Point Dental Clinic (CPDC), Pollibidyut, Savar',
-      institution_bn: 'কেয়ার পয়েন্ট ডেন্টাল ক্লিনিক (সিপিডিসি), পল্লীবিদ্যুৎ, সাভার',
-      description_en: 'Leading private clinical practice dedicated to modern, painless dental care, Class-B autoclave sterilization, digital RVG radiography, and empathetic patient relationships.',
-      description_bn: 'অত্যাধুনিক ডেন্টাল কেয়ার, ক্লাস-বি অটোক্লেভ জীবাণুমুক্তকরণ ব্যবস্থা, ডিজিটাল আরভিজি এক্স-রে ও আন্তরিক সেবায় নিবেদিত প্রধান ডেন্টাল সার্জন হিসেবে দায়িত্ব পালন।',
-      badge_en: 'Lead Consultant',
-      badge_bn: 'প্রধান পরামর্শক',
-      type: 'experience'
+      id: 'tl-cert-3',
+      year: '2025',
+      degree_en: 'Specialized Training in Aesthetic Dentistry',
+      degree_bn: 'স্পেশালাইজড ট্রেনিং ইন এসথেটিক ডেন্টিস্ট্রি',
+      institution_en: 'Academy of Cosmetic Dentistry & Restorative Care',
+      institution_bn: 'একাডেমি অব কসমেটিক ডেন্টিস্ট্রি অ্যান্ড রিস্টোরেটিভ কেয়ার',
+      description_en: 'Direct and indirect cosmetic restorations, veneer preparations, composite layering, and smile design.',
+      description_bn: 'ডিরেক্ট ও ইনডিরেক্ট কসমেটিক রিস্টোরেশন, ভেনিয়ার প্রস্তুতি, কম্পোজিট লেয়ারিং ও স্মাইল আর্কিটেকচার।',
+      badge_en: 'Aesthetic Dentistry',
+      badge_bn: 'এসথেটিক ডেন্টিস্ট্রি',
+      type: 'certification'
+    },
+    {
+      id: 'tl-cert-4',
+      year: '2020',
+      degree_en: 'BMDC Registered Dental Practitioner',
+      degree_bn: 'বিএমডিসি নিবন্ধিত ডেন্টাল সার্জন লাইসেন্স',
+      institution_en: 'Bangladesh Medical & Dental Council (BMDC)',
+      institution_bn: 'বাংলাদেশ মেডিকেল অ্যান্ড ডেন্টাল কাউন্সিল (বিএমডিসি)',
+      description_en: 'Officially certified and licensed registered dental practitioner (Registration No: 12990) authorized for clinical dental practice across Bangladesh.',
+      description_bn: 'বাংলাদেশ মেডিকেল অ্যান্ড ডেন্টাল কাউন্সিল কর্তৃক আনুষ্ঠানিকভাবে নিবন্ধিত ও অনুমোদিত ডেন্টাল সার্জন (রেজিস্ট্রেশন নং: ১২৯৯০)।',
+      badge_en: 'BMDC Reg. No: 12990',
+      badge_bn: 'বিএমডিসি রেজি: ১২৯৯০',
+      type: 'certification'
+    },
+
+    // Academic Education
+    {
+      id: 'tl-edu-1',
+      year: 'Enrolled 2025 – Ongoing',
+      degree_en: 'Master of Public Health (MPH)',
+      degree_bn: 'মাস্টার অব পাবলিক হেলথ (এমপিএইচ)',
+      institution_en: 'Jahangirnagar University (JU)',
+      institution_bn: 'জাহাঙ্গীরনগর বিশ্ববিদ্যালয়',
+      description_en: 'Postgraduate public health degree combining advanced clinical practice with public health initiatives, oral disease epidemiology, and sterile healthcare systems.',
+      description_bn: 'উন্নত ক্লিনিক্যাল ডেন্টাল চিকিৎসার পাশাপাশি জনস্বাস্থ্য, ওরাল ডিজিজ প্রতিরোধ ও রোগতত্ত্বের সমন্বয়ে উচ্চতর স্নাতকোত্তর ডিগ্রি।',
+      badge_en: 'Postgraduate (Ongoing)',
+      badge_bn: 'পোস্টগ্র্যাজুয়েট (চলমান)',
+      type: 'education'
+    },
+    {
+      id: 'tl-edu-2',
+      year: 'Session 2015 – 2016',
+      degree_en: 'Bachelor of Dental Surgery (BDS)',
+      degree_bn: 'ব্যাচেলর অব ডেন্টাল সার্জারি (বিডিএস)',
+      institution_en: 'Rangpur Dental College (affiliated with Rajshahi University)',
+      institution_bn: 'রংপুর ডেন্টাল কলেজ (রাজশাহী বিশ্ববিদ্যালয় অধিভুক্ত)',
+      description_en: 'Comprehensive 5-year dental surgery medical graduation with rigorous hospital clinical residency and surgical training.',
+      description_bn: '৫ বছর মেয়াদি পূর্ণাঙ্গ ডেন্টাল সার্জারি গ্র্যাজুয়েশন; কনজারভেটিভ ডেন্টিস্ট্রি ও ওরাল সার্জারিতে বিশেষায়িত ক্লিনিক্যাল ট্রেনিং।',
+      badge_en: 'Medical Graduation (BDS)',
+      badge_bn: 'বিডিএস গ্র্যাজুয়েশন',
+      type: 'education'
+    },
+    {
+      id: 'tl-edu-3',
+      year: '2014',
+      degree_en: 'Higher Secondary Certificate (HSC)',
+      degree_bn: 'উচ্চ মাধ্যমিক সার্টিফিকেট (এইচএসসি)',
+      institution_en: 'Saidpur Cantonment Public School & College',
+      institution_bn: 'সৈয়দপুর ক্যান্টনমেন্ট পাবলিক স্কুল অ্যান্ড কলেজ',
+      description_en: 'Higher Secondary Certificate in Science education with academic excellence.',
+      description_bn: 'বিজ্ঞান বিভাগ থেকে কৃতিত্বপূর্ণ ফলাফলের সাথে উচ্চ মাধ্যমিক শিক্ষা সম্পন্ন।',
+      badge_en: 'HSC Science',
+      badge_bn: 'এইচএসসি বিজ্ঞান',
+      type: 'education'
+    },
+    {
+      id: 'tl-edu-4',
+      year: '2012',
+      degree_en: 'Secondary School Certificate (SSC)',
+      degree_bn: 'মাধ্যমিক সার্টিফিকেট (এসএসসি)',
+      institution_en: 'Saidpur Cantonment Public School & College',
+      institution_bn: 'সৈয়দপুর ক্যান্টনমেন্ট পাবলিক স্কুল অ্যান্ড কলেজ',
+      description_en: 'Secondary School Certificate in Science with distinction.',
+      description_bn: 'বিজ্ঞান বিভাগ থেকে ডিস্টিংশন সহ কৃতিত্বের সাথে মাধ্যমিক শিক্ষা সম্পন্ন।',
+      badge_en: 'SSC Science',
+      badge_bn: 'এসএসসি বিজ্ঞান',
+      type: 'education'
     }
   ]
 };
@@ -1415,121 +1543,8 @@ export const INITIAL_FAQS: FAQ[] = [
   }
 ];
 
-export const INITIAL_BLOGS: BlogPost[] = [
-  {
-    id: 'blog-1',
-    slug: 'root-canal-treatment-cost-savar-ashulia',
-    title_en: 'Root Canal Treatment Cost in Savar & Ashulia: What Patients Need to Know',
-    title_bn: 'রুট ক্যানেল চিকিৎসার খরচ সাভার ও আশুলিয়ায়: কেন ও কখন এটি জরুরি?',
-    excerpt_en: 'Explore how modern root canal therapy saves your natural teeth from extraction, what to expect during the painless procedure, and transparent pricing in Savar.',
-    excerpt_bn: 'দাঁতের অসহ্য ব্যথা থেকে মুক্তি পেতে এবং আসল দাঁত তুলে ফেলা থেকে রক্ষা করতে রুট ক্যানেল কেন সেরা চিকিৎসা? জেনে নিন বিস্তারিত খরচ ও ডাক্তারের পরামর্শ।',
-    content_en: `## Understanding Root Canal Treatment (RCT)
+export { INITIAL_BLOGS } from './blogs-data';
 
-When dental decay penetrates through the enamel and dentin into the pulp chamber, bacteria inflame the internal nerve tissues and blood vessels. Left untreated, this infection triggers excruciating throbbing toothaches and can lead to dangerous facial cellulitis or jaw abscesses.
-
-### Why Saving Your Natural Tooth is Critical
-No artificial tooth completely replicates the chewing efficiency and proprioceptive sensory feedback of a natural tooth root. Root canal therapy meticulously cleans out bacteria, disinfects the canals, and hermetically seals them with biocompatible gutta-percha.
-
-### Treatment Costs at Care Point Dental Clinic
-- **Anterior (Front Teeth) Root Canal:** ৳3,000 – ৳5,000 per tooth
-- **Posterior (Molar & Premolar) Root Canal:** ৳4,000 – ৳6,000 per tooth
-
-All procedures are completed with modern digital apex locators, rotary instrumentation, and gentle local anesthesia under the care of **Dr. Aktar Zahan Ony**.`,
-    content_bn: `## রুট ক্যানেল চিকিৎসা কী?
-
-দাঁতের ক্যাভিটি বা ক্ষয় যখন গভীরে গিয়ে দাঁতের ভেতরের স্নায়ু (Pulp) আক্রান্ত করে, তখন তীব্র ব্যথার সৃষ্টি হয়। অনেকেই ভয়ে আক্রান্ত দাঁতটি তুলে ফেলতে চান, কিন্তু আসল দাঁত বাঁচিয়ে রাখাই আধুনিক চিকিৎসাবিজ্ঞানের প্রধান উদ্দেশ্য।
-
-### রুট ক্যানেল কেন করবেন?
-কোনো কৃত্রিম দাঁতই আপনার প্রাকৃতিক দাঁতের শিকড়ের মতো শক্তিশালী হতে পারে না। রুট ক্যানেলের মাধ্যমে দাঁতের ভেতরের জীবাণু সম্পূর্ণ পরিষ্কার করে ক্যানেল সিল করে দেওয়া হয়, যাতে দাঁতটি আজীবন সুরক্ষিত থাকে।
-
-### কেয়ার পয়েন্ট ডেন্টাল ক্লিনিকে খরচ
-- **সামনের দাঁতের রুট ক্যানেল:** ৩,০০০ – ৫,০০০ টাকা
-- **মাড়ির পেছনের দাঁতের রুট ক্যানেল:** ৪,০০০ – ৬,০০০ টাকা
-
-অভিজ্ঞ ওরাল এন্ড ডেন্টাল সার্জন ডা. আক্তার জাহান অনির তত্ত্বাবধানে এটি সম্পূর্ণ ব্যথামুক্তভাবে সম্পন্ন করা হয়।`,
-    cover_image: '/images/logo.jpeg',
-    target_keywords_en: 'root canal cost Savar, dental clinic Ashulia, painless root canal Dhaka',
-    target_keywords_bn: 'রুট ক্যানেল খরচ সাভার, আশুলিয়া ডেন্টাল ক্লিনিক, দাঁতের ব্যথামুক্ত চিকিৎসা',
-    read_time_en: '5 min read',
-    read_time_bn: '৫ মিনিট পড়ার সময়',
-    is_published: true,
-    published_at: '2026-09-01T10:00:00Z'
-  },
-  {
-    id: 'blog-2',
-    slug: 'why-scaling-and-polishing-is-essential',
-    title_en: 'Why Regular Scaling & Polishing is Crucial for Healthy Gums & Fresh Breath',
-    title_bn: 'দাঁতের স্কেলিং ও পলিশিং কেন জরুরি? সাধারণ ভুল ধারণা ও সঠিক তথ্য',
-    excerpt_en: 'Debunking the myth that scaling damages enamel. Discover how ultrasonic cleaning prevents gum disease, loose teeth, and bad breath.',
-    excerpt_bn: 'অনেকেই মনে করেন স্কেলিং করলে দাঁত পাতলা বা ফাঁকা হয়ে যায়—এটি কি সত্যি? জানুন কীভাবে নিয়মিত স্কেলিং মাড়ির রোগ ও দুর্গন্ধ দূর করে।',
-    content_en: `## Debunking the Scaling Myth
-
-A persistent misconception among patients is that ultrasonic scaling scrapes away healthy enamel or loosens teeth. In reality, hardened calculus (tartar) cannot be removed by normal brushing. As tartar deposits accumulate, they harbor destructive anaerobic bacteria that trigger chronic gingivitis and alveolar bone resorption.
-
-### Benefits of Professional Ultrasonic Cleaning
-1. **Stops Gum Bleeding:** Relieves swollen and fragile gum tissues.
-2. **Eliminates Halitosis:** Completely removes deep bacteria pockets causing persistent bad breath.
-3. **Prevents Premature Tooth Loss:** Keeps the supporting jawbone intact.
-4. **Removes Stubborn Stains:** Polishes away tea, coffee, and tobacco discolorations.
-
-At Care Point Dental Clinic, ultrasonic scaling and polishing packages are priced fairly between **৳1,500 and ৳3,000** based on tartar accumulation.`,
-    content_bn: `## স্কেলিং নিয়ে সাধারণ ভুল ধারণা
-
-অনেকের ভুল ধারণা রয়েছে যে স্কেলিং করলে দাঁতের এনামেল ক্ষয় হয় কিংবা দাঁত ফাঁকা হয়ে যায়। প্রকৃতপক্ষে দাঁতের গোড়ায় জমে থাকা শক্ত টারটার বা পাথর সাধারণ ব্রাশ দিয়ে পরিষ্কার করা সম্ভব নয়। এই পাথর দিনে দিনে মাড়িকে নিচে নামিয়ে হাড় ক্ষয় করে দাঁত নড়বড়ে করে ফেলে।
-
-### স্কেলিংয়ের মূল উপকারিতা
-১. **মাড়ি দিয়ে রক্ত পড়া বন্ধ করে:** মাড়ির ফোলাভাব দূর করে সুস্থ গোলাপি মাড়ি ফিরিয়ে আনে।
-২. **মুখের দুর্গন্ধ দূর করে:** পাথর ও জমে থাকা ব্যাকটেরিয়া পরিষ্কার করে নিঃশ্বাস সতেজ রাখে।
-৩. **দাঁত পড়ে যাওয়া প্রতিরোধ করে:** দাঁতের চারপাশের হাড়ের সুরক্ষা নিশ্চিত করে।
-৪. **দাঁত উজ্জ্বল ও মসৃণ করে:** চা, কফি বা পানের দাগ দূর করে দাঁত ঝকঝকে পলিশ করা হয়।
-
-কেয়ার পয়েন্টে মাত্র **১,৫০০ থেকে ৩,০০০ টাকায়** সম্পূর্ণ মুখের স্কেলিং ও পলিশিং সেবা পাওয়া যায়।`,
-    cover_image: '/images/logo.jpeg',
-    target_keywords_en: 'teeth scaling cost Savar, dental cleaning Ashulia, gum bleeding treatment',
-    target_keywords_bn: 'দাঁতের স্কেলিং খরচ, দাঁতের পাথর পরিষ্কার, মাড়ি দিয়ে রক্ত পড়া চিকিৎসা আশুলিয়া',
-    read_time_en: '4 min read',
-    read_time_bn: '৪ মিনিট পড়ার সময়',
-    is_published: true,
-    published_at: '2026-09-02T12:00:00Z'
-  },
-  {
-    id: 'blog-3',
-    slug: 'zirconia-vs-pfm-crowns-which-is-better',
-    title_en: 'Zirconia vs PFM Dental Crowns: Which One Should You Choose?',
-    title_bn: 'জার্কোনিয়া নাকি মেটাল ক্যাপ (PFM): আপনার দাঁতের জন্য কোনটি সেরা?',
-    excerpt_en: 'A clear comparison between Porcelain-Fused-to-Metal (PFM) and premium Monolithic Zirconia crowns regarding strength, aesthetics, and longevity.',
-    excerpt_bn: 'দাঁতে ক্যাপ করানোর আগে জেনে নিন পিএফএম এবং জার্কোনিয়া ক্যাপের পার্থক্য, স্থায়িত্ব এবং সঠিক নির্বাচন পদ্ধতি।',
-    content_en: `## Choosing the Right Dental Crown
-
-Following a root canal treatment or for fractured teeth, a protective crown is vital to reinforce the tooth structure against heavy masticatory forces.
-
-### Porcelain Fused to Metal (PFM)
-- **Advantages:** Time-tested durability and cost-effective (৳4,000 – ৳5,000 per unit).
-- **Consideration:** The opaque metal substructure requires a thicker coping and may reveal a subtle dark metal line near the gum margin over time.
-
-### Monolithic Zirconia Crowns
-- **Advantages:** 100% metal-free, superior biocompatibility, life-like optical translucency, and exceptionally resistant to fractures (৳11,000 – ৳15,000 per unit).
-- **Recommendation:** Best suited for anterior aesthetic zones and patients seeking lifelong, premium cosmetic restoration.`,
-    content_bn: `## দাঁতের ক্যাপের সঠিক নির্বাচন
-
-রুট ক্যানেল করার পর দাঁত ভঙ্গুর হয়ে যায়। শক্ত খাবার চাবানোর সময় দাঁত যাতে ভেঙে না যায়, সেজন্য ক্যাপ পরানো আবশ্যক।
-
-### পিএফএম ক্যাপ (Porcelain Fused to Metal)
-- **সুবিধা:** দীর্ঘদিন ধরে পরীক্ষিত, অত্যন্ত টেকসই এবং সাশ্রয়ী (৳৪,০০০ – ৳৫,০০০ প্রতি ইউনিট)।
-- **সীমাবদ্ধতা:** ভেতরে মেটাল থাকায় কয়েক বছর পর মাড়ির সংযোগস্থলে হালকা কালো দাগ পড়তে পারে।
-
-### জার্কোনিয়া ক্যাপ (Premium Monolithic Zirconia)
-- **সুবিধা:** সম্পূর্ণ মেটাল-মুক্ত, অবিকল প্রাকৃতিক দাঁতের মতো উজ্জ্বল ও চকচকে (৳১১,০০০ – ৳১৫,০০০ প্রতি ইউনিট)। কখনো মাড়িতে কালো দাগ পড়ে না এবং দীর্ঘস্থায়ী।
-- **পরামর্শ:** সামনের দাঁতের সৌন্দর্য ও হাসির স্বাভাবিক রূপ বজায় রাখতে জার্কোনিয়া ক্যাপই সেরা পছন্দ।`,
-    cover_image: '/images/logo.jpeg',
-    target_keywords_en: 'zirconia crown cost Savar, PFM cap price Dhaka, dental cap comparison',
-    target_keywords_bn: 'জার্কোনিয়া ক্যাপের দাম, দাঁতের ক্যাপ সাভার, ডেন্টাল ক্রাউন আশুলিয়া',
-    read_time_en: '5 min read',
-    read_time_bn: '৫ মিনিট পড়ার সময়',
-    is_published: true,
-    published_at: '2026-09-03T14:30:00Z'
-  }
-];
 
 export const INITIAL_APPOINTMENTS: Appointment[] = [
   {
